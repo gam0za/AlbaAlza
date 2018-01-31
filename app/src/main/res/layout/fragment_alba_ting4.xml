@@ -1,0 +1,30 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.albaalza.P_AlbaTing.AlbaTing4Fragment">
+
+    <RelativeLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+        <com.melnykov.fab.FloatingActionButton
+            android:id="@+id/floating4"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/writing"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:fab_colorRipple="@color/purple2"/>
+    </RelativeLayout>
+
+
+</FrameLayout>

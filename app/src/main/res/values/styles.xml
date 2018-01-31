@@ -1,0 +1,11 @@
+<resources>
+
+
+    <style name="AlbaAlzaTheme" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="colorPrimary">@color/main</item>
+        <item name="colorPrimaryDark">@color/main</item>
+        <item name="colorAccent">@color/purple</item>
+        <item name="android:textColorPrimary">@android:color/secondary_text_light</item>
+    </style>
+
+</resources>

@@ -1,0 +1,151 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.melnykov.fab.FloatingActionButton
+            android:id="@+id/Btn_Call"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp">
+
+        </com.melnykov.fab.FloatingActionButton>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="고객님,"
+            android:textSize="30dp"/>
+
+        <TextView
+            android:id="@+id/text_myCenter1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"/>
+
+        <ImageView
+            android:id="@+id/centerMap"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="#66000000"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Spinner
+                android:id="@+id/spinner_state"
+                android:layout_weight="1"
+                android:layout_width="20dp"
+                android:layout_height="50dp">
+
+            </Spinner>
+            <Spinner
+                android:id="@+id/spinner_city"
+                android:layout_weight="1"
+                android:layout_width="20dp"
+                android:layout_height="50dp">
+            </Spinner>
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="20dp"
+                android:layout_height="50dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/adviceInfoFrame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_marginTop="15dp"
+                android:id="@+id/text_myCenter2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="25dp"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/text_myCenterAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="10dp"/>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전화번호: "
+                    android:textSize="10dp"/>
+
+                <TextView
+                    android:id="@+id/text_myCenterTel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" | "
+                    android:textSize="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="팩스번호: "
+                    android:textSize="10dp"/>
+
+                <TextView
+                    android:id="@+id/text_myCenterFax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="진정서 다운로드▼    가이드라인 다시보기▼"
+                    android:textSize="10dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>

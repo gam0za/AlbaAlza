@@ -1,0 +1,273 @@
+<?xml version="1.0"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 알바 day 수정, 삭제 버튼을 위한 black layout -->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="10dp"></Spinner>
+
+            <Button
+                android:id="@+id/today_setBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
+
+        <!-- date toolbar -->
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--prev button -->
+
+
+            <Button
+                android:id="@+id/prevBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp" />
+
+            <!--next button -->
+
+
+            <Button
+                android:id="@+id/nextBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp" />
+
+            <!--date title -->
+
+
+            <TextView
+                android:id="@+id/dateTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/prevBtn"
+                android:layout_toLeftOf="@+id/nextBtn"
+                android:layout_toRightOf="@+id/prevBtn"
+                android:layout_toStartOf="@id/nextBtn"
+                android:gravity="center" />
+
+        </RelativeLayout>
+
+        <!--days header -->
+
+
+        <LinearLayout
+            android:id="@+id/calendar_header"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="SUN"
+                android:textColor="#ffff0000" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="MON"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="TUE"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="WED"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="THU"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="FRI"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="SAT"
+                android:textColor="#0000ff" />
+
+        </LinearLayout>
+
+        <!-- days view -->
+
+
+        <GridView
+            android:id="@+id/calendar_grid"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:horizontalSpacing="5dp"
+            android:numColumns="7"
+            android:verticalSpacing="5dp"></GridView>
+
+        <!-- 나의 시급, 당월 누적 금액 -->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/Text_myPay"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:gravity="center"
+                    android:text="나의 시급" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/Text_totalPay"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:gravity="center"
+                    android:text="당월 누적 금액" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/black_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#88000000"
+        android:visibility="invisible"></ImageView>
+
+    <!-- 알바 day 추가 버튼 -->
+
+
+    <TextView
+        android:id="@+id/add_albaDay"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="#45b39c"
+        android:gravity="center"
+        android:text="추가"
+        android:textColor="#ffffff"
+        android:visibility="invisible" />
+
+    <!-- 알바 day 수정 -->
+
+
+    <RelativeLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/modifyBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#45b39c"
+            android:gravity="center"
+            android:text="수정"
+            android:textColor="#ffffff" />
+
+        <!-- 알바 day 삭제 버튼 -->
+
+
+        <TextView
+            android:id="@+id/deleteBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toRightOf="@+id/modifyBtn"
+            android:background="#d1b6e1"
+            android:gravity="center"
+            android:text="삭제" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
