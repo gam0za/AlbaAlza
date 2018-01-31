@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.albaalza">
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.DIAL_PHONE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".Server.ApplicationController"
+        android:allowBackup="true"
+        android:icon="@mipmap/myicon"
+        android:label="@string/name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AlbaAlzaTheme">
+        <activity android:name=".P_Main.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".P_MyAlba.AddAlba" />
+        <activity android:name=".P_FindPassword.FindPassword" />
+        <activity android:name=".P_Login.Login" />
+        <activity android:name=".P_Main.MainActivity" />
+        <activity android:name=".P_MyAlba.AddAlbaDay" />
+        <activity android:name=".P_MyAlba.ModifyAlbaDay" />
+        <activity android:name=".P_AlbaTing.RecyclerViewTest" />
+        <activity android:name=".P_AlbaTing.AlbaTing_write" />
+        <activity android:name=".P_SignUp.SignUp" />
+        <activity android:name=".P_SignUp.SelectActor"></activity>
+    </application>
+
+</manifest>
