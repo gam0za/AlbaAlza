@@ -44,7 +44,7 @@ public class Adapter_AlbaTingList extends Adapter<ViewHolder_AlbaTingList>{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,AlbaTing_Detail.class);
-                String albating_name=holder.AlbaTing_Name.toString();
+                String albating_name=holder.AlbaTing_Name.getText().toString();
                 Log.d("넘겨주는 값",albating_name);
                 intent.putExtra("albating_name",albating_name);
                 context.startActivity(intent);

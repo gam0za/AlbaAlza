@@ -1,46 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.albaalza.P_AlbaTing.AlbaTingList">
+    android:orientation="vertical">
 
+    <!--검색 레이아웃-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <!--새 알바팅 만들기 버튼-->
-        <ImageView
-            android:padding="10dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/pencil"
-            android:id="@+id/Add_Albating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+
         <!--알바팅 검색 버튼-->
         <ImageView
-            android:padding="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/find"
             android:id="@+id/Search_Albating"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:padding="10dp"
+            android:src="@drawable/find" />
     </RelativeLayout>
 
     <!--리사이클러뷰 공간-->
     <LinearLayout
-        android:layout_marginTop="50dp"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview_albatinglist"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </android.support.v7.widget.RecyclerView>
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
     </LinearLayout>
+    <!--새 알바팅 만들기 버튼-->
 
-</LinearLayout>
+
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/Add_Albating"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/writing"/>
+</RelativeLayout>

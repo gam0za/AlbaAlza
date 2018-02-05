@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.albaalza.P_AlbaTing.AlbaTing_Add">
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="15sp"
+            android:text="새 알바팅"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <!--컨텐츠들 감싸는 레이아웃-->
+    <RelativeLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--알바팅 이름-->
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:text="알바팅 이름"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:layout_margin="10dp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="13sp"
+                android:hint="알바팅 이름을 작성해 주세요."
+                android:id="@+id/edit_abatingname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <!--공개 여부-->
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:textSize="15sp"
+                android:text="공개 여부"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!--공개-->
+                <ImageView
+                    android:id="@+id/btn_public"
+                    android:background="@color/main"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp" />
+                <!--비공개-->
+                <ImageView
+                    android:id="@+id/btn_private"
+                    android:layout_marginLeft="20dp"
+                    android:background="@color/alba_maincolor"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp" />
+            </LinearLayout>
+
+            <!--알바팅 소개글-->
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:textSize="15sp"
+                android:text="알바팅 소개글"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:background="#dddddd"
+                android:layout_margin="10dp"
+                android:textSize="13sp"
+                android:hint="알바팅을 간단히 소개해 주세요."
+                android:id="@+id/edit_albatinginfo"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+            <!--확인 버튼-->
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/dialog_confim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>
