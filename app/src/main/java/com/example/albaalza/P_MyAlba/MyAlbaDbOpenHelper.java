@@ -13,7 +13,7 @@ import android.util.Log;
  */
 
 public class MyAlbaDbOpenHelper {
-    private static final String DATABASE_NAME = "MyAlba10.db";
+    private static final String DATABASE_NAME = "MyAlba11.db";
     private static final int DATABASE_VERSION = 1;
     private static SQLiteDatabase mDB;
     private DatabaseHelper mDbHelper;
