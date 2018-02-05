@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">AlbaAlza</string>
+<<<<<<< HEAD
+<string name="name">알바알자</string>
+=======
     <string name="name">알바알자</string>
 
+>>>>>>> ae00f7913c2e0ea294f018535d8f8666be8b798c
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
