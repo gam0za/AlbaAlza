@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AlbaAlzaTheme">
-        <activity android:name=".P_Main.Splash">
+        <activity android:name=".P_Main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,7 @@
         <activity android:name=".P_MyAlba.AddAlba" />
         <activity android:name=".P_FindPassword.FindPassword" />
         <activity android:name=".P_Login.Login" />
-        <activity android:name=".P_Main.MainActivity" />
+        <activity android:name=".P_Main.Splash" />
         <activity android:name=".P_MyAlba.AddAlbaDay" />
         <activity android:name=".P_MyAlba.ModifyAlbaDay" />
         <activity android:name=".P_AlbaTing.RecyclerViewTest" />
