@@ -1,57 +1,51 @@
 package com.example.albaalza.P_AlbaTing;
 
-import android.content.Context;
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.albaalza.R;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class AlbaTing1Fragment extends Fragment implements View.OnClickListener{
-
+public class AlbaTing_Detail extends AppCompatActivity implements View.OnClickListener {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private FloatingActionButton floating1;
-    private String str2;
-    public AlbaTing1Fragment() {
-    }
-
+    private TextView AlbaTingName;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_alba_ting_detail);
 
-        ViewGroup view= (ViewGroup) inflater.inflate(R.layout.fragment_alba_ting1,container,false);
-
-        recyclerView = view.findViewById(R.id.recyclerview1);
-        floating1= view.findViewById(R.id.floating1);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview1);
+        floating1= (FloatingActionButton) findViewById(R.id.floating1);
         floating1.attachToRecyclerView(recyclerView);
+        AlbaTingName=(TextView)findViewById(R.id.AlbaTingName);
 
+//        Adapter_AlbaTingList에서 넘겨준 알바팅 이름을 가져와서 붙여준다.
+        Intent intent=getIntent();
+        String albating_name=intent.getStringExtra("albating_name");
+        AlbaTingName.setText(albating_name);
 
-
+//        플로팅 버튼을 눌렀을 경우 글쓰기 페이지로 넘어간다.
         floating1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getActivity().getApplicationContext(),AlbaTing_write.class);
+                Intent i = new Intent(getApplicationContext(),AlbaTing_Write.class);
                 i.putExtra("albating","대타");
                 startActivity(i);
             }
         });
 
-        Context mContext=getActivity().getApplicationContext();
-
-
-
-        List<AlbaTingData> albaTingDataList=new ArrayList<>();
+        ArrayList<AlbaTingData> albaTingDataList=new ArrayList<>();
 
         //리사이클러뷰에 뷰가 추가되는 순간
         //서버에서 가져온걸 붙이던가, 아니면 AlbaTingData 클래스에 서버에서 가져온 데이터를 추가해야 할 것 같다.
@@ -76,25 +70,16 @@ public class AlbaTing1Fragment extends Fragment implements View.OnClickListener{
         albaTingDataList.add(new AlbaTingData(R.drawable.worker,"사장님","2017.08.13.07:38",R.drawable.juhu,
                 "나는야 주휴수당 챙겨주는 멋쟁이~",R.drawable.chat_green,"3"));
 
-
-
-//        new LinearLayoutManager(getActivity().getApplicationContext())
-        layoutManager= new LinearLayoutManager(getActivity());
+        layoutManager= new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        adapter=new AlbaTingAdapter(albaTingDataList,getActivity());
+        adapter=new Adapter_Detail(albaTingDataList,this);
         recyclerView.setAdapter(adapter);
-
-
-        return view;
     }
 
-
     @Override
-    public void onClick(View v) {
-        int index= recyclerView.getChildAdapterPosition(v);
-
-        Intent intent= new Intent(getActivity().getApplicationContext(),RecyclerViewTest.class);
-        startActivity(intent);
+    public void onClick(View view) {
+        int index= recyclerView.getChildAdapterPosition(view);
+        Toast.makeText(this, "게시물", Toast.LENGTH_SHORT).show();
 
     }
 }

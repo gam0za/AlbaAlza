@@ -120,6 +120,7 @@ public class MyAlba2Fragment extends Fragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         if(isVisibleToUser){
+            albaNameInSpinner = ((MainActivity)getActivity()).getAlbaNameInSpinner();
             setDayInfo();
             calculate_basicPay(); // 기본 급여 계산
             calculate_extraPay(); // 추가 급여 계산 (추후 수정)

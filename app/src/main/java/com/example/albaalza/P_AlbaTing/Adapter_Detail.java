@@ -14,30 +14,30 @@ import java.util.List;
  * Created by DS on 2017-11-07.
  */
 
-public class AlbaTingAdapter extends RecyclerView.Adapter<AlbaTingViewHolder>{
+public class Adapter_Detail extends RecyclerView.Adapter<ViewHolder_Detail>{
 
     private List<AlbaTingData> albaTingDataList;
     private Context context;
     private View.OnClickListener onClick;
 
     //생성자
-    public AlbaTingAdapter(List<AlbaTingData> albaTingDataList, Context context) {
+    public Adapter_Detail(List<AlbaTingData> albaTingDataList, Context context) {
         this.albaTingDataList = albaTingDataList;
         this.context = context;
     }
 
 
     @Override
-    public AlbaTingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder_Detail onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview,parent,false);
+            View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview,parent,false);
 
-        return new AlbaTingViewHolder(view);
+        return new ViewHolder_Detail(view);
 
     }
 
     @Override
-    public void onBindViewHolder(AlbaTingViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder_Detail holder, int position) {
         AlbaTingData albaTingData=albaTingDataList.get(position);
 
         holder.profile.setImageResource(albaTingData.getProfile());

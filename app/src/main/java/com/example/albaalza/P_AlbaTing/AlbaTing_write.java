@@ -13,14 +13,11 @@ import android.widget.Toast;
 
 import com.example.albaalza.R;
 
-public class AlbaTing_write extends AppCompatActivity {
+public class AlbaTing_Write extends AppCompatActivity {
 
     private TextView title,content;
     private ImageView image,button;
-    private AlbaTing1Fragment albaTing1Fragment;
-    private AlbaTing2Fragment albaTing2Fragment;
-    private AlbaTing3Fragment albaTing3Fragment;
-    private AlbaTing4Fragment albaTing4Fragment;
+    private AlbaTing_Detail albaTingDetail;
 
    private static final int SELECT_PICTURE=1; //앨범 접근을 위한 코드
     private String selectedImagePath;
@@ -88,10 +85,7 @@ public class AlbaTing_write extends AppCompatActivity {
 
 
 
-        albaTing1Fragment= new AlbaTing1Fragment();
-        albaTing2Fragment =new AlbaTing2Fragment();
-        albaTing3Fragment = new AlbaTing3Fragment();
-        albaTing4Fragment = new AlbaTing4Fragment();
+        albaTingDetail = new AlbaTing_Detail();
 
         Intent intent = getIntent();
        str= intent.getStringExtra("albating");

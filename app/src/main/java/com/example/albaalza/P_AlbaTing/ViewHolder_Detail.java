@@ -11,11 +11,11 @@ import com.example.albaalza.R;
  * Created by DS on 2017-11-07.
  */
 
-public class AlbaTingViewHolder extends RecyclerView.ViewHolder {
+public class ViewHolder_Detail extends RecyclerView.ViewHolder {
     public ImageView profile,image,comment_image;
     public TextView name,time,title,comment;
 
-    public AlbaTingViewHolder(View itemView) {
+    public ViewHolder_Detail(View itemView) {
         super(itemView);
 
         profile=(ImageView)itemView.findViewById(R.id.profile); //프로필 사진

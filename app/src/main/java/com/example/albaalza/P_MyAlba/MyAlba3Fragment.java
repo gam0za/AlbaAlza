@@ -159,7 +159,6 @@ public class MyAlba3Fragment extends Fragment{
                     Toast.makeText(getContext(), "삭제 실패", Toast.LENGTH_SHORT).show();
                     ex.printStackTrace();
                 }
-
                 Toast.makeText(getContext(), "정상적으로 삭제 되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
