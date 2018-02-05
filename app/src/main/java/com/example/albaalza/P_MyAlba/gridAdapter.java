@@ -27,6 +27,9 @@ class gridAdapter extends BaseAdapter {
     MyAlbaDBCalculator myAlbaDBCalculator;
     String albaNameInSpinner = null;
 
+    int myPayDay = 0;
+    boolean periodFlag  =false;
+
 
     public gridAdapter(Context context, ArrayList<Integer> days, int startDay,
                        int current_date, boolean today_flag,
@@ -43,6 +46,9 @@ class gridAdapter extends BaseAdapter {
         this.calendar_month = calendar_month;
         this.myAlbaDBCalculator = myAlbaDBCalculator;
         this.albaNameInSpinner = albaNameInSpinner;
+
+        // 내역 기간
+        myPayDay = myAlbaDBCalculator.getMyPayDay(albaNameInSpinner);
 
         grid_inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -73,7 +79,7 @@ class gridAdapter extends BaseAdapter {
                 day_icon.setTextColor(0xffffffff);
             }
 
-
+            if(today_flag == true)
             // 돈 있는 날 색깔 표시
             if(i >= startDay - 1 && i<startDay + 32) {
                 if(myAlbaDBCalculator.getPayForDay(albaNameInSpinner,calendar_year,calendar_month,i-startDay+2)!=0)
@@ -97,5 +103,7 @@ class gridAdapter extends BaseAdapter {
     public long getItemId(int i) {
         return i;
     }
+
+
 }
 

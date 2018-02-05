@@ -9,7 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,9 +25,11 @@ public class MyAlba3Fragment extends Fragment{
 
     TextView edit_my_pay, edit_payday, edit_albaName;
     Button btn_edit, btn_delete;
+    Switch insuranceSwitch;
 
     String alba_name;
     int currentID;
+    int switchFlag = 0;
 
     MyAlba myAlba;
     MyAlbaAddFragment myAlbaAddFragment;
@@ -56,6 +60,7 @@ public class MyAlba3Fragment extends Fragment{
         View view= inflater.inflate(R.layout.fragment_my_alba3, container, false);
         view = createView(view);
         viewFunction();
+
         return view;
     }
 
@@ -76,10 +81,25 @@ public class MyAlba3Fragment extends Fragment{
         btn_edit = (Button) view.findViewById(R.id.btn_edit);
         btn_delete = (Button) view.findViewById(R.id.btn_delete);
 
+        insuranceSwitch = (Switch) view.findViewById(R.id.insuranceSwitch);
+
         return view;
     }
 
     public void viewFunction(){
+
+        // 사대 보험 가입 여부
+        insuranceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked){
+                    switchFlag = 1; // 사대 보험 가입 O
+                }
+                else{
+                    switchFlag = 0; // 사대 보험 가입 X
+                }
+            }
+        });
 
         // 알바 정보 수정
         btn_edit.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +111,7 @@ public class MyAlba3Fragment extends Fragment{
                     int tempPAYDAY = Integer.parseInt(String.valueOf(edit_payday.getText()));
 
                     // db update
-                    dbHelper.updateColumn_MYALBANAME(currentID, tempNAME, tempMYPAY, tempPAYDAY);
+                    dbHelper.updateColumn_MYALBANAME(currentID, tempNAME, tempMYPAY, switchFlag, tempPAYDAY);
                     dbHelper.updateColumn_NameOfMYALBA(tempNAME, alba_name);
 
                     setInformation();
@@ -130,6 +150,7 @@ public class MyAlba3Fragment extends Fragment{
                         // 화면 전환
                         myAlba = ((MainActivity) getActivity()).getMyAlba();
                         myAlba.getViewPager().setCurrentItem(0); // myAlba1Fragment
+
                         myAlbaAddFragment = ((MainActivity) getActivity()).getMyAlbaAddFragment();
                         ((MainActivity) getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myAlbaAddFragment).commit();
                     }
@@ -155,16 +176,26 @@ public class MyAlba3Fragment extends Fragment{
                 int tempID = iCursor.getInt(iCursor.getColumnIndex("_id"));
                 int tempMYPAY = iCursor.getInt(iCursor.getColumnIndex("myPaySet"));
                 int tempPAYDAY = iCursor.getInt(iCursor.getColumnIndex("myPayday"));
+                int tempINSURANCE = iCursor.getInt(iCursor.getColumnIndex("myPayment"));
+
                 if(tempNAME.equals(alba_name)) {
                     currentID = tempID;
                     edit_albaName.setText(tempNAME);
                     edit_my_pay.setText(String.valueOf(tempMYPAY));
                     edit_payday.setText(String.valueOf(tempPAYDAY));
+                    setInsuranceSwitch(tempINSURANCE);
                 }
             }
             iCursor.close();
         }catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+
+    public void setInsuranceSwitch(int tempINSURANCE){
+        if(tempINSURANCE == 1){
+            insuranceSwitch.setChecked(true);
+            switchFlag = 1;
         }
     }
 }

@@ -9,11 +9,48 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Spinner
+                android:id="@+id/spinnerYEAR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+            </Spinner>
+
+            <Spinner
+                android:id="@+id/spinnerMONTH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center">
+            </Spinner>
+
+            <Button
+                android:id="@+id/Btn_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="찾기"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/dayInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"/>
+
+
         <!-- 기본급여 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="0dp"
@@ -38,7 +75,8 @@
                     <TextView
                         android:id="@+id/Text_basicPay"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -51,7 +89,8 @@
                     <TextView
                         android:id="@+id/Text_basicTime"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -64,7 +103,8 @@
                     <TextView
                         android:id="@+id/Text_basicTotal"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -75,6 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="0dp"
@@ -99,7 +140,8 @@
                     <TextView
                         android:id="@+id/Text_extraWeek"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -112,7 +154,8 @@
                     <TextView
                         android:id="@+id/Text_extraNight"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -125,7 +168,8 @@
                     <TextView
                         android:id="@+id/Text_extraTotal"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -136,6 +180,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="0dp"
@@ -160,7 +205,8 @@
                     <TextView
                         android:id="@+id/Text_4insurance"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -173,7 +219,8 @@
                     <TextView
                         android:id="@+id/Text_TotalInsurance"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

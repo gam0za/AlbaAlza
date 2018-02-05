@@ -14,7 +14,7 @@ import android.util.Log;
 
 public class AdviceDbOpenHelper{
 
-    private static final String DATABASE_NAME = "adviceCenterInfo.db";
+    private static final String DATABASE_NAME = "adviceCenterInfo10.db";
     private static final int DATABASE_VERSION = 1;
     private static SQLiteDatabase mDB;
     private DatabaseHelper mDbHelper;

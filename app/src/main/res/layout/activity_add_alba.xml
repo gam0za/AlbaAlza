@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.albaalza.P_MyAlba.AddAlba">
+    tools:context="com.example.albaalza.AddAlba">
 
 
 
@@ -120,7 +120,6 @@
                         android:layout_height="wrap_content" />
                     <TextView
                         android:layout_marginLeft="10dp"
-                        android:id="@+id/insurance"
                         android:layout_width="170dp"
                         android:layout_height="wrap_content" />
                     <Switch

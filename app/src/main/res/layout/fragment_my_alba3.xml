@@ -1,208 +1,217 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:layout_gravity="center"
-    android:gravity="center">
-
+    tools:context="com.example.albaalza.P_MyAlba.AddAlba">
 
     <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:gravity="center"
-        android:orientation="vertical">
-
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
         <ImageView
             android:id="@+id/logo"
+            android:src="@drawable/mylogo_green2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/mylogo_green2" />
-
-
+            android:layout_height="wrap_content" />
         <RelativeLayout
+            android:layout_marginTop="30dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp">
-
+            android:layout_height="wrap_content">
             <ImageView
+                android:src="@drawable/edittext"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/edittext" />
-
+                android:layout_height="wrap_content" />
 
             <LinearLayout
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:weightSum="1">
+                <TextView
+                    android:layout_marginLeft="16dp"
+                    android:text="근무지 이름"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:layout_marginLeft="15dp"
+                    android:background="@null"
+                    android:id="@+id/edit_albaname"
+                    android:textSize="15sp"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="15sp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/cancel_payment"
+                    android:src="@drawable/purple_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10.23" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/edittext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:weightSum="1">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:text="근무지 이름" />
-
-                <EditText
-                    android:id="@+id/edit_albaname"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:background="@null"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="5dp"
-                    android:textSize="15sp" />
-
-                <ImageView
-                    android:id="@+id/cancel_payment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="10.23"
-                    android:src="@drawable/purple_cancel" />
-
-            </LinearLayout>
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
-
-            <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/edittext" />
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
+                android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:text="나의 시급"
-                    android:textSize="15sp" />
-
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
                 <EditText
-                    android:id="@+id/edit_my_pay"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:background="@null"
-                    android:textSize="15sp" />
-
+                    android:id="@+id/edit_my_pay"
+                    android:textSize="15sp"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content" />
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="5dp"
+                    android:textSize="15sp"
                     android:text="원"
-                    android:textSize="15sp" />
-
-                <ImageView
-                    android:id="@+id/cancel_my"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/purple_cancel" />
+                    android:id="@+id/cancel_my"
+                    android:src="@drawable/purple_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
-
         </RelativeLayout>
-
 
         <RelativeLayout
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
-
+            android:layout_height="wrap_content">
             <ImageView
+                android:src="@drawable/edittext"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/edittext" />
-
-
+                android:layout_height="wrap_content" />
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:orientation="horizontal">
-
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:text="급여 날짜"
-                    android:textSize="15sp" />
-
+                    android:text="사대 보험"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
                 <EditText
-                    android:id="@+id/edit_payday"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:background="@null"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:textSize="15sp"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content" />
+                <Switch
+                    android:id="@+id/insuranceSwitch"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="5dp"
-                    android:text="일"
-                    android:textSize="15sp" />
-
-                <ImageView
-                    android:id="@+id/cancel_payday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/purple_cancel" />
+                    />
 
             </LinearLayout>
-
         </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/edittext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginLeft="16dp"
+                    android:text="급여 날짜"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:layout_marginLeft="15dp"
+                    android:background="@null"
+                    android:id="@+id/edit_payday"
+                    android:textSize="15sp"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="15sp"
+                    android:text="일"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/cancel_payday"
+                    android:src="@drawable/purple_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
 
             <Button
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/btn_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="알바수정" />
+                android:text="알바수정"
+                />
 
             <Button
-                android:id="@+id/btn_delete"
+                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="알바삭제" />
+                android:id="@+id/btn_delete"
+                android:text="알바삭제"
+                />
 
         </LinearLayout>
 

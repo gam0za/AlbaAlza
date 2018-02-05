@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String alba_name = data.getStringExtra("alba_name");
                 int my_pay = data.getIntExtra("my_pay", -1);
                 int pay_day = data.getIntExtra("pay_day", -1);
-                int payment = 1; // 수정
+                int payment = data.getIntExtra("insuranceFlag", -1);
 
                 // 데이터베이스 insert
                 dbHelper.insertColumn_myAlba(alba_name, my_pay, payment, pay_day);

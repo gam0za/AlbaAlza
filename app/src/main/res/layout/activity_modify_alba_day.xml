@@ -6,13 +6,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context="com.example.albaalza.P_MyAlba.AddAlbaDay">
+    tools:context="com.example.albaalza.AddAlbaDay">
 
     <!-- 뒤로가기 버튼 -->
     <Button
         android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <!-- 시급 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="시급"
+            />
+        <EditText
+            android:id="@+id/edit_my_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            />
+    </LinearLayout>
 
     <!-- 시작시간, 종료시간 선택 -->
     <LinearLayout

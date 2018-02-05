@@ -13,7 +13,7 @@ import android.util.Log;
  */
 
 public class MyAlbaDbOpenHelper {
-    private static final String DATABASE_NAME = "MyAlba.db";
+    private static final String DATABASE_NAME = "MyAlba10.db";
     private static final int DATABASE_VERSION = 1;
     private static SQLiteDatabase mDB;
     private DatabaseHelper mDbHelper;
@@ -131,10 +131,12 @@ public class MyAlbaDbOpenHelper {
     }
 
    // 수정
-    public void updateColumn_MYALBANAME(long id, String myAlbaName, int myPaySet, int payDay){
+    public void updateColumn_MYALBANAME(long id, String myAlbaName, int myPaySet, int insurance, int payDay){
         String sql = "update " + TABLENAME_MYALBANAME + " set " + KEY_MYALBANAME + " = '" + myAlbaName + "' where " + KEY_ROWID + " = " + id + ";";
         mDB.execSQL(sql);
         sql = "update " + TABLENAME_MYALBANAME + " set " + KEY_MYPAY_SET + " = '" + myPaySet + "' where " + KEY_ROWID + " = " + id + ";";
+        mDB.execSQL(sql);
+        sql = "update " + TABLENAME_MYALBANAME + " set " + KEY_PAYMENT + " = '" + insurance + "' where " + KEY_ROWID + " = " + id + ";";
         mDB.execSQL(sql);
         sql = "update " + TABLENAME_MYALBANAME + " set " + KEY_PAYDAY + " = '" + payDay + "' where " + KEY_ROWID + " = " + id + ";";
         mDB.execSQL(sql);
