@@ -2,22 +2,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.albaalza.Advice3Fragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <com.melnykov.fab.FloatingActionButton
             android:id="@+id/Btn_Call"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="15dp"
+            android:src="@drawable/writing"
             android:layout_width="10dp"
-            android:layout_height="10dp">
-
-        </com.melnykov.fab.FloatingActionButton>
+            android:layout_height="10dp"
+            app:fab_colorRipple="@color/purple2"></com.melnykov.fab.FloatingActionButton>
     </RelativeLayout>
 
 
