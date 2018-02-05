@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AlbaAlza.iml" filepath="$PROJECT_DIR$/AlbaAlza.iml" />
       <module fileurl="file://C:\android\new_ALBAALZA\AlbaAlza.iml" filepath="C:\android\new_ALBAALZA\AlbaAlza.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/new_ALBAALZA.iml" filepath="$PROJECT_DIR$/new_ALBAALZA.iml" />
+      <module fileurl="file://D:\AlbaAlza\new_ALBAALZA.iml" filepath="D:\AlbaAlza\new_ALBAALZA.iml" />
     </modules>
   </component>
 </project>
