@@ -114,7 +114,11 @@ public class MyAlba2Fragment extends Fragment {
         albaNameInSpinner = ((MainActivity)getActivity()).getAlbaNameInSpinner();
         my_pay = myAlbaDBCalculator.getMyPaySet(albaNameInSpinner);
         Text_basicPay.setText(String.valueOf(my_pay));
+<<<<<<< HEAD
 //master
+=======
+//sejin
+>>>>>>> origin/Sejin
 
         /*** 근무 시간, 기본 급여 총 ***/
         totalTime = myAlbaDBCalculator.calculateTimeForMonth(albaNameInSpinner, year, month);
