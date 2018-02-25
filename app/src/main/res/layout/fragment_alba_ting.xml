@@ -4,7 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <ImageView
+        android:src="@drawable/albating_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <!--검색 레이아웃-->
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,14 +21,14 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:padding="10dp"
-            android:src="@drawable/find" />
+            android:src="@drawable/albating_search" />
     </RelativeLayout>
 
     <!--리사이클러뷰 공간-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
@@ -43,5 +46,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
-        android:src="@drawable/writing"/>
+        android:src="@drawable/albating_write_button"/>
 </RelativeLayout>

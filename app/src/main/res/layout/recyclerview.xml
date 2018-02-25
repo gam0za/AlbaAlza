@@ -15,7 +15,7 @@
         <ImageView
             android:scaleType="fitXY"
             android:id="@+id/profile"
-           android:src="@drawable/boss"
+           android:src="@drawable/user1"
             android:layout_width="50dp"
             android:layout_height="50dp" />
         <LinearLayout
@@ -45,7 +45,7 @@
     <ImageView
         android:scaleType="fitXY"
         android:id="@+id/image"
-        android:background="@color/main"
+        android:background="@color/edit"
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:layout_width="400dp"
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/comment_image"
-                android:src="@drawable/chat_green"
+                android:src="@drawable/albating_comment_send_button"
                 android:layout_width="20dp"
                 android:layout_height="20dp" />
 

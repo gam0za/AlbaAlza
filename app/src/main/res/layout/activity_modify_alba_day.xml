@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context="com.example.albaalza.AddAlbaDay">
+    android:orientation="vertical">
 
     <!-- 뒤로가기 버튼 -->
     <Button

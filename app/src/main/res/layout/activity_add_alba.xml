@@ -1,190 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.albaalza.AddAlba">
+    android:layout_height="match_parent">
 
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:layout_gravity="center">
 
         <LinearLayout
+            android:layout_marginTop="70dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
 
             <!--근무지 이름-->
-            <RelativeLayout
-                android:gravity="center"
-                android:layout_width="match_parent"
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:src="@drawable/edit_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
                 <LinearLayout
-                    android:layout_marginTop="13dp"
-                    android:layout_marginLeft="15dp"
                     android:orientation="horizontal"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <TextView
-                        android:text="근무지 이름"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
                     <EditText
-                        android:inputType="text"
-                        android:layout_marginLeft="10dp"
-                        android:id="@+id/alba_name"
+                        android:layout_marginTop="10dp"
                         android:background="@null"
-                        android:gravity="right"
-                        android:layout_width="170dp"
+                        android:id="@+id/alba_name"
+                        android:textSize="13sp"
+                        android:hint="근무지 이름"
+                        android:layout_width="250dp"
                         android:layout_height="wrap_content" />
-                    <ImageView
-                        android:id="@+id/alba_name_btn"
-                        android:layout_marginLeft="4dp"
-                        android:src="@drawable/cancel_green"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                   <ImageView
+                       android:id="@+id/alba_name_btn"
+                       android:layout_marginLeft="40dp"
+                       android:layout_marginTop="10dp"
+                       android:src="@drawable/myalba_cancel"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content" />
                 </LinearLayout>
-            </RelativeLayout>
+
+                <View
+                    android:layout_marginTop="20dp"
+                    android:background="@color/edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"></View>
+            </LinearLayout>
 
             <!--나의 시급-->
-            <RelativeLayout
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:layout_width="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:src="@drawable/edit_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
                 <LinearLayout
-                    android:layout_marginTop="13dp"
-                    android:layout_marginLeft="15dp"
                     android:orientation="horizontal"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <TextView
-                        android:text="나의 시급"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
                     <EditText
-                        android:hint="최저시급 7530원 기준"
-                        android:inputType="number"
-                        android:layout_marginLeft="10dp"
-                        android:id="@+id/my_pay"
+                        android:layout_marginTop="10dp"
                         android:background="@null"
-                        android:layout_width="170dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        />
+                        android:id="@+id/my_pay"
+                        android:textSize="13sp"
+                        android:hint="나의 시급"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content" />
                     <ImageView
                         android:id="@+id/my_pay_btn"
-                        android:layout_marginLeft="15dp"
-                        android:src="@drawable/cancel_green"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/myalba_cancel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
-            </RelativeLayout>
 
-            <!--4대 보험 가입-->
-            <RelativeLayout
+                <View
+                    android:layout_marginTop="20dp"
+                    android:background="@color/edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"></View>
+            </LinearLayout>
+
+            <!--급여 날짜-->
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:layout_width="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:src="@drawable/edit_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
                 <LinearLayout
-                    android:layout_marginTop="13dp"
-                    android:layout_marginLeft="15dp"
                     android:orientation="horizontal"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <TextView
-                        android:text="4대 보험"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:layout_marginLeft="10dp"
-                        android:layout_width="170dp"
-                        android:layout_height="wrap_content" />
-                    <Switch
-                        android:id="@+id/add_switch"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <!--급여날짜-->
-            <RelativeLayout
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:src="@drawable/edit_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <LinearLayout
-                    android:layout_marginTop="13dp"
-                    android:layout_marginLeft="15dp"
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:text="급여 날짜"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
                     <EditText
-                        android:id="@+id/pay_day"
-                        android:layout_width="170dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
                         android:background="@null"
-                        android:gravity="right"
-                        android:inputType="number" />
-
+                        android:id="@+id/pay_day"
+                        android:textSize="13sp"
+                        android:hint="급여 날짜"
+                        android:inputType="number"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content" />
                     <ImageView
                         android:id="@+id/pay_day_btn"
-                        android:layout_marginLeft="15dp"
-                        android:src="@drawable/cancel_green"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/myalba_cancel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
-            </RelativeLayout>
 
-            <!--알바추가 버튼-->
-            <RelativeLayout
-                android:layout_marginTop="50dp"
-                android:gravity="center"
-                android:layout_width="match_parent"
+                <View
+                    android:layout_marginTop="20dp"
+                    android:background="@color/edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"></View>
+            </LinearLayout>
+
+            <!--4대 보험 가입-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/confirm"
-                    android:src="@drawable/add_alba"
+                <TextView
+                    android:text="4대 보험"
+                    android:textSize="13sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-            </RelativeLayout>
+                    <ImageView
+                        android:src="@drawable/myalba_insurance_yes"
+                        android:id="@+id/insurance_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
+                    <ImageView
+                        android:id="@+id/insurance_no"
+                        android:src="@drawable/myalba_insurance_no"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
-    </RelativeLayout>
+    <!--알바 추가 버튼-->
+    <LinearLayout
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/confirm"
+            android:src="@drawable/signup_next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-</LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

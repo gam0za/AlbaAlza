@@ -28,7 +28,6 @@
         <activity android:name=".P_Main.MainActivity" />
         <activity android:name=".P_MyAlba.AddAlbaDay" />
         <activity android:name=".P_MyAlba.ModifyAlbaDay" />
-        <activity android:name=".P_AlbaTing.AlbaTing_Write" />
         <activity android:name=".P_SignUp.SignUp" />
         <activity android:name=".P_SignUp.SelectActor" />
         <activity android:name=".P_AlbaTing.AlbaTing_Detail" />

@@ -12,7 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent">
     </FrameLayout>
-
+    <View
+        android:background="@color/tab"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"></View>
     <LinearLayout
         android:layout_alignParentBottom="true"
         android:gravity="center"
@@ -20,32 +23,37 @@
         android:layout_width="match_parent"
         android:layout_height="65dp">
         <ImageView
+            android:padding="10dp"
             android:layout_weight="1"
             android:id="@+id/tab_home"
-            android:src="@drawable/tab_home_green2"
+            android:src="@drawable/tab_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <ImageView
+            android:padding="10dp"
             android:layout_weight="1"
             android:id="@+id/tab_myalba"
-            android:src="@drawable/calendar_gray"
+            android:src="@drawable/tab_myalba"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <ImageView
+            android:padding="10dp"
             android:layout_weight="1"
-            android:src="@drawable/chat_gray"
+            android:src="@drawable/tab_albating"
             android:id="@+id/tab_albating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <ImageView
+            android:padding="10dp"
             android:layout_weight="1"
-            android:src="@drawable/location_gray"
+            android:src="@drawable/tab_labor"
             android:id="@+id/tab_advice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <ImageView
+            android:padding="10dp"
             android:layout_weight="1"
-            android:src="@drawable/user_gray"
+            android:src="@drawable/tab_setting"
             android:id="@+id/tab_mypage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

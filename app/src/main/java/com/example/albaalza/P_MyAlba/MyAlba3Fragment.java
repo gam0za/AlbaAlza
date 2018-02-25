@@ -81,7 +81,6 @@ public class MyAlba3Fragment extends Fragment{
         btn_edit = (Button) view.findViewById(R.id.btn_edit);
         btn_delete = (Button) view.findViewById(R.id.btn_delete);
 
-        insuranceSwitch = (Switch) view.findViewById(R.id.insuranceSwitch);
 
         return view;
     }

@@ -1,16 +1,21 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="MyAlba1Fragment">
+    android:layout_height="match_parent">
 
     <!-- 알바 day 수정, 삭제 버튼을 위한 black layout -->
-
+    <ImageView
+        android:src="@drawable/myalba_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <LinearLayout
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <RelativeLayout
+            android:background="@drawable/myalba_spinner_space"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -24,13 +29,7 @@
                 >
             </Spinner>
 
-            <Button
-                android:id="@+id/today_setBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                />
+
 
         </RelativeLayout>
 
@@ -40,33 +39,37 @@
             android:layout_height="wrap_content">
 
             <!--prev button -->
-            <Button
+            <ImageView
+                android:src="@drawable/prev"
                 android:id="@+id/prevBtn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginBottom="15dp"/>
 
             <!--next button -->
-            <Button
+            <ImageView
+                android:src="@drawable/next"
                 android:id="@+id/nextBtn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="50dp"
                 android:layout_marginBottom="15dp"/>
 
 
             <!--date title -->
             <TextView
+                android:text="March 2017"
                 android:id="@+id/dateTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
+                android:textSize="20sp"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/nextBtn"
                 android:layout_toStartOf="@id/nextBtn"
@@ -90,49 +93,49 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:textColor="#ffff0000"
-                android:text="SUN"/>
+                android:text="일"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:textColor="#000"
-                android:text="MON"/>
+                android:text="월"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:textColor="#000"
-                android:text="TUE"/>
+                android:text="화"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:textColor="#000"
-                android:text="WED"/>
+                android:text="수"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:textColor="#000"
-                android:text="THU"/>
+                android:text="목"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:textColor="#000"
-                android:text="FRI"/>
+                android:text="금"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:textColor="#0000ff"
-                android:text="SAT"/>
+                android:text="토"/>
 
         </LinearLayout>
 
@@ -149,39 +152,56 @@
 
         <!-- 나의 시급, 당월 누적 금액 -->
         <LinearLayout
+            android:layout_marginTop="25dp"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
             <LinearLayout
+                android:gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/myalba_mypay_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
                 <TextView
+                    android:text="6300원"
                     android:id="@+id/Text_myPay"
+                    android:textSize="20sp"
                     android:layout_width="match_parent"
-                    android:layout_height="25dp"
+                    android:layout_height="wrap_content"
                     android:gravity="center"/>
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="15dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
                     android:text="나의 시급"
                     android:gravity="center"/>
             </LinearLayout>
             <LinearLayout
+                android:gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
+                <ImageView
+                    android:src="@drawable/myalba_gatherpay_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
                 <TextView
+                    android:textSize="20sp"
+                    android:text="25,200원"
                     android:id="@+id/Text_totalPay"
                     android:layout_width="match_parent"
-                    android:layout_height="25dp"
+                    android:layout_height="wrap_content"
                     android:gravity="center"/>
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="15dp"
+                    android:layout_height="wrap_content"
                     android:text="당월 누적 금액"
+                    android:textSize="13sp"
                     android:gravity="center"/>
             </LinearLayout>
         </LinearLayout>

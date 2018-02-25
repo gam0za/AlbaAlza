@@ -78,9 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.tab_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, information).commit();
-                previousButtonset();
                 previousButton = 1;
-                tab_home.setImageResource(R.drawable.tab_home_green2);
                 break;
 
             case R.id.tab_myalba:
@@ -89,53 +87,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myAlbaAddFragment).commit();
                 }
-                previousButtonset();
                 previousButton = 2;
-                tab_myalba.setImageResource(R.drawable.calendar_green);
                 break;
 
             case R.id.tab_albating:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, albaTing).commit();
-                previousButtonset();
                 previousButton = 3;
-                tab_albating.setImageResource(R.drawable.chat_green);
                 break;
 
             case R.id.tab_advice:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, advice).commit();
-                previousButtonset();
                 previousButton = 4;
-                tab_advice.setImageResource(R.drawable.location_green);
                 break;
 
             case R.id.tab_mypage:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myPage).commit();
-                previousButtonset();
                 previousButton = 5;
-                tab_mypage.setImageResource(R.drawable.user_green);
                 break;
         }
     }
 
-    private void previousButtonset() {
-        switch (previousButton) {
-            case 1:
-                tab_home.setImageResource(R.drawable.tab_home2);
-                break;
-            case 2:
-                tab_myalba.setImageResource(R.drawable.calendar_gray);
-                break;
-            case 3:
-                tab_albating.setImageResource(R.drawable.chat_gray);
-                break;
-            case 4:
-                tab_advice.setImageResource(R.drawable.location_gray);
-                break;
-            case 5:
-                tab_mypage.setImageResource(R.drawable.user_gray);
-                break;
-        }
-    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

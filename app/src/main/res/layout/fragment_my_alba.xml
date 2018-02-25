@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.albaalza.MyAlba"
     android:id="@+id/fragment_myalba">
 <FrameLayout
     android:id="@+id/frame"
@@ -24,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
-        app:ci_drawable="@drawable/purple_circle">
+        app:ci_drawable="@drawable/myalba_indicator_yes">
 
     </me.relex.circleindicator.CircleIndicator>
 

@@ -42,7 +42,9 @@ public class MyAlba1Fragment extends Fragment {
     private RelativeLayout buttonLayout;
 
     /* fragment_my_alba1 변수 선언 */
-    private Button prevBtn, nextBtn, today_setBtn;
+    private ImageView prevBtn;
+    private ImageView nextBtn;
+    private Button today_setBtn;
     private TextView dateTitle;
     private GridView calender_grid;
     private float XLocation = 0, YLocation =0;
@@ -188,9 +190,8 @@ public class MyAlba1Fragment extends Fragment {
         dateTitle = (TextView) view.findViewById(R.id.dateTitle);
         calender_grid = (GridView) view.findViewById(R.id.calendar_grid);
         spinner = (Spinner) view.findViewById(R.id.spinner);
-        prevBtn = (Button) view.findViewById(R.id.prevBtn);
-        nextBtn = (Button) view.findViewById(R.id.nextBtn);
-        today_setBtn = (Button) view.findViewById(R.id.today_setBtn);
+        prevBtn = (ImageView) view.findViewById(R.id.prevBtn);
+        nextBtn = (ImageView) view.findViewById(R.id.nextBtn);
         spinner = (Spinner) view.findViewById(R.id.spinner);
         Text_TotalPay = (TextView) view.findViewById(R.id.Text_totalPay);
         Text_myPay = (TextView) view.findViewById(R.id.Text_myPay);
@@ -254,7 +255,6 @@ public class MyAlba1Fragment extends Fragment {
     private void viewFunction() {
 
         // '<' button
-        prevBtn.setText("<");
         prevBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -272,7 +272,6 @@ public class MyAlba1Fragment extends Fragment {
         });
 
         // '>' button
-        nextBtn.setText(">");
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -290,14 +289,14 @@ public class MyAlba1Fragment extends Fragment {
         });
 
         // today_setBtn button
-        today_setBtn.setText("today");
-        today_setBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showCurrentTime();
-                updateCalendar();
-            }
-        });
+//        today_setBtn.setText("today");
+//        today_setBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                showCurrentTime();
+//                updateCalendar();
+//            }
+//        });
 
         // black_layout_click
         black_layout.setOnClickListener(new View.OnClickListener() {

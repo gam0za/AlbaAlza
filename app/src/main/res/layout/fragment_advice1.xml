@@ -1,13 +1,162 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.albaalza.Advice1Fragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!--노동청-->
+  <LinearLayout
+      android:layout_weight="1"
+      android:layout_marginLeft="50dp"
+      android:id="@+id/labor1"
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+      <ImageView
+          android:layout_gravity="center_vertical"
+          android:src="@drawable/labor_button1"
+          android:layout_width="30dp"
+          android:layout_height="30dp" />
+      <TextView
+          android:layout_marginLeft="50dp"
+          android:layout_gravity="center_vertical"
+          android:textSize="13sp"
+          android:text="노동청"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+  </LinearLayout>
+
+    <!--최저 시급-->
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/labor2"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="노동법" />
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/labor_button2"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="13sp"
+            android:text="최저 시급"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
-</FrameLayout>
+    <!--4대보험 -->
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/labor3"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/labor_button3"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="13sp"
+            android:text="4대 보험"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!--근로계약서 -->
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/labor4"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/labor_button4"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="13sp"
+            android:text="근로계약서"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!--주휴수당 -->
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/labor5"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/labor_button5"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="13sp"
+            android:text="주휴수당"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!--야간수당 -->
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/labor6"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/labor_button6"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="13sp"
+            android:text="야간수당"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!--퇴직금 -->
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/labor7"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/labor_button7"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="13sp"
+            android:text="퇴직금"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -7,9 +7,12 @@
     <color name="foreground_material_light">#474444</color>
     <color name="primary_text_default_material_light">#de000000</color>
     <color name="primary_material_light">#80cbc4</color>
-    <color name="background_material_light">#fafafa</color>
+    <color name="background_material_light">#ffffff</color>
     <color name="purple">#d1b6e1</color>
     <color name="purple2">#a593e0</color>
     <color name="alba_maincolor">#d1b6e1</color>
-    <color name="main">#80cbc4</color>
+    <color name="maincolor">#47EED4</color>
+    <color name="main">#ffffff</color>
+    <color name="edit">#8C8C8C</color>
+    <color name="tab">#D5D5D5</color>
 </resources>

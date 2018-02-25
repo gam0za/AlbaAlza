@@ -45,7 +45,7 @@ public class Adapter_Detail extends RecyclerView.Adapter<ViewHolder_Detail>{
         holder.time.setText(albaTingData.getTime());
         holder.image.setImageResource(albaTingData.getImage());
         holder.title.setText(albaTingData.getTitle());
-        holder.comment_image.setImageResource(R.drawable.chat_green);
+        holder.comment_image.setImageResource(R.drawable.check_button);
         holder.comment.setText(albaTingData.getComment());
 
         holder.itemView.setTag(albaTingData);

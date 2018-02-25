@@ -2,22 +2,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.albaalza.Advice3Fragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <com.melnykov.fab.FloatingActionButton
+            android:id="@+id/Btn_Chatbot"
+            android:layout_marginTop="180dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/labor_chatbot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </com.melnykov.fab.FloatingActionButton>
+        <com.melnykov.fab.FloatingActionButton
             android:id="@+id/Btn_Call"
+            android:layout_below="@+id/Btn_Chatbot"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="15dp"
-            android:src="@drawable/writing"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            app:fab_colorRipple="@color/purple2"></com.melnykov.fab.FloatingActionButton>
+            android:layout_marginRight="20dp"
+            android:src="@drawable/labor_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </com.melnykov.fab.FloatingActionButton>
+
     </RelativeLayout>
 
 

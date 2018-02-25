@@ -20,7 +20,7 @@ public class AddAlba extends AppCompatActivity {
     /* activity_add_alba 변수 선언 */
     private EditText alba_name,my_pay,pay_day;
     private TextView insurance, backBtn;
-    private ImageView alba_name_btn,my_pay_btn,pay_day_btn,confirm;
+    private ImageView alba_name_btn,my_pay_btn,pay_day_btn,confirm,insurance_yes,insurance_no;
     private Switch insuranceSwitch;
 
     private int insuranceFlag = 0;
@@ -44,7 +44,8 @@ public class AddAlba extends AppCompatActivity {
         my_pay_btn=(ImageView)findViewById(R.id.my_pay_btn);
         pay_day_btn=(ImageView)findViewById(R.id.pay_day_btn);
         confirm=(ImageView)findViewById(R.id.confirm);
-        insuranceSwitch=(Switch)findViewById(R.id.add_switch);
+        insurance_yes=(ImageView)findViewById(R.id.insurance_yes);
+        insurance_no=(ImageView)findViewById(R.id.insurance_no);
     }
 
     /* view 기능(리스너) 함수 */
@@ -77,15 +78,16 @@ public class AddAlba extends AppCompatActivity {
         });
 
         // 사대 보험 가입 여부
-        insuranceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+        insurance_yes.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){
-                    insuranceFlag = 1; // 사대 보험 가입 O
-                }
-                else{
-                    insuranceFlag = 0; // 사대 보험 가입 X
-                }
+            public void onClick(View view) {
+                insuranceFlag=1;
+            }
+        });
+        insurance_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                insuranceFlag=0;
             }
         });
 

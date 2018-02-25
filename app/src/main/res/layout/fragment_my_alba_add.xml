@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="MyAlbaAddFragment">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="vertical"
@@ -11,13 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:src="@drawable/mylogo_gray"
+            android:id="@+id/add_alba"
+            android:src="@drawable/login_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <ImageView
-            android:layout_marginTop="30dp"
-            android:src="@drawable/add_alba"
-            android:id="@+id/add_alba"
+        <TextView
+            android:textColor="@color/tab"
+            android:layout_marginTop="10dp"
+            android:text="알바 추가"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

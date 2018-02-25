@@ -1,15 +1,22 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:src="@drawable/myalba_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
+        android:layout_marginTop="60dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
+            android:background="@drawable/myalba_spinner_space"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -43,208 +50,151 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"/>
-
-
-        <!-- 기본급여 -->
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:textSize="15dp"
-                android:text="기본급여"
-                android:layout_gravity="center"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="6"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="시급"/>
-                    <TextView
-                        android:id="@+id/Text_basicPay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="근무시간"/>
-                    <TextView
-                        android:id="@+id/Text_basicTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="총"/>
-                    <TextView
-                        android:id="@+id/Text_basicTotal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"/>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+            android:layout_height="wrap_content">
 
-
-        <!-- 추가급여 -->
-        <LinearLayout
+            <!--기본 급여-->
+        <RelativeLayout
+            android:id="@+id/paytable_basic"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:textSize="15dp"
-                android:text="추가급여"
-                android:layout_gravity="center"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="6"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="주휴수당"/>
-                    <TextView
-                        android:id="@+id/Text_extraWeek"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="야간수당"/>
-                    <TextView
-                        android:id="@+id/Text_extraNight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="총"/>
-                    <TextView
-                        android:id="@+id/Text_extraTotal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"/>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-
-
-        <!-- 세금 -->
-        <LinearLayout
+            android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/myalba_paytable_basic"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content" />
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:textSize="15dp"
-                android:text="세금"
-                android:layout_gravity="center"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="6"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="4대보험"/>
-                    <TextView
-                        android:id="@+id/Text_4insurance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="총"/>
-                    <TextView
-                        android:id="@+id/Text_TotalInsurance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"/>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="17dp"
+                android:textSize="14sp"
+                android:text="8000원"
+                android:id="@+id/Text_basicPay"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="57dp"
+                android:textSize="14sp"
+                android:text="120시간"
+                android:id="@+id/Text_basicTime"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="97dp"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/maincolor"
+                android:text="960000원"
+                android:id="@+id/Text_basicTotal"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
 
-        <LinearLayout
+            <!--추가 급여-->
+            <RelativeLayout
+                android:id="@+id/paytable_extra"
+                android:layout_below="@+id/paytable_basic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/myalba_paytable_addpay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="17dp"
+                    android:textSize="14sp"
+                    android:text="136,500원"
+                    android:id="@+id/Text_extraWeek"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="57dp"
+                    android:textSize="14sp"
+                    android:text="56,000원"
+                    android:id="@+id/Text_extraNight"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="97dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/maincolor"
+                    android:text="960000원"
+                    android:id="@+id/Text_extraTotal"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+        <!--세금-->
+            <RelativeLayout
+
+                android:id="@+id/paytable_tax"
+                android:layout_below="@+id/paytable_extra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/myalba_paytable_tax"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="17dp"
+                    android:textSize="14sp"
+                    android:text="136,500원"
+                    android:id="@+id/Text_4insurance"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="57dp"
+                    android:textSize="14sp"
+                    android:text="56,000원"
+                    android:id="@+id/Text_TotalInsurance"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+            <!--총 급여-->
+            <RelativeLayout
+                android:gravity="center"
+                android:layout_below="@+id/paytable_tax"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+       <LinearLayout
+           android:orientation="horizontal"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/myalba_all_text"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center">
+            android:layout_height="wrap_content" />
+           <TextView
+               android:textColor="@color/maincolor"
+               android:id="@+id/Text_total"
+               android:text="1300,500원"
+               android:layout_marginLeft="10dp"
+               android:textSize="23sp"
+               android:textStyle="bold"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+       </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="총"
-                android:textSize="30dp"/>
+            </RelativeLayout>
+        </RelativeLayout>
 
-            <TextView
-                android:id="@+id/Text_total"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30dp"/>
-        </LinearLayout>
     </LinearLayout>
 
 
-</FrameLayout>
+</RelativeLayout>

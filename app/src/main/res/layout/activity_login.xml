@@ -25,58 +25,57 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:src="@drawable/mylogo_green2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp" />
+                    android:src="@drawable/login_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-                <ImageView
-                    android:id="@+id/login_profile"
-                    android:layout_width="100dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/koreanlogo" />
             </LinearLayout>
 
         </RelativeLayout>
-        <RelativeLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_marginTop="50dp"
-            android:gravity="center"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <ImageView
-                android:src="@drawable/edittext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+
             <EditText
-                android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:id="@+id/edit_name"
-                android:textSize="15sp"
-                android:hint="이름"
-                android:layout_width="250dp"
+                android:textSize="13sp"
+                android:hint="아이디"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_marginTop="30dp"
-            android:gravity="center"
+            <View
+                android:layout_marginTop="20dp"
+                android:background="@color/edit"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"></View>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <ImageView
-                android:src="@drawable/edittext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+
             <EditText
-                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
                 android:background="@null"
                 android:id="@+id/edit_password"
-                android:layout_marginTop="10dp"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:hint="비밀번호"
-                android:layout_width="250dp"
-                android:inputType="textPassword"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-        </RelativeLayout>
-
+            <View
+                android:layout_marginTop="20dp"
+                android:background="@color/edit"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"></View>
+        </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/checkbox_layout"
@@ -89,8 +88,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="자동로그인"
-                android:layout_marginRight="5dp"
-                android:textSize="13sp" />
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:textSize="10sp" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_marginTop="50dp"
@@ -100,22 +100,21 @@
             <ImageView
                 android:id="@+id/button_login"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:src="@drawable/purple_login"
+                android:layout_height="wrap_content"
+                android:src="@drawable/login_button"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
         </RelativeLayout>
         <RelativeLayout
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
 
             <LinearLayout
-                android:layout_marginRight="5dp"
-                android:layout_alignParentRight="true"
+                android:layout_marginLeft="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 >
