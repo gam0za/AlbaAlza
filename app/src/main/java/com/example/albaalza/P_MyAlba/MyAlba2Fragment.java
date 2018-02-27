@@ -18,6 +18,8 @@ import com.example.albaalza.P_Main.MainActivity;
 import com.example.albaalza.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,22 +27,29 @@ import java.util.ArrayList;
 public class MyAlba2Fragment extends Fragment {
 
     int year, month;
+    Calendar calendar;
 
     // 날짜 정보
-    Spinner spinnerYEAR, spinnerMONTH;
-    TextView dayInfo;
+    Spinner spinnerSTART_YEAR, spinnerSTART_MONTH, spinnerSTART_DAY;
+    Spinner spinnerEND_YEAR, spinnerEND_MONTH, spinnerEND_DAY;
     Button Btn_search;
-    private ArrayList<String> list_spinnerYEAR, list_spinnerMONTH;
-    private ArrayAdapter<String> adapter_spinnerYEAR, adapter_spinnerMONTH;
-    int selectedYEAR, selectedMONTH;
+
+    private ArrayList<String> list_spinnerSTART_YEAR, list_spinnerSTART_MONTH, list_spinnerSTART_DAY;
+    private ArrayList<String> list_spinnerEND_YEAR, list_spinnerEND_MONTH, list_spinnerEND_DAY;
+
+    private ArrayAdapter<String> adapter_spinnerSTART_YEAR, adapter_spinnerSTART_MONTH, adapter_spinnerSTART_DAY;
+    private ArrayAdapter<String> adapter_spinnerEND_YEAR, adapter_spinnerEND_MONTH, adapter_spinnerEND_DAY;
+
+    int selectedSTART_YEAR, selectedSTART_MONTH, selectedSTART_DAY;
+    int selectedEND_YEAR, selectedEND_MONTH, selectedEND_DAY;
 
     // 기본 급여
     TextView Text_basicPay,Text_basicTime, Text_basicTotal; // 시급, 근무 시간, 기본 급여 총
-    int my_pay, totalTime, basic_total=0; // 시급, 근무 시간, 기본 급여 총
+    int my_pay, totalTime; double basic_total=0; // 시급, 근무 시간, 기본 급여 총
 
     // 추가 급여
     TextView Text_extraWeek, Text_extraNight, Text_extraTotal; // 추가급여(주휴수당, 야간수당, 총)
-    int extraWeek=0,extraNight=0,extraTotal=0;
+    double extraWeek=0,extraNight=0,extraTotal=0;
 
     // 보험
     TextView Text_4insurance, Text_TotalInsurance; // 세금(4대 보험, 총)
@@ -98,9 +107,13 @@ public class MyAlba2Fragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_my_alba2, container, false);
-        spinnerYEAR = (Spinner) view.findViewById(R.id.spinnerYEAR);
-        spinnerMONTH = (Spinner) view.findViewById(R.id.spinnerMONTH);
-        dayInfo = (TextView) view.findViewById(R.id.dayInfo);
+        spinnerSTART_YEAR = (Spinner) view.findViewById(R.id.spinnerSTART_YEAR);
+        spinnerSTART_MONTH = (Spinner) view.findViewById(R.id.spinnerSTART_MONTH);
+        spinnerSTART_DAY = (Spinner) view.findViewById(R.id.spinnerSTART_DAY);
+        spinnerEND_YEAR = (Spinner) view.findViewById(R.id.spinnerEND_YEAR);
+        spinnerEND_MONTH = (Spinner) view.findViewById(R.id.spinnerEND_MONTH);
+        spinnerEND_DAY = (Spinner) view.findViewById(R.id.spinnerEND_DAY);
+
         Btn_search = (Button) view.findViewById(R.id.Btn_search);
 
         Text_basicPay = (TextView) view.findViewById(R.id.Text_basicPay);
@@ -113,7 +126,11 @@ public class MyAlba2Fragment extends Fragment {
         Text_TotalInsurance = (TextView) view.findViewById(R.id.Text_TotalInsurance);
         Text_total = (TextView) view.findViewById(R.id.Text_total);
 
+        calendar = Calendar.getInstance(Locale.getDefault());
+
         SetSpinner();
+        listenerFACTORY();
+
         return view;
     }
 
@@ -121,7 +138,8 @@ public class MyAlba2Fragment extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         if(isVisibleToUser){
             albaNameInSpinner = ((MainActivity)getActivity()).getAlbaNameInSpinner();
-            setDayInfo();
+
+            SetSpinner();
             calculate_basicPay(); // 기본 급여 계산
             calculate_extraPay(); // 추가 급여 계산 (추후 수정)
             calculate_insurance(); // 보험
@@ -130,105 +148,219 @@ public class MyAlba2Fragment extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
     }
 
-    // 스피너
+    // 스피너 초기 셋팅
     public void SetSpinner(){
 
-        // insert year
-        list_spinnerYEAR = new ArrayList<String>();
-        list_spinnerYEAR.add("2017");
-        list_spinnerYEAR.add("2018");
-        list_spinnerYEAR.add("2019");
-        list_spinnerYEAR.add("2020");
-        list_spinnerYEAR.add("2021");
-        adapter_spinnerYEAR = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, list_spinnerYEAR);
-        spinnerYEAR.setAdapter(adapter_spinnerYEAR);
+        /***************** INSERT  DATA *****************/
+        // insert YEAR
+        list_spinnerSTART_YEAR = new ArrayList<String>();
+        list_spinnerEND_YEAR = new ArrayList<String>();
 
-        // insert month
-        list_spinnerMONTH = new ArrayList<String>();
-        list_spinnerMONTH.add("1");
-        list_spinnerMONTH.add("2");
-        list_spinnerMONTH.add("3");
-        list_spinnerMONTH.add("4");
-        list_spinnerMONTH.add("5");
-        list_spinnerMONTH.add("6");
-        list_spinnerMONTH.add("7");
-        list_spinnerMONTH.add("8");
-        list_spinnerMONTH.add("9");
-        list_spinnerMONTH.add("10");
-        list_spinnerMONTH.add("11");
-        list_spinnerMONTH.add("12");
-        adapter_spinnerMONTH = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, list_spinnerMONTH);
-        spinnerMONTH.setAdapter(adapter_spinnerMONTH);
+        for(int i=2017; i<2022; i++){
+            list_spinnerSTART_YEAR.add(String.valueOf(i));
+            list_spinnerEND_YEAR.add(String.valueOf(i));
+        }
 
-        // Listener - spinnerYEAR
-        spinnerYEAR.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedYEAR = Integer.parseInt(adapter_spinnerYEAR.getItem(i));
+        adapter_spinnerSTART_YEAR = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, list_spinnerSTART_YEAR);
+        spinnerSTART_YEAR.setAdapter(adapter_spinnerSTART_YEAR);
+        adapter_spinnerEND_YEAR = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, list_spinnerEND_YEAR);
+        spinnerEND_YEAR.setAdapter(adapter_spinnerEND_YEAR);
+
+
+        // insert MONTH
+        list_spinnerSTART_MONTH = new ArrayList<String>();
+        list_spinnerEND_MONTH = new ArrayList<String>();
+
+        for(int i=1; i<13; i++){
+            list_spinnerSTART_MONTH.add(String.valueOf(i));
+            list_spinnerEND_MONTH.add(String.valueOf(i));
+        }
+
+        adapter_spinnerSTART_MONTH = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, list_spinnerSTART_MONTH);
+        spinnerSTART_MONTH.setAdapter(adapter_spinnerSTART_MONTH);
+        adapter_spinnerEND_MONTH = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, list_spinnerEND_MONTH);
+        spinnerEND_MONTH.setAdapter(adapter_spinnerEND_MONTH);
+
+
+        // insert DAY
+        list_spinnerSTART_DAY = new ArrayList<String>();
+        adapter_spinnerSTART_DAY = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, list_spinnerSTART_DAY);
+        list_spinnerEND_DAY = new ArrayList<String>();
+        adapter_spinnerEND_DAY = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, list_spinnerEND_DAY);
+
+        calendar.set(year, month - 1, 1);
+        int lastDay = calendar.getActualMaximum(Calendar.DATE); // 시작 월의 마지막 날
+
+        list_spinnerSTART_DAY.clear();
+        list_spinnerEND_DAY.clear();
+        for(int i=1; i<=lastDay; i++){
+            list_spinnerSTART_DAY.add(String.valueOf(i));
+            list_spinnerEND_DAY.add(String.valueOf(i));
+        }
+
+        spinnerSTART_DAY.setAdapter(adapter_spinnerSTART_DAY);
+        spinnerEND_DAY.setAdapter(adapter_spinnerEND_DAY);
+
+
+        /***************** SET  DATA *****************/
+        // setting YEAR
+        for(int i=0; i<adapter_spinnerSTART_YEAR.getCount(); i++)
+            if(adapter_spinnerSTART_YEAR.getItem(i).equals(String.valueOf(year))){
+                spinnerSTART_YEAR.setSelection(i);
+                spinnerEND_YEAR.setSelection(i);
             }
+
+        // setting MONTH
+        for(int i=0; i<adapter_spinnerSTART_MONTH.getCount(); i++)
+            if(adapter_spinnerSTART_MONTH.getItem(i).equals(String.valueOf(month))){
+                spinnerSTART_MONTH.setSelection(i);
+                spinnerEND_MONTH.setSelection(i);
+            }
+    }
+
+    // 리스너 팩토리
+    public void listenerFACTORY(){
+
+        // 시작 '월' 리스너
+        spinnerSTART_YEAR.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedSTART_YEAR = Integer.parseInt(adapter_spinnerSTART_YEAR.getItem(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
-        // Listener - spinnerMONTH
-        spinnerMONTH.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        // 종료 '월' 리스너
+        spinnerEND_YEAR.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedMONTH = Integer.parseInt(adapter_spinnerMONTH.getItem(i));
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedEND_YEAR = Integer.parseInt(adapter_spinnerEND_YEAR.getItem(position));
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
-        // Listener - Btn_search
+        // 시작 '달' 리스너
+        spinnerSTART_MONTH.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedSTART_MONTH = Integer.parseInt(adapter_spinnerSTART_MONTH.getItem(position));
+
+                calendar.set(selectedSTART_YEAR, selectedSTART_MONTH - 1, 1);
+                int lastDay = calendar.getActualMaximum(Calendar.DATE); // 시작 월의 마지막 날
+
+                list_spinnerSTART_DAY.clear();
+                for(int i=1; i<=lastDay; i++){
+                    list_spinnerSTART_DAY.add(String.valueOf(i));
+                }
+                spinnerSTART_DAY.setAdapter(adapter_spinnerSTART_DAY);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        // 종료 '달' 리스너
+        spinnerEND_MONTH.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedEND_MONTH = Integer.parseInt(adapter_spinnerEND_MONTH.getItem(position));
+
+                calendar.set(selectedEND_YEAR, selectedEND_MONTH - 1, 1);
+                int lastDay = calendar.getActualMaximum(Calendar.DATE); // 시작 월의 마지막 날
+
+                list_spinnerEND_DAY.clear();
+                for(int i=1; i<=lastDay; i++){
+                    list_spinnerEND_DAY.add(String.valueOf(i));
+                }
+                spinnerEND_DAY.setAdapter(adapter_spinnerEND_DAY);
+
+                spinnerEND_DAY.setSelection(adapter_spinnerEND_DAY.getCount()-1);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        // 시작 '일' 리스너
+        spinnerSTART_DAY.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedSTART_DAY = Integer.parseInt(adapter_spinnerSTART_DAY.getItem(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        // 종료 '일' 리스너
+        spinnerEND_DAY.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedEND_DAY = Integer.parseInt(adapter_spinnerEND_DAY.getItem(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        // '검색' 버튼 리스너
         Btn_search.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                year = selectedYEAR;
-                month = selectedMONTH;
 
-                Toast.makeText(getContext(), "내역이 변경되었습니다.", Toast.LENGTH_SHORT).show();
+                boolean isThereError = false;
 
-                setDayInfo();
-                calculate_basicPay(); // 기본 급여 계산
-                calculate_extraPay(); // 추가 급여 계산 (추후 수정)
-                calculate_insurance(); // 보험
-                calculate_total(); // total
+                if(selectedSTART_YEAR > selectedEND_YEAR)
+                    isThereError = true;
+                else if(selectedSTART_YEAR == selectedEND_YEAR && selectedSTART_MONTH > selectedEND_MONTH)
+                    isThereError = true;
+                else if(selectedSTART_MONTH == selectedEND_MONTH && selectedSTART_DAY > selectedEND_DAY)
+                    isThereError = true;
+
+                if(isThereError) {
+                    Toast.makeText(getContext(), "근무 기간을 다시 선택해주세요.", Toast.LENGTH_SHORT).show();
+
+                    // setting YEAR
+                    for(int i=0; i<adapter_spinnerSTART_YEAR.getCount(); i++)
+                        if(adapter_spinnerSTART_YEAR.getItem(i).equals(String.valueOf(year))){
+                            spinnerSTART_YEAR.setSelection(i);
+                            spinnerEND_YEAR.setSelection(i);
+                        }
+
+                    // setting MONTH
+                    for(int i=0; i<adapter_spinnerSTART_MONTH.getCount(); i++)
+                        if(adapter_spinnerSTART_MONTH.getItem(i).equals(String.valueOf(month))){
+                            spinnerSTART_MONTH.setSelection(i);
+                            spinnerEND_MONTH.setSelection(i);
+                        }
+                }
+                else{
+                    // 화면 갱신
+                    calculate_basicPay(); // 기본 급여 계산
+                    calculate_extraPay(); // 추가 급여 계산 (추후 수정)
+                    calculate_insurance(); // 보험
+                    calculate_total(); // total
+
+                    Toast.makeText(getContext(), "급여 내역이 변경되었습니다.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
-    }
-
-    public void setDayInfo(){
-
-        // 스피너 초기값
-        spinnerYEAR.setSelection(0);
-        spinnerMONTH.setSelection(0);
-
-        for(int i=0; i<adapter_spinnerYEAR.getCount(); i++)
-            if(adapter_spinnerYEAR.getItem(i).equals(String.valueOf(year)))
-                spinnerYEAR.setSelection(i);
-
-        for(int i=0; i<adapter_spinnerMONTH.getCount(); i++)
-            if(adapter_spinnerMONTH.getItem(i).equals(String.valueOf(month)))
-                spinnerMONTH.setSelection(i);
-
-        // 내역 기간
-        int myPayDay = myAlbaDBCalculator.getMyPayDay(albaNameInSpinner);
-        String s;
-        if(month == 1){
-            s = "임금 계산 기간 : " +
-                    String.valueOf(year-1) + "년 " + 12 + "월 " + String.valueOf(myPayDay) + "일 ~ " +
-                    String.valueOf(year) + "년 " + month + "월 " + String.valueOf(myPayDay-1) + "일";
-        }
-        else{
-            s = "임금 계산 기간 : " +
-                    String.valueOf(year) + "년 " + String.valueOf(month-1) + "월 " + String.valueOf(myPayDay) + "일 ~ " +
-                    String.valueOf(year) + "년 " + month + "월 " + String.valueOf(myPayDay-1) + "일";
-        }
-        dayInfo.setText(s);
     }
 
     // 기본 급여 계산
@@ -238,18 +370,24 @@ public class MyAlba2Fragment extends Fragment {
         my_pay = myAlbaDBCalculator.getMyPaySet(albaNameInSpinner);
         Text_basicPay.setText(String.valueOf(my_pay));
 
-
         /*** 근무 시간, 기본 급여 총 ***/
-        totalTime = myAlbaDBCalculator.calculateTimeForMonth(albaNameInSpinner, year, month);
+        totalTime = myAlbaDBCalculator.calculateTimeForMonth(albaNameInSpinner, selectedSTART_YEAR, selectedSTART_MONTH, selectedSTART_DAY,
+                selectedEND_YEAR, selectedEND_MONTH, selectedEND_DAY);
         Text_basicTime.setText(String.valueOf(totalTime));
 
         /*** 기본 급여 총 ***/
-        basic_total = myAlbaDBCalculator.getTotalPay(albaNameInSpinner, year, month);
+        double temp = myAlbaDBCalculator.getTotalPay(albaNameInSpinner, selectedSTART_YEAR, selectedSTART_MONTH, selectedSTART_DAY,
+                selectedEND_YEAR, selectedEND_MONTH, selectedEND_DAY);
+        basic_total = Double.parseDouble(String.format("%.2f",temp)); // 반올림
         Text_basicTotal.setText(String.valueOf(basic_total));
     }
 
     // 추가 급여 계산 (추후 수정)
     public void calculate_extraPay() {
+
+        Double temp = myAlbaDBCalculator.getExtraPay(albaNameInSpinner, selectedSTART_YEAR, selectedSTART_MONTH, selectedSTART_DAY,
+                selectedEND_YEAR, selectedEND_MONTH, selectedEND_DAY);
+        extraWeek = Double.parseDouble(String.format("%.2f",temp)); // 반올림
 
         // 추가 급여 총
         extraTotal = extraWeek + extraNight;

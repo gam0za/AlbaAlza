@@ -1,8 +1,10 @@
 package com.example.albaalza.P_MyAlba;
 
 import android.database.Cursor;
+import android.util.Log;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Created by SEJIN on 2018-01-15.
@@ -75,13 +77,11 @@ public class MyAlbaDBCalculator {
         return totalHOUR + totalMINUTES / 60;
     }
 
-    /* 한달 일한 시간 구하기 */
-    public int calculateTimeForMonth(String albaNameInSpinner, int year, int month){
+    /* 선택된 근무 기간동안 일한 시간 구하기 */
+    public int calculateTimeForMonth(String albaNameInSpinner, int selectedSTART_YEAR, int selectedSTART_MONTH, int selectedSTART_DAY,
+                                     int selectedEND_YEAR, int selectedEND_MONTH, int selectedEND_DAY){
 
         int total_time = 0;
-
-        int myPayDay = getMyPayDay(albaNameInSpinner);
-
         try {
             Cursor iCursor = dbHelper.selectColumns_MYALBA();
             iCursor.moveToFirst();
@@ -94,19 +94,9 @@ public class MyAlbaDBCalculator {
                     int tempMONTH = iCursor.getInt(iCursor.getColumnIndex("month"));
                     int tempDAY = iCursor.getInt(iCursor.getColumnIndex("day"));
 
-                    int tempYEARminus = 0;
-                    int tempMONTHplus = 0;
-                    if(tempMONTH == 1 && tempDAY<myPayDay){ // 1월의 경우
-                        tempYEARminus = 1;
-                        tempMONTHplus = 12;
-                    }
-                    if ((tempYEAR == year
-                            && tempMONTH == month
-                            && tempDAY < myPayDay)
-
-                            || (tempYEAR == year-tempYEARminus
-                            && tempMONTH == month+tempMONTHplus-1
-                            && tempDAY >= myPayDay)) {
+                    if ( (tempYEAR == selectedSTART_YEAR && tempMONTH == selectedSTART_MONTH && tempDAY >= selectedSTART_DAY)
+                            || (tempYEAR == selectedEND_YEAR && tempMONTH == selectedEND_MONTH && tempDAY <= selectedEND_DAY) )
+                    {
 
                         int tempSH = iCursor.getInt(iCursor.getColumnIndex("startHour"));
                         int tempSM = iCursor.getInt(iCursor.getColumnIndex("startMinutes"));
@@ -127,8 +117,9 @@ public class MyAlbaDBCalculator {
         return total_time;
     }
 
-    /* 당월 누적 금액 구하기 */
-    public int getTotalPay(String albaNameInSpinner, int year, int month) {
+    /* 선택된 근무 기간동안 일한 급여 구하기 */
+    public int getTotalPay(String albaNameInSpinner, int selectedSTART_YEAR, int selectedSTART_MONTH, int selectedSTART_DAY,
+                           int selectedEND_YEAR, int selectedEND_MONTH, int selectedEND_DAY) {
 
         int totalPAY = 0;
         int myPayDay = getMyPayDay(albaNameInSpinner);
@@ -150,13 +141,38 @@ public class MyAlbaDBCalculator {
                         tempYEARminus = 1;
                         tempMONTHplus = 12;
                     }
-                    if ((tempYEAR == year
-                            && tempMONTH == month
-                            && tempDAY < myPayDay)
+                    if ( (tempYEAR == selectedSTART_YEAR && tempMONTH == selectedSTART_MONTH && tempDAY >= selectedSTART_DAY)
+                            || (tempYEAR == selectedEND_YEAR && tempMONTH == selectedEND_MONTH && tempDAY <= selectedEND_DAY) )
+                    {
+                        int tempPAYFORDAY = iCursor.getInt(iCursor.getColumnIndex("payForDay"));
+                        totalPAY += tempPAYFORDAY;
+                    }
+                }
+            }
+            iCursor.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
-                            || (tempYEAR == year-tempYEARminus
-                            && tempMONTH == month+tempMONTHplus-1
-                            && tempDAY >= myPayDay)) {
+        return totalPAY;
+    }
+
+    /* 당월 누적 금액 구하기 */
+    public int getTotalPayForMonth(String albaNameInSpinner, int year, int month) {
+
+        int totalPAY = 0;
+
+        try {
+            Cursor iCursor = dbHelper.selectColumns_MYALBA();
+            iCursor.moveToFirst();
+
+            while (iCursor.moveToNext()) {
+                String tempMYALBANAME = iCursor.getString(iCursor.getColumnIndex("myAlbaName"));
+                if (tempMYALBANAME.equals(albaNameInSpinner)) {
+                    int tempYEAR = iCursor.getInt(iCursor.getColumnIndex("year"));
+                    int tempMONTH = iCursor.getInt(iCursor.getColumnIndex("month"));
+
+                    if (tempYEAR == year && tempMONTH == month) {
                         int tempPAYFORDAY = iCursor.getInt(iCursor.getColumnIndex("payForDay"));
                         totalPAY += tempPAYFORDAY;
                     }
@@ -238,48 +254,134 @@ public class MyAlbaDBCalculator {
     }
 
     /* 주휴수당 계산 */
-    public Double getExtraPay(String albaNameInSpinner, int year, int month){
+    public Double getExtraPay(String albaNameInSpinner, int selectedSTART_YEAR, int selectedSTART_MONTH, int selectedSTART_DAY,
+                              int selectedEND_YEAR, int selectedEND_MONTH, int selectedEND_DAY){
 
-        int myPayDay = getMyPayDay(albaNameInSpinner);
+        Calendar calendar;
+        calendar = Calendar.getInstance(Locale.getDefault());
+        calendar.set(selectedSTART_YEAR, selectedSTART_MONTH - 1, 1);
+        int lastDay = calendar.getActualMaximum(Calendar.DATE); // 해당 월의 마지막 날
 
-        int startYEAR, startMONTH, startDay=myPayDay;
-        int endYEAR=year, endMONTH=month, endDay=myPayDay-1;
+        int currentCursorYEAR = selectedSTART_YEAR;
+        int currentCursorMONTH = selectedSTART_MONTH;
+        int currentCursorDAY = selectedSTART_DAY;
 
-        if(month == 1){ // 1월의 경우
-            startYEAR = year-1;
-            startMONTH = 12;
-        }
-        else{
-            startYEAR = year;
-            startMONTH = month-1;
-        }
+        double totalExtraPay = 0;
 
-        calendar = Calendar.getInstance();
-        calendar.set(startYEAR, startMONTH - 1, startDay);
-        int startDATE = calendar.get(Calendar.DAY_OF_WEEK); // 1(일) ~ 7(토), 시작일의 요일
-        int lastDay = calendar.getActualMaximum(Calendar.DATE); // 시작 월의 마지막 날
+        while((currentCursorYEAR < selectedEND_YEAR)
+                || (currentCursorMONTH <= selectedEND_MONTH
+                && currentCursorDAY <= selectedEND_DAY)) {
 
-        int currentDay = startDay;
+            // 한 달 안에 일주일이 해결될 경우
+            if (currentCursorDAY + 6 <= lastDay) {
 
-        double temp=0, total=0;
+                double tempExtraTime = getExtraPayDB(albaNameInSpinner, currentCursorYEAR, currentCursorMONTH, currentCursorDAY,
+                        currentCursorYEAR, currentCursorMONTH, currentCursorDAY + 6);
+                //
+                String logText = String.valueOf(currentCursorYEAR) + String.valueOf(currentCursorMONTH) + String.valueOf(currentCursorDAY);
+                String logText2 = String.valueOf(currentCursorYEAR) + String.valueOf(currentCursorMONTH) + String.valueOf(currentCursorDAY + 6);
+                Log.v("태그", logText);
+                Log.v("태그2", logText2);
 
-        /*
-        for(){
-            if(temp = getExtraPayDB() != 0){
-                // 주휴수당 계산 : (일주일 총 근로시간) / 40 * 8 * 시급
-                total += temp / 40 * 8 * getMyPaySet(albaNameInSpinner);
+                if (tempExtraTime > 0) {
+                    // 주휴수당 계산 : (일주일 총 근로시간) / 40 * 8 * 시급
+                    totalExtraPay += (tempExtraTime / 40) * 8 * getMyPaySet(albaNameInSpinner);
+                    Log.v("주휴수당", String.valueOf(tempExtraTime));
+                }
+                currentCursorDAY += 6;
+
+                 // 현재 일이 월의 끝 일일 경우
+                if (currentCursorDAY == lastDay) {
+                    if (currentCursorMONTH == 12) { // 12월의 경우
+                        currentCursorYEAR++;
+                        currentCursorMONTH = 1;
+                    } else {
+                        currentCursorMONTH++;
+                    }
+                    currentCursorDAY = 1;
+                }
+                else{
+                    currentCursorDAY++;
+                }
+            }
+
+
+            // 한 달 안에 일주일이 해결되지 못할 경우
+            else {
+
+                // 다음 달을 검색하지 않고, 일주일을 채우지 못했을 경우
+                if(currentCursorYEAR == selectedEND_YEAR
+                        && currentCursorMONTH == selectedEND_MONTH
+                        && selectedEND_DAY < currentCursorDAY + 6) {
+                    double tempExtraTime = getExtraPayDB(albaNameInSpinner, currentCursorYEAR, currentCursorMONTH, currentCursorDAY,
+                            currentCursorYEAR, currentCursorMONTH, selectedEND_DAY);
+
+                    //
+                    String logText = String.valueOf(currentCursorYEAR) + String.valueOf(currentCursorMONTH) + String.valueOf(currentCursorDAY);
+                    String logText2 = String.valueOf(currentCursorYEAR) + String.valueOf(currentCursorMONTH) + String.valueOf(selectedEND_DAY);
+                    Log.v("태그", logText);
+                    Log.v("태그2", logText2);
+
+                    if (tempExtraTime > 0) {
+                        // 주휴수당 계산 : (일주일 총 근로시간) / 40 * 8 * 시급
+                        totalExtraPay += (tempExtraTime / 40) * 8 * getMyPaySet(albaNameInSpinner);
+                        Log.v("주휴수당", "2");
+                    }
+                    break;
+                }
+
+                // 다음 달까지 검색할 경우
+                else{
+                    int addDay = lastDay - currentCursorDAY;
+
+                    if (currentCursorMONTH == 12) { // 12월의 경우
+                        double tempExtraTime = getExtraPayDB(albaNameInSpinner, currentCursorYEAR, currentCursorMONTH, currentCursorDAY,
+                                currentCursorYEAR + 1, 1, 6 - addDay);
+
+                        //
+                        String logText =  String.valueOf(currentCursorYEAR) +  String.valueOf(currentCursorMONTH) + String.valueOf(currentCursorDAY);
+                        String logText2 =  String.valueOf(currentCursorYEAR + 1) +  String.valueOf(1) + String.valueOf(6 - addDay);
+                        Log.v("태그", logText);
+                        Log.v("태그2", logText2);
+
+                        if(tempExtraTime > 0){
+                            // 주휴수당 계산 : (일주일 총 근로시간) / 40 * 8 * 시급
+                            totalExtraPay += (tempExtraTime / 40) * 8 * getMyPaySet(albaNameInSpinner);
+                            Log.v("주휴수당", "3");
+                        }
+                        currentCursorYEAR++;
+                        currentCursorMONTH = 1;
+                        currentCursorDAY = 7 - addDay;
+                    } else {
+                        double tempExtraTime = getExtraPayDB(albaNameInSpinner, currentCursorYEAR, currentCursorMONTH, currentCursorDAY,
+                                currentCursorYEAR, currentCursorMONTH + 1, 6 - addDay);
+
+                        //
+                        String logText =  String.valueOf(currentCursorYEAR) +  String.valueOf(currentCursorMONTH) + String.valueOf(currentCursorDAY);
+                        String logText2 =  String.valueOf(currentCursorYEAR) +  String.valueOf(currentCursorMONTH + 1) + String.valueOf(6 - addDay);
+                        Log.v("태그", logText);
+                        Log.v("태그2", logText2);
+
+                        if(tempExtraTime > 0){
+                            // 주휴수당 계산 : (일주일 총 근로시간) / 40 * 8 * 시급
+                            totalExtraPay += (tempExtraTime / 40) * 8 * getMyPaySet(albaNameInSpinner);
+                            Log.v("주휴수당", "4");
+                        }
+                        currentCursorMONTH++;
+                        currentCursorDAY = 7 - addDay;
+                    }
+                }
             }
         }
-        */
-        return total;
+
+        return totalExtraPay;
     }
 
 
-    public double getExtraPayDB(String albaNameInSpinner, int startYEAR,int startMONTH, int startDAY,
-                                int endYEAT, int endMONTH, int endDAY){
+    public double getExtraPayDB(String albaNameInSpinner, int selectedSTART_YEAR, int selectedSTART_MONTH, int selectedSTART_DAY,
+                                int selectedEND_YEAR, int selectedEND_MONTH, int selectedEND_DAY){
 
         double total_time = 0;
-
 
         try {
             Cursor iCursor = dbHelper.selectColumns_MYALBA();
@@ -293,8 +395,8 @@ public class MyAlbaDBCalculator {
                     int tempMONTH = iCursor.getInt(iCursor.getColumnIndex("month"));
                     int tempDAY = iCursor.getInt(iCursor.getColumnIndex("day"));
 
-                    if ((tempYEAR == startYEAR && tempMONTH == startMONTH && tempDAY >= startDAY )
-                            || tempYEAR == endYEAT && tempMONTH == endMONTH && tempDAY < endDAY) {
+                    if ((tempYEAR == selectedSTART_YEAR && tempMONTH == selectedSTART_MONTH && tempDAY >= selectedSTART_DAY )
+                            && (tempYEAR == selectedEND_YEAR && tempMONTH == selectedEND_MONTH && tempDAY < selectedEND_DAY) ) {
 
                         int tempSH = iCursor.getInt(iCursor.getColumnIndex("startHour"));
                         int tempSM = iCursor.getInt(iCursor.getColumnIndex("startMinutes"));

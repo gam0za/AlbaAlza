@@ -8,7 +8,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.albaalza.P_Main.MainActivity;
@@ -19,9 +18,7 @@ public class AddAlba extends AppCompatActivity {
 
     /* activity_add_alba 변수 선언 */
     private EditText alba_name,my_pay,pay_day;
-    private TextView insurance, backBtn;
     private ImageView alba_name_btn,my_pay_btn,pay_day_btn,confirm,insurance_yes,insurance_no;
-    private Switch insuranceSwitch;
 
     private int insuranceFlag = 0;
 
@@ -39,7 +36,6 @@ public class AddAlba extends AppCompatActivity {
         alba_name=(EditText)findViewById(R.id.alba_name);
         my_pay=(EditText)findViewById(R.id.my_pay);
         pay_day=(EditText)findViewById(R.id.pay_day);
-        backBtn=(TextView)findViewById(R.id.backBtn);
         alba_name_btn=(ImageView)findViewById(R.id.alba_name_btn);
         my_pay_btn=(ImageView)findViewById(R.id.my_pay_btn);
         pay_day_btn=(ImageView)findViewById(R.id.pay_day_btn);
@@ -81,7 +77,7 @@ public class AddAlba extends AppCompatActivity {
         insurance_yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insuranceFlag=1;
+                insuranceFlag = 1; // 사대 보험 가입 O
             }
         });
         insurance_no.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +86,7 @@ public class AddAlba extends AppCompatActivity {
                 insuranceFlag=0;
             }
         });
+
 
         // 월급 날짜
         pay_day_btn.setOnClickListener(new View.OnClickListener() {

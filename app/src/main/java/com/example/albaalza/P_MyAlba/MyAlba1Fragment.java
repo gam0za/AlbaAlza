@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,8 +21,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.albaalza.P_Main.MainActivity;
 import com.example.albaalza.P_Main.BusProvider;
+import com.example.albaalza.P_Main.MainActivity;
 import com.example.albaalza.R;
 import com.squareup.otto.Subscribe;
 
@@ -38,13 +39,11 @@ public class MyAlba1Fragment extends Fragment {
 
     private TextView add_albaDay, deleteBtn, modifyBtn;
     private TextView Text_TotalPay, Text_myPay; // 일급, 당월 누적 금액, 나의 시급
-    private ImageView black_layout;
+    private ImageView black_layout,prevBtn, nextBtn;
     private RelativeLayout buttonLayout;
 
     /* fragment_my_alba1 변수 선언 */
-    private ImageView prevBtn;
-    private ImageView nextBtn;
-    private Button today_setBtn;
+    private Button  today_setBtn;
     private TextView dateTitle;
     private GridView calender_grid;
     private float XLocation = 0, YLocation =0;
@@ -192,6 +191,7 @@ public class MyAlba1Fragment extends Fragment {
         spinner = (Spinner) view.findViewById(R.id.spinner);
         prevBtn = (ImageView) view.findViewById(R.id.prevBtn);
         nextBtn = (ImageView) view.findViewById(R.id.nextBtn);
+        today_setBtn = (Button) view.findViewById(R.id.today_setBtn);
         spinner = (Spinner) view.findViewById(R.id.spinner);
         Text_TotalPay = (TextView) view.findViewById(R.id.Text_totalPay);
         Text_myPay = (TextView) view.findViewById(R.id.Text_myPay);
@@ -518,8 +518,10 @@ public class MyAlba1Fragment extends Fragment {
         gridAdapter gridAdapter = new gridAdapter(getContext(), days, startDay,
                 current_date, today_flag, calendar_year, calendar_month, myAlbaDBCalculator, albaNameInSpinner);
         calender_grid.setAdapter(gridAdapter);
-    }
 
+        getDBdata();
+       // getDBdata2();
+    }
 
     /* 당월 누적 금액 표시 */
     private void setTotalPay(ArrayList<Boolean> dateRepeat,
@@ -532,6 +534,8 @@ public class MyAlba1Fragment extends Fragment {
         int month = calendar_month;
         int date = startOfweek;
 
+        Log.v("startOfweek", String.valueOf(startOfweek));//
+
         int start_hour = total_hour.get(0);
         int start_minute = total_hour.get(1);
         int end_hour = total_hour.get(2);
@@ -540,30 +544,38 @@ public class MyAlba1Fragment extends Fragment {
         // 일급 계산
         int payForDay = myAlbaDBCalculator.setPayForDay(myPAY, start_hour, start_minute, end_hour, end_minute);
 
-        try {
-            Cursor iCursor = dbHelper.selectColumns_MYALBA();
-            Toast.makeText(getContext(),String.valueOf(iCursor.getCount()), Toast.LENGTH_SHORT).show();
-            iCursor.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        int j; //
 
-        // 요일 반복
-        for (int i = 0; i < 7; i++)
-            if (dateRepeat.get(i) && (date + i < calendar.getActualMaximum(Calendar.DATE))) {
-                dbHelper.insertColumn(albaNameInSpinner, myPAY, year, month, date + 1 + i,
+        // 주별 반복
+        if(dateRepeat.get(7)) {
+
+            // 선택일이 일요일일 경우
+            if(selected_date == startOfweek){
+                dbHelper.insertColumn(albaNameInSpinner, myPAY, year, month, startOfweek,
                         start_hour, start_minute, end_hour, end_minute, payForDay);
             }
 
-            /*
-        // 주별 반복
-        if(dateRepeat.get(7))
-            for(int i = 0; i < 7; i++)
-                if(dateRepeat.get(i))
-                    for(int j = date + i; j < calendar.getActualMaximum(Calendar.DATE); j+=7)
-                        dbHelper.insertColumn(albaNameInSpinner, myPAY, year, month, date +j,
+            for (int i = 0; i < 7; i++) {
+                // 요일 반복
+                if (dateRepeat.get(i)) {
+                    for (j = date + i + 1; j <= calendar.getActualMaximum(Calendar.DATE); j += 7) { //
+                        dbHelper.insertColumn(albaNameInSpinner, myPAY, year, month, j,
                                 start_hour, start_minute, end_hour, end_minute, payForDay);
-*/
+                    }
+                    Log.v("태그",String.valueOf(j));
+                }
+            }
+        }
+
+        else {
+            // 요일 반복
+            for (int i = 0; i < 7; i++)
+                if (dateRepeat.get(i) && (date + i < calendar.getActualMaximum(Calendar.DATE))) {
+                    dbHelper.insertColumn(albaNameInSpinner, myPAY, year, month, date + 1 + i,
+                            start_hour, start_minute, end_hour, end_minute, payForDay);
+                }
+        }
+
         updateCalendar();
 
         getTotalPay(year, month);
@@ -574,7 +586,7 @@ public class MyAlba1Fragment extends Fragment {
         Text_TotalPay.setText(String.valueOf(totalMyPay) + "0 원");
 
         try{
-            int monthTotal = myAlbaDBCalculator.getTotalPay(albaNameInSpinner, year, month);
+            int monthTotal = myAlbaDBCalculator.getTotalPayForMonth(albaNameInSpinner, year, month);
             String s= String.valueOf(monthTotal)+" 원";
             Text_TotalPay.setText(s);
         }
@@ -595,4 +607,59 @@ public class MyAlba1Fragment extends Fragment {
     public int getCalendar_month() {
         return calendar_month;
     }
+
+
+
+
+
+    /**************************************** 로그 ****************************************/
+    public void getDBdata(){
+        try {
+            Cursor iCursor = dbHelper.selectColumns_MYALBA();
+            iCursor.moveToFirst();
+            while (iCursor.moveToNext()) {
+                    String tempMYALBANAME = iCursor.getString(iCursor.getColumnIndex("myAlbaName"));
+                    int tempMYPAY = iCursor.getInt(iCursor.getColumnIndex("myPay"));
+                    int tempYEAR = iCursor.getInt(iCursor.getColumnIndex("year"));
+                    int tempMONTH = iCursor.getInt(iCursor.getColumnIndex("month"));
+                    int tempDAY = iCursor.getInt(iCursor.getColumnIndex("day"));
+                    int tempSTARTHOUR = iCursor.getInt(iCursor.getColumnIndex("startHour"));
+                    int tempSTARTMINUTES = iCursor.getInt(iCursor.getColumnIndex("startMinutes"));
+                    int tempENDHOUR = iCursor.getInt(iCursor.getColumnIndex("endHour"));
+                    int tempENDMINUTES = iCursor.getInt(iCursor.getColumnIndex("endMinutes"));
+                    int tempPAYFORDAY = iCursor.getInt(iCursor.getColumnIndex("payForDay"));
+
+                    String str = tempMYALBANAME
+                            + ", 시급: " + String.valueOf(tempMYPAY)
+                            + ", 날짜: " + String.valueOf(tempYEAR) + String.valueOf(tempMONTH) + String.valueOf(tempDAY)
+                            + ", 시작 시간: " + String.valueOf(tempSTARTHOUR) + " : " + String.valueOf(tempSTARTMINUTES) + " ~ "
+                            + ", 종료 시간: " + String.valueOf(tempENDHOUR) + " : " + String.valueOf(tempENDMINUTES) + " ~ "
+                            + ", 일급: " + String.valueOf(tempPAYFORDAY);
+
+                    Log.v("DB",str);
+            }
+            Log.v("DB","eeeennnnnnddddd");
+            iCursor.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void getDBdata2(){
+        try {
+            Cursor iCursor = dbHelper.selectColumns_MYALBANAME();
+            iCursor.moveToFirst();
+            while (iCursor.moveToNext()) {
+                String tempMYALBANAME = iCursor.getString(iCursor.getColumnIndex("myAlbaName"));
+
+                Log.v("DB2",tempMYALBANAME);
+
+            }
+            Log.v("DB","eeeennnnnnddddd");
+            iCursor.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    /*************************************************************************************/
 }

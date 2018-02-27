@@ -81,6 +81,7 @@ public class MyAlba3Fragment extends Fragment{
         btn_edit = (Button) view.findViewById(R.id.btn_edit);
         btn_delete = (Button) view.findViewById(R.id.btn_delete);
 
+//        insuranceSwitch = (Switch) view.findViewById(R.id.insuranceSwitch);
 
         return view;
     }
@@ -88,17 +89,17 @@ public class MyAlba3Fragment extends Fragment{
     public void viewFunction(){
 
         // 사대 보험 가입 여부
-        insuranceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){
-                    switchFlag = 1; // 사대 보험 가입 O
-                }
-                else{
-                    switchFlag = 0; // 사대 보험 가입 X
-                }
-            }
-        });
+//        insuranceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+//                if(isChecked){
+//                    switchFlag = 1; // 사대 보험 가입 O
+//                }
+//                else{
+//                    switchFlag = 0; // 사대 보험 가입 X
+//                }
+//            }
+//        });
 
         // 알바 정보 수정
         btn_edit.setOnClickListener(new View.OnClickListener() {
@@ -130,8 +131,12 @@ public class MyAlba3Fragment extends Fragment{
             @Override
             public void onClick(View view) {
                 try{
+
+                    if(getAlbaNumber()){
+                        dbHelper.deleteAllColumn_myAlba(alba_name); // db 삭제
+                    }
+
                     dbHelper.deleteColumn_myAlbaname(currentID); // db 삭제
-                    dbHelper.deleteAllColumn_myAlba(alba_name); // db 삭제
 
                     // 근무지 1개 이상
                     if(((MainActivity)getActivity()).getAlbaNameNumber()){
@@ -144,6 +149,7 @@ public class MyAlba3Fragment extends Fragment{
                         myAlba = ((MainActivity) getActivity()).getMyAlba();
                         myAlba.getViewPager().setCurrentItem(0); // myAlba1Fragment
                     }
+
                     // 근무지 없을 때
                     else {
                         // 화면 전환
@@ -153,12 +159,13 @@ public class MyAlba3Fragment extends Fragment{
                         myAlbaAddFragment = ((MainActivity) getActivity()).getMyAlbaAddFragment();
                         ((MainActivity) getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myAlbaAddFragment).commit();
                     }
+
+                    Toast.makeText(getContext(), "정상적으로 삭제 되었습니다.", Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception ex){
                     Toast.makeText(getContext(), "삭제 실패", Toast.LENGTH_SHORT).show();
                     ex.printStackTrace();
                 }
-                Toast.makeText(getContext(), "정상적으로 삭제 되었습니다.", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -195,5 +202,19 @@ public class MyAlba3Fragment extends Fragment{
             insuranceSwitch.setChecked(true);
             switchFlag = 1;
         }
+    }
+
+    public boolean getAlbaNumber(){
+
+        try {
+            Cursor iCursor = dbHelper.selectColumns_MYALBA();
+            if(iCursor.getCount() > 1) {
+                return true;
+            }
+            iCursor.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
 }

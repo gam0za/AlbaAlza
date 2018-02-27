@@ -13,7 +13,7 @@ import android.util.Log;
  */
 
 public class MyAlbaDbOpenHelper {
-    private static final String DATABASE_NAME = "MyAlba11.db";
+    private static final String DATABASE_NAME = "MyAlba12.db";
     private static final int DATABASE_VERSION = 1;
     private static SQLiteDatabase mDB;
     private DatabaseHelper mDbHelper;
@@ -181,7 +181,7 @@ public class MyAlbaDbOpenHelper {
 
     // 삭제 (all)
     public void deleteAllColumn_myAlba(String myAlbaName){
-        mDB.delete(TABLENAME_MYALBA,KEY_MYALBANAME + "=" + myAlbaName, null);
+        mDB.delete(TABLENAME_MYALBA,KEY_MYALBANAME + "='" + myAlbaName + "'", null);
     }
 
     // 수정 (알바 이름)

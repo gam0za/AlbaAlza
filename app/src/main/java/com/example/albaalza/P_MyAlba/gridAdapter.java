@@ -79,7 +79,6 @@ class gridAdapter extends BaseAdapter {
                 day_icon.setTextColor(0xffffffff);
             }
 
-            if(today_flag == true)
             // 돈 있는 날 색깔 표시
             if(i >= startDay - 1 && i<startDay + 32) {
                 if(myAlbaDBCalculator.getPayForDay(albaNameInSpinner,calendar_year,calendar_month,i-startDay+2)!=0)

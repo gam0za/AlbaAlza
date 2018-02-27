@@ -20,7 +20,6 @@ import com.example.albaalza.P_MyPage.MyPage;
 import com.example.albaalza.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    int previousButton = 1;
     ImageView tab_home, tab_myalba, tab_albating, tab_advice, tab_mypage;
 
     Information information;
@@ -78,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.tab_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, information).commit();
-                previousButton = 1;
                 break;
 
             case R.id.tab_myalba:
@@ -87,22 +85,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myAlbaAddFragment).commit();
                 }
-                previousButton = 2;
                 break;
 
             case R.id.tab_albating:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, albaTing).commit();
-                previousButton = 3;
                 break;
 
             case R.id.tab_advice:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, advice).commit();
-                previousButton = 4;
                 break;
 
             case R.id.tab_mypage:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myPage).commit();
-                previousButton = 5;
                 break;
         }
     }
@@ -117,10 +111,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String alba_name = data.getStringExtra("alba_name");
                 int my_pay = data.getIntExtra("my_pay", -1);
                 int pay_day = data.getIntExtra("pay_day", -1);
-                int payment = data.getIntExtra("insuranceFlag", -1);
+                int payment = data.getIntExtra("insurance", -1);
 
                 // 데이터베이스 insert
                 dbHelper.insertColumn_myAlba(alba_name, my_pay, payment, pay_day);
+
+                Toast.makeText(getApplicationContext(),String.valueOf(payment), Toast.LENGTH_SHORT).show(); //
 
                 setAlbaNameInSpinner(alba_name);
 
@@ -206,6 +202,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return myAlbaAddFragment;
     }
 
+    public void clickTab_MyAlba(){
+        tab_myalba.performClick(); // 화면 갱신을 위해 강제로 탭 클릭하도록 설정
+    }
     @Override
     public void onDestroy() {
         dbHelper.close(); // db is closed

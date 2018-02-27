@@ -57,3 +57,7 @@ layouts {
     }
   }
 }
+network {
+    speed  full
+    delay  none
+}
