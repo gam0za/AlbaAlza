@@ -458,7 +458,7 @@ public class MyAlba1Fragment extends Fragment {
             prevBtn.setEnabled(false);
             nextBtn.setEnabled(false);
             spinner.setEnabled(false);
-            today_setBtn.setEnabled(false);
+//            today_setBtn.setEnabled(false);
         }
         else{ // 안 보일 때
             black_layout.setVisibility(View.INVISIBLE);
@@ -466,7 +466,7 @@ public class MyAlba1Fragment extends Fragment {
             prevBtn.setEnabled(true);
             nextBtn.setEnabled(true);
             spinner.setEnabled(true);
-            today_setBtn.setEnabled(true);
+//            today_setBtn.setEnabled(true);
             isLongClicked = false;
             // calender_grid 포커스 없애야 함 (추후 수정)
         }

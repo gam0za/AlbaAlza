@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -18,7 +19,8 @@ import com.example.albaalza.R;
 public class AddAlbaDay extends AppCompatActivity {
 
     // view 객체
-    Button backBtn, sendBtn;
+    Button backBtn;
+    ImageView sendBtn;
     CheckBox monBox, tueBox, wedBox, thuBox, friBox, satBox, sunBox;
     Switch repeatDay_switch;
     TimePicker timePicker; // false=시작시간, true=종료시간
@@ -54,7 +56,7 @@ public class AddAlbaDay extends AppCompatActivity {
 
         //view 객체 생성
         backBtn = (Button)findViewById(R.id.backBtn);
-        sendBtn = (Button)findViewById(R.id.sendBtn);
+        sendBtn = (ImageView)findViewById(R.id.sendBtn);
         monBox = (CheckBox)findViewById(R.id.monBox);
         tueBox = (CheckBox)findViewById(R.id.tueBox);
         wedBox = (CheckBox)findViewById(R.id.wedBox);
@@ -84,14 +86,13 @@ public class AddAlbaDay extends AppCompatActivity {
 
     private void functionView(){
 
-        //back button
-        backBtn.setText("<");
-        backBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+//        //back button
+//        backBtn.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
 
         //myPay editText
         edit_my_pay.setText(String.valueOf(my_pay));
@@ -154,7 +155,6 @@ public class AddAlbaDay extends AppCompatActivity {
         });
 
         //send button
-        sendBtn.setText("send");
         sendBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
