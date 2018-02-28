@@ -32,7 +32,8 @@
         <activity android:name=".P_SignUp.SelectActor" />
         <activity android:name=".P_AlbaTing.AlbaTing_Detail" />
         <activity android:name=".P_AlbaTing.AlbaTing_Add" />
-        <activity android:name=".P_AlbaTing.AlbaTing_Search"></activity>
+        <activity android:name=".P_AlbaTing.AlbaTing_Search" />
+        <activity android:name=".P_AlbaTing.AlbaTing_Write"></activity>
     </application>
 
 </manifest>

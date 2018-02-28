@@ -52,10 +52,10 @@ public class Login extends AppCompatActivity {
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Login.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-//                login();
+//                Intent intent = new Intent(Login.this, MainActivity.class);
+//                startActivity(intent);
+//                finish();
+                login();
             }
 
         });
@@ -79,10 +79,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void login() {
-        Log.d("get_into_method", "메소드 들어옴~~~~~~~");
         loginPost = new LoginPost(edit_name.getText().toString(), edit_password.getText().toString());
-        Log.d("post", loginPost.id);
-        Log.d("post", loginPost.password);
         retrofit2.Call<LoginResponse> loginResponseCall = networkService.getLoginResult(loginPost);
         loginResponseCall.enqueue(new Callback<LoginResponse>() {
             @Override

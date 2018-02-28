@@ -1,12 +1,13 @@
 package com.example.albaalza.Server;
 
+import com.example.albaalza.P_AlbaTing.WriteTingResponse;
+import com.example.albaalza.P_AlbaTing.WriteTingPost;
 import com.example.albaalza.P_Login.LoginPost;
 import com.example.albaalza.P_Login.LoginResponse;
 import com.example.albaalza.P_SignUp.SignPost;
 import com.example.albaalza.P_SignUp.SignResponse;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
@@ -22,5 +23,9 @@ public interface NetworkService {
 
     @POST("/process/adduser")
     Call<SignResponse> signup(@Body SignPost signPost);
+
+//    알바팅 글 추가
+    @POST("/process/addpost")
+    Call<WriteTingResponse> postTing(@Body WriteTingPost writeTingPost);
 
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.albaalza.P_AlbaTing.AlbaTing_Write">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="알바팅 글 추가"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <!--제목-->
+        <EditText
+            android:hint="제목"
+            android:id="@+id/ting_title"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
+        <!--content-->
+        <EditText
+            android:hint="글 써주세요"
+            android:id="@+id/ting_contents"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/write_button"
+            android:text="전송"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -80,7 +80,7 @@ public class AlbaTing extends Fragment implements View.OnClickListener{
                 startActivity(i1);
                 break;
             case R.id.Search_Albating:
-                Intent i2=new Intent(getContext(),AlbaTing_Search.class);
+                Intent i2=new Intent(getContext(),AlbaTing_Write.class);
                 startActivity(i2);
                 break;
         }
