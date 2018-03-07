@@ -52,22 +52,22 @@ public class AlbaTing_Detail extends AppCompatActivity implements View.OnClickLi
 
 //        int profile, String name, String time, int image, String title, int comment_image, String comment
 
-        albaTingDataList.add(new AlbaTingData(R.drawable.user1,"사장님","2017.03.13.07:38",R.drawable.coffee,
+        albaTingDataList.add(new AlbaTingData(R.drawable.user1,"사장님","2017.03.13.07:38",R.drawable.albating_addting_addphoto,
                 "5월 황금연휴 대타 구합니다~",R.drawable.tab_albating,"3"));
 
-        albaTingDataList.add(new AlbaTingData(R.drawable.user1,"전지현","2017.05.13.07:38",R.drawable.coffee,
+        albaTingDataList.add(new AlbaTingData(R.drawable.user1,"전지현","2017.05.13.07:38",R.drawable.albating_addting_addphoto,
                 "6월 7일 저녁 6시!!!",R.drawable.tab_albating,"5"));
 
-        albaTingDataList.add(new AlbaTingData(R.drawable.user1,"강동원","2017.07.16.07:38",R.drawable.coffee,
+        albaTingDataList.add(new AlbaTingData(R.drawable.user1,"강동원","2017.07.16.07:38",R.drawable.albating_addting_addphoto,
                 "동원찡이 대타가 급해요ㅠㅠ",R.drawable.tab_albating,"3"));
 
-        albaTingDataList.add(new AlbaTingData(R.drawable.user1,"김태희","2017.05.13.07:38",R.drawable.coffee,
+        albaTingDataList.add(new AlbaTingData(R.drawable.user1,"김태희","2017.05.13.07:38",R.drawable.albating_addting_addphoto,
                 "대타 급구!!!!!!!",R.drawable.tab_albating,"3"));
 
-        albaTingDataList.add(new AlbaTingData(R.drawable.user1,"송중기","2017.02.13.07:38",R.drawable.coffee,
+        albaTingDataList.add(new AlbaTingData(R.drawable.user1,"송중기","2017.02.13.07:38",R.drawable.albating_addting_addphoto,
                 "3월 대타 필요하신분~",R.drawable.tab_albating,"3"));
 
-        albaTingDataList.add(new AlbaTingData(R.drawable.user1,"사장님","2017.08.13.07:38",R.drawable.coffee,
+        albaTingDataList.add(new AlbaTingData(R.drawable.user1,"사장님","2017.08.13.07:38",R.drawable.albating_addting_addphoto,
                 "나는야 주휴수당 챙겨주는 멋쟁이~",R.drawable.tab_albating,"3"));
 
         layoutManager= new LinearLayoutManager(this);
