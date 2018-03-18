@@ -53,9 +53,9 @@
             android:textSize="15dp"/>
 
         <!--지도가 들어갈 자리-->
-        <LinearLayout
-            android:orientation="vertical"
+        <fragment
             android:id="@+id/centerMap"
+            class="com.google.android.gms.maps.MapFragment"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:background="#66000000"/>

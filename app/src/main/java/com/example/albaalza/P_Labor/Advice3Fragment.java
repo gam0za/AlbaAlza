@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,18 +17,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.albaalza.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class Advice3Fragment extends Fragment {
+public class Advice3Fragment extends Fragment implements OnMapReadyCallback{
 
     TextView text_myCenter1, text_myCenter2;
     TextView text_myCenterAddress;
     TextView text_myCenterTel, text_myCenterFax;
     FloatingActionButton Btn_Call;
     Spinner spinner_state, spinner_city;
-    LinearLayout adviceInfoFrame,centerMap;
+    LinearLayout adviceInfoFrame;
 
     // 데이터 베이스
     AdviceDbOpenHelper dbHelper;
@@ -51,6 +58,8 @@ public class Advice3Fragment extends Fragment {
         super.onCreate(savedInstanceState);
         dbHelper = new AdviceDbOpenHelper(getContext());
         dbHelper.open(); // open database
+
+
     }
 
     @Override
@@ -66,9 +75,9 @@ public class Advice3Fragment extends Fragment {
         text_myCenterFax = view.findViewById(R.id.text_myCenterFax);
         spinner_state = view.findViewById(R.id.spinner_state);
         spinner_city = view.findViewById(R.id.spinner_city);
+        spinner_city.setEnabled(false);
         adviceInfoFrame = view.findViewById(R.id.adviceInfoFrame);
         Btn_Call = view.findViewById(R.id.Btn_Call);
-        centerMap=view.findViewById(R.id.centerMap);
 
         /******************* 전화 버튼 ********************/
         Btn_Call.setOnClickListener(new View.OnClickListener() {
@@ -163,6 +172,7 @@ public class Advice3Fragment extends Fragment {
     }
 
     public void selectedSpinner_city(){
+        spinner_city.setEnabled(true);
         spinner_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
 
             @Override
@@ -224,14 +234,18 @@ public class Advice3Fragment extends Fragment {
 
             }
         });
+        //        map프래그먼트 연동
+
+
+
+
     }
 
     /* 지도 설정 */
     public void setMap(double selectedLATITUDE, double selectedLONGITUDE){ // 위도, 경도
 
-        this.selectedLATITUDE=selectedLATITUDE;
-        this.selectedLONGITUDE=selectedLONGITUDE;
-
+        MapFragment mapFragment= (MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.centerMap);
+        mapFragment.getMapAsync(this);
 
     }
 
@@ -239,5 +253,21 @@ public class Advice3Fragment extends Fragment {
     public void onDestroy() {
         dbHelper.close();
         super.onDestroy();
+    }
+
+//    맵 연동 => 맵이 사용할 준비가 되었을 때
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        LatLng location = new LatLng(selectedLATITUDE,selectedLONGITUDE);
+
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(location);
+        markerOptions.title(selectedCENTER);
+        markerOptions.snippet(selectedADDRESS);
+        googleMap.addMarker(markerOptions);
+
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+
     }
 }
