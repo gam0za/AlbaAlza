@@ -27,7 +27,7 @@ public class Advice3Fragment extends Fragment {
     TextView text_myCenterTel, text_myCenterFax;
     FloatingActionButton Btn_Call;
     Spinner spinner_state, spinner_city;
-    LinearLayout adviceInfoFrame;
+    LinearLayout adviceInfoFrame,centerMap;
 
     // 데이터 베이스
     AdviceDbOpenHelper dbHelper;
@@ -39,6 +39,8 @@ public class Advice3Fragment extends Fragment {
     String selectedTEL = null;
     String selectedFAX = null;
     String selectedADDRESS = null;
+    double selectedLATITUDE = 0;
+    double selectedLONGITUDE = 0;
 
     public Advice3Fragment() {
         // Required empty public constructor
@@ -54,7 +56,8 @@ public class Advice3Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+        /******************* 뷰 구성 ********************/
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_advice3, container, false);
         text_myCenter1 = view.findViewById(R.id.text_myCenter1);
         text_myCenter2 = view.findViewById(R.id.text_myCenter2);
@@ -65,8 +68,9 @@ public class Advice3Fragment extends Fragment {
         spinner_city = view.findViewById(R.id.spinner_city);
         adviceInfoFrame = view.findViewById(R.id.adviceInfoFrame);
         Btn_Call = view.findViewById(R.id.Btn_Call);
+        centerMap=view.findViewById(R.id.centerMap);
 
-        // call
+        /******************* 전화 버튼 ********************/
         Btn_Call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,6 +99,7 @@ public class Advice3Fragment extends Fragment {
         return view;
     }
 
+    /******************* 시/도 리스트 추가 ********************/
     public void setSpinner_state() {
         list_spinner_state = new ArrayList<String>();
         list_spinner_state.add(" ");
@@ -191,6 +196,9 @@ public class Advice3Fragment extends Fragment {
                             String tempTEL = iCursor2.getString(iCursor2.getColumnIndex("tel"));
                             String tempADDRESS = iCursor2.getString(iCursor2.getColumnIndex("address"));
                             String tempFAX = iCursor2.getString(iCursor2.getColumnIndex("fax"));
+                            String tempLATITUDE = iCursor2.getString(iCursor2.getColumnIndex("latitude"));
+                            String tempLONGITUDE = iCursor2.getString(iCursor2.getColumnIndex("longitude"));
+
                             if (tempCENTER.equals(selectedCENTER)) {
                                 selectedTEL = tempTEL;
                                 selectedADDRESS = tempADDRESS;
@@ -198,6 +206,10 @@ public class Advice3Fragment extends Fragment {
                                 text_myCenterTel.setText(selectedTEL);
                                 text_myCenterAddress.setText(selectedADDRESS);
                                 text_myCenterFax.setText(selectedFAX);
+
+                                selectedLATITUDE = Double.parseDouble(tempLATITUDE);
+                                selectedLONGITUDE = Double.parseDouble(tempLONGITUDE);
+                                setMap(selectedLATITUDE,selectedLONGITUDE);
                             }
                         }
                         iCursor2.close();
@@ -212,6 +224,15 @@ public class Advice3Fragment extends Fragment {
 
             }
         });
+    }
+
+    /* 지도 설정 */
+    public void setMap(double selectedLATITUDE, double selectedLONGITUDE){ // 위도, 경도
+
+        this.selectedLATITUDE=selectedLATITUDE;
+        this.selectedLONGITUDE=selectedLONGITUDE;
+
+
     }
 
     @Override

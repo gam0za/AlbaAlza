@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="고객님,"
-            android:textSize="30dp"/>
+            android:textSize="23dp"/>
 
         <TextView
             android:id="@+id/text_myCenter1"
@@ -52,10 +52,12 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"/>
 
-        <ImageView
+        <!--지도가 들어갈 자리-->
+        <LinearLayout
+            android:orientation="vertical"
             android:id="@+id/centerMap"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="250dp"
             android:background="#66000000"/>
 
         <LinearLayout

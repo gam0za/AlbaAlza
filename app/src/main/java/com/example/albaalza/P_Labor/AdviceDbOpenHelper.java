@@ -14,7 +14,7 @@ import android.util.Log;
 
 public class AdviceDbOpenHelper{
 
-    private static final String DATABASE_NAME = "adviceCenterInfo11.db";
+    private static final String DATABASE_NAME = "adviceCenterInfo12.db";
     private static final int DATABASE_VERSION = 1;
     private static SQLiteDatabase mDB;
     private DatabaseHelper mDbHelper;
@@ -33,7 +33,9 @@ public class AdviceDbOpenHelper{
     public static final String KEY_STATE = "state"; // 시도, 4
     public static final String KEY_TEL = "tel"; // 전화번호
     public static final String KEY_FAX = "fax"; // 팩스번호
-    public static final String KEY_ADDRESS = "address"; // 주소
+    public static final String KEY_ADDRESS= "address"; // 주소
+    public static final String KEY_lATITUDE = "latitude"; // 위도
+    public static final String KEY_LONGITUDE = "longitude"; // 경도
 
 
     /************** [CLASS] DatabaseHelper **************/
@@ -66,7 +68,9 @@ public class AdviceDbOpenHelper{
                         + KEY_DEPARTMENT + " text not null, "
                         + KEY_TEL + " text not null, "
                         + KEY_FAX + " text not null, "
-                        + KEY_ADDRESS + " text not null );";
+                        + KEY_ADDRESS + " text not null, "
+                        + KEY_lATITUDE + " text not null, "
+                        + KEY_LONGITUDE + " text not null );";
                 db.execSQL(_CREATE); // 테이블 생성
             } catch (Exception ex) {
                 Log.e(TAG, "Exception in CREATE_SQL", ex);
@@ -115,7 +119,7 @@ public class AdviceDbOpenHelper{
     }
 
     /***** [SQL] 데이터 삽입 함수 (center info table) *****/
-    public void insertColumn2(String center, String department, String tel, String fax, String address){
+    public void insertColumn2(String center, String department, String tel, String fax, String address, String latitude, String longitude){
         ContentValues values;
         values = new ContentValues();
         values.put(KEY_CENTER, center);
@@ -123,6 +127,8 @@ public class AdviceDbOpenHelper{
         values.put(KEY_TEL, tel);
         values.put(KEY_FAX, fax);
         values.put(KEY_ADDRESS, address);
+        values.put(KEY_lATITUDE, latitude);
+        values.put(KEY_LONGITUDE, longitude);
         mDB.insert(TABLENAME_CENTERINFO, null, values);
     }
 
@@ -175,20 +181,20 @@ public class AdviceDbOpenHelper{
 
     public void centerInfoList(){
         /*** 서울 ***/
-        insertColumn2("서울고용센터", "서울지방고용노동청", "02-2004-7301", "02-6915-4015", "주소1"); //
-        insertColumn2("서초고용센터", "서울지방고용노동청", "02-580-4900", "null", "주소");
-        insertColumn2("서울강남고용센터", "서울강남지청", "02-3468-4794", "02-6915-4028", "주소");
-        insertColumn2("서울동부고용센터", "서울동부지청", "02-2142-8924", "02-6915-4049", "주소");
-        insertColumn2("서울서부고용센터", "서울서부지청", "02-2077-6000", "null", "주소");
-        insertColumn2("서울남부고용센터", "서울남부지청", "02-2639-2300", "null", "주소");
-        insertColumn2("서울강서고용센터", "서울남부지청", "02-2063-6700", "null", "주소");
-        insertColumn2("서울북부고용센터", "서울북부지청", "02-3282-9200", "null", "주소");
-        insertColumn2("서울관악고용센터", "서울관악지청", "02-3282-9200", "02-6915-4101", "주소");
+        insertColumn2("서울고용센터", "서울지방고용노동청", "02-2004-7301", "02-6915-4015", "서울특별시 중구 장교동 삼일대로 363","37.5671460","126.9869960"); //
+        insertColumn2("서초고용센터", "서울지방고용노동청", "02-580-4900", "null", "서울특별시 중구 장교동 삼일대로 363","37.5671460", "126.9869960");
+        insertColumn2("서울강남고용센터", "서울강남지청", "02-3468-4794", "02-6915-4028", "서울특별시 강남구 대치동 889-13","37.4966550","127.0550760");
+        insertColumn2("서울동부고용센터", "서울동부지청", "02-2142-8924", "02-6915-4049", "서울특별시 송파구 가락동 78","37.4950180","127.1226240");
+        insertColumn2("서울서부고용센터", "서울서부지청", "02-2077-6000", "null", "서울특별시 마포구 도화동 마포대로 63-8","37.5422040","126.9478070");
+        insertColumn2("서울남부고용센터", "서울남부지청", "02-2639-2300", "null", "서울특별시 영등포구 양평동1가 115","37.5244550","126.8915350");
+        insertColumn2("서울강서고용센터", "서울남부지청", "02-2063-6700", "null", "서울특별시 강서구 가양동 1480-6","37.5628040","126.8525880");
+        insertColumn2("서울북부고용센터", "서울북부지청", "02-3282-9200", "null", "서울특별시 노원구 상계동 734-2","37.6534420","127.0581820");
+        insertColumn2("서울관악고용센터", "서울관악지청", "02-3282-9200", "02-6915-4101", "서울특별시 구로구 구로동 222-30","37.4833210","126.8972580");
 
         /*** 부산 ***/
-        insertColumn2("부산고용센터", "부산지방고용노동청", "051-860-1919", "051-719-4501", "주소");
-        insertColumn2("부산동부고용센터", "부산동부지청", "051-760-7100", "null", "주소");
-        insertColumn2("부산북부고용센터", "부산북부지청", "051-330-9900", "null", "주소");
+        insertColumn2("부산고용센터", "부산지방고용노동청", "051-860-1919", "051-719-4501", "부산광역시 부산진구 양정2동 중앙대로 993","35.1780270","129.0745580");
+        insertColumn2("부산동부고용센터", "부산동부지청", "051-760-7100", "null", "부산광역시 수영구 광안3동 89-18","35.1660230","129.1152040");
+        insertColumn2("부산북부고용센터", "부산북부지청", "051-330-9900", "null", "대한민국 부산광역시 북구 화명3동 2270-3","35.2356020","129.0093680");
     }
 
     public Cursor selectColumns_TABLENAME_CENTER(){

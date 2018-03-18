@@ -16,8 +16,8 @@
       <ImageView
           android:layout_gravity="center_vertical"
           android:src="@drawable/labor_button1"
-          android:layout_width="30dp"
-          android:layout_height="30dp" />
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
       <TextView
           android:layout_marginLeft="50dp"
           android:layout_gravity="center_vertical"
@@ -38,8 +38,8 @@
         <ImageView
             android:layout_gravity="center_vertical"
             android:src="@drawable/labor_button2"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <TextView
             android:layout_marginLeft="50dp"
             android:layout_gravity="center_vertical"
@@ -60,8 +60,8 @@
         <ImageView
             android:layout_gravity="center_vertical"
             android:src="@drawable/labor_button3"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <TextView
             android:layout_marginLeft="50dp"
             android:layout_gravity="center_vertical"
@@ -82,8 +82,8 @@
         <ImageView
             android:layout_gravity="center_vertical"
             android:src="@drawable/labor_button4"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <TextView
             android:layout_marginLeft="50dp"
             android:layout_gravity="center_vertical"
@@ -104,8 +104,8 @@
         <ImageView
             android:layout_gravity="center_vertical"
             android:src="@drawable/labor_button5"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <TextView
             android:layout_marginLeft="50dp"
             android:layout_gravity="center_vertical"
@@ -126,8 +126,8 @@
         <ImageView
             android:layout_gravity="center_vertical"
             android:src="@drawable/labor_button6"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <TextView
             android:layout_marginLeft="50dp"
             android:layout_gravity="center_vertical"
@@ -148,8 +148,8 @@
         <ImageView
             android:layout_gravity="center_vertical"
             android:src="@drawable/labor_button7"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <TextView
             android:layout_marginLeft="50dp"
             android:layout_gravity="center_vertical"
