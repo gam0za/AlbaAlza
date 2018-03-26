@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +33,7 @@ public class MyAlba2Fragment extends Fragment {
     // 날짜 정보
     Spinner spinnerSTART_YEAR, spinnerSTART_MONTH, spinnerSTART_DAY;
     Spinner spinnerEND_YEAR, spinnerEND_MONTH, spinnerEND_DAY;
-    Button Btn_search;
+    ImageView Btn_search;
 
     private ArrayList<String> list_spinnerSTART_YEAR, list_spinnerSTART_MONTH, list_spinnerSTART_DAY;
     private ArrayList<String> list_spinnerEND_YEAR, list_spinnerEND_MONTH, list_spinnerEND_DAY;
@@ -114,7 +115,7 @@ public class MyAlba2Fragment extends Fragment {
         spinnerEND_MONTH = (Spinner) view.findViewById(R.id.spinnerEND_MONTH);
         spinnerEND_DAY = (Spinner) view.findViewById(R.id.spinnerEND_DAY);
 
-        Btn_search = (Button) view.findViewById(R.id.Btn_search);
+        Btn_search = (ImageView) view.findViewById(R.id.Btn_search);
 
         Text_basicPay = (TextView) view.findViewById(R.id.Text_basicPay);
         Text_basicTime = (TextView) view.findViewById(R.id.Text_basicTime);

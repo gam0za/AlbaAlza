@@ -78,12 +78,14 @@ public class AddAlba extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 insuranceFlag = 1; // 사대 보험 가입 O
+                Toast.makeText(getApplicationContext(),"4대보험 가입",Toast.LENGTH_SHORT).show();
             }
         });
         insurance_no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 insuranceFlag=0;
+                Toast.makeText(getApplicationContext(),"4대보험 미가입",Toast.LENGTH_SHORT).show();
             }
         });
 

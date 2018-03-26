@@ -43,7 +43,7 @@ public class MyAlba1Fragment extends Fragment {
     private RelativeLayout buttonLayout;
 
     /* fragment_my_alba1 변수 선언 */
-    private Button  today_setBtn;
+    private ImageView  today_setBtn;
     private TextView dateTitle;
     private GridView calender_grid;
     private float XLocation = 0, YLocation =0;
@@ -191,7 +191,7 @@ public class MyAlba1Fragment extends Fragment {
         spinner = (Spinner) view.findViewById(R.id.spinner);
         prevBtn = (ImageView) view.findViewById(R.id.prevBtn);
         nextBtn = (ImageView) view.findViewById(R.id.nextBtn);
-        today_setBtn = (Button) view.findViewById(R.id.today_setBtn);
+        today_setBtn = (ImageView) view.findViewById(R.id.today_setBtn);
         spinner = (Spinner) view.findViewById(R.id.spinner);
         Text_TotalPay = (TextView) view.findViewById(R.id.Text_totalPay);
         Text_myPay = (TextView) view.findViewById(R.id.Text_myPay);

@@ -41,6 +41,7 @@ public class AlbaTing_Write extends AppCompatActivity {
         write_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("click","click");
                 writePost();
             }
         });

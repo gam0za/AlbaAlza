@@ -29,6 +29,24 @@
                 >
             </Spinner>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/todayText"
+                android:layout_margin="10dp"
+                android:layout_toLeftOf="@+id/today_setBtn"/>
+
+            <ImageView
+                android:id="@+id/today_setBtn"
+                android:src="@drawable/signup_next_button"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"/>
 
 
         </RelativeLayout>
@@ -222,10 +240,9 @@
         android:id="@+id/add_albaDay"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:textColor="#ffffff"
         android:gravity="center"
         android:text="추가"
-        android:background="#45b39c"
+        android:background="@drawable/myalba_day"
         android:visibility="invisible"
         />
 
@@ -239,10 +256,9 @@
             android:id="@+id/modifyBtn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:textColor="#ffffff"
             android:gravity="center"
             android:text="수정"
-            android:background="#45b39c"
+            android:background="@drawable/myalba_day"
             />
 
         <!-- 알바 day 삭제 버튼 -->
@@ -250,7 +266,7 @@
             android:id="@+id/deleteBtn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="#d1b6e1"
+            android:background="@drawable/myalba_delete_day"
             android:gravity="center"
             android:text="삭제"
             android:layout_toRightOf="@+id/modifyBtn"
