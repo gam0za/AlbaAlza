@@ -72,20 +72,20 @@ public class Advice extends Fragment {
 
         List<Fragment> fragmentList= new ArrayList<>();
 
-//        public CharSequence getPageTitle(int position){
-//            switch(position){
-//                case 0:
-//                    return "노동법";
-//                case 1:
-//                    return "사례찾기";
-//                case 2:
-//                    return "상담/신고";
-//                case 3:
-//                    return "사이트";
-//                default:
-//                    return null;
-//            }
-//        }
+        public CharSequence getPageTitle(int position){
+            switch(position){
+                case 0:
+                    return "노동법";
+                case 1:
+                    return "사례찾기";
+                case 2:
+                    return "상담/신고";
+                case 3:
+                    return "사이트";
+                default:
+                    return null;
+            }
+        }
 
 
         @Override

@@ -5,27 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <!--노동청-->
-  <LinearLayout
-      android:layout_weight="1"
-      android:layout_marginLeft="50dp"
-      android:id="@+id/labor1"
-      android:orientation="horizontal"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-      <ImageView
-          android:layout_gravity="center_vertical"
-          android:src="@drawable/labor_button1"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content" />
-      <TextView
-          android:layout_marginLeft="50dp"
-          android:layout_gravity="center_vertical"
-          android:textSize="13sp"
-          android:text="노동청"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content" />
-  </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/labor1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/labor_button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="13sp"
+            android:text="노동청"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
     <!--최저 시급-->
     <LinearLayout
@@ -138,25 +139,5 @@
     </LinearLayout>
 
     <!--퇴직금 -->
-    <LinearLayout
-        android:layout_weight="1"
-        android:layout_marginLeft="50dp"
-        android:id="@+id/labor7"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/labor_button7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_marginLeft="50dp"
-            android:layout_gravity="center_vertical"
-            android:textSize="13sp"
-            android:text="퇴직금"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
 
 </LinearLayout>
