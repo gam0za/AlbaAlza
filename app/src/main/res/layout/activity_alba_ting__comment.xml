@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.albaalza.P_AlbaTing.AddComment.AlbaTing_Comment">
+
+    <!--글쓴이-->
+<RelativeLayout
+    android:id="@+id/write_layer"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="30dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/writer_profile"
+            android:src="@drawable/user1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/writer_id"
+            android:text="점장님"
+            android:textSize="13sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>
+
+    <!--게시글 내용-->
+    <RelativeLayout
+        android:id="@+id/content_layer"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/write_layer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/contents_title"
+                android:text="커피머신"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/contents"
+                android:textSize="13sp"
+                android:text="커피머신 입구 깨끗이 사용해주세요"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!--이미지-->
+    <RelativeLayout
+        android:id="@+id/image_layer"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/content_layer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/content_image"
+            android:src="@drawable/coffee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <!--댓글 조회 (리사이클러뷰 달아야됨 Coordinate)-->
+    <RelativeLayout
+        android:id="@+id/comment_layer"
+        android:layout_below="@+id/image_layer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></LinearLayout>
+    </RelativeLayout>
+
+    <!--댓글 달기-->
+    <RelativeLayout
+        android:gravity="center_vertical"
+        android:background="@drawable/albating_comment_layer"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/edit_comment"
+                android:textSize="15sp"
+                android:background="@null"
+                android:hint="댓글을 입력하세요.."
+                android:layout_width="300dp"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/send_comment"
+                android:src="@drawable/albating_comment_send_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
