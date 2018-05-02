@@ -1,4 +1,4 @@
-package com.example.albaalza.P_AlbaTing;
+package com.example.albaalza.P_AlbaTing.MyListGroup;
 
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
@@ -11,7 +11,7 @@ import com.example.albaalza.R;
  */
 
 public class ViewHolder_AlbaTingList extends ViewHolder {
-    public TextView     AlbaTing_Name;
+    public TextView  AlbaTing_Name;
     public ViewHolder_AlbaTingList(View itemView) {
         super(itemView);
         AlbaTing_Name=itemView.findViewById(R.id.albating_name); //알바팅 리스트의 알바팅 이름

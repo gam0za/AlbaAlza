@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public class Advice3Fragment extends Fragment implements OnMapReadyCallback{
     FloatingActionButton Btn_Call;
     Spinner spinner_state, spinner_city;
     LinearLayout adviceInfoFrame;
+    View view;
 
     // 데이터 베이스
     AdviceDbOpenHelper dbHelper;
@@ -67,7 +69,21 @@ public class Advice3Fragment extends Fragment implements OnMapReadyCallback{
                              Bundle savedInstanceState) {
 
         /******************* 뷰 구성 ********************/
-        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_advice3, container, false);
+//        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_advice3, container, false);
+        //지도 부분 오류 수정
+        if(view!=null){
+            ViewGroup parent=(ViewGroup)view.getParent();
+            if(parent!=null){
+                parent.removeView(view);
+            }
+        }
+
+        try{
+            view = inflater.inflate(R.layout.fragment_advice3, container, false);
+
+        }catch (InflateException e){
+
+        }
         text_myCenter1 = view.findViewById(R.id.text_myCenter1);
         text_myCenter2 = view.findViewById(R.id.text_myCenter2);
         text_myCenterAddress = view.findViewById(R.id.text_myCenterAddress);

@@ -1,4 +1,4 @@
-package com.example.albaalza.P_AlbaTing;
+package com.example.albaalza.P_AlbaTing.AddPost;
 
 /**
  * Created by jinyoungkim on 2018. 2. 28..
@@ -10,11 +10,13 @@ public class WriteTingPost {
 //    public String type;
     public String contents;
     public String writer;
+    public String gname;
 
-    public WriteTingPost(String title, String contents, String writer){
+    public WriteTingPost(String title, String contents, String writer,String gname){
         this.title=title;
         this.contents=contents;
         this.writer=writer;
+        this.gname=gname;
     }
 
 

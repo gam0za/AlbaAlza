@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.albaalza.P_AlbaTing.AlbaTing;
+import com.example.albaalza.P_AlbaTing.MyListGroup.AlbaTing;
 import com.example.albaalza.P_Home.Information;
 import com.example.albaalza.P_Labor.Advice;
 import com.example.albaalza.P_MyAlba.MyAlba;

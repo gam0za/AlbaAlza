@@ -1,21 +1,21 @@
-package com.example.albaalza.P_AlbaTing;
+package com.example.albaalza.P_AlbaTing.MyListGroup;
 
 /**
  * Created by Jinyoung on 2018-02-05.
  */
 
 public class Item_AlbaTingList {
-    String AlbaTing_Name;
+    String gname;
 
     public Item_AlbaTingList(String albaTing_Name) {
-        AlbaTing_Name = albaTing_Name;
+        gname = albaTing_Name;
     }
 
     public String getAlbaTing_Name() {
-        return AlbaTing_Name;
+        return gname;
     }
 
     public void setAlbaTing_Name(String albaTing_Name) {
-        AlbaTing_Name = albaTing_Name;
+        gname = albaTing_Name;
     }
 }

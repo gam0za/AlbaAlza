@@ -1,7 +1,9 @@
 package com.example.albaalza.P_Login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +32,7 @@ public class Login extends AppCompatActivity {
     private NetworkService networkService;
     private UserData userData;
     private LoginPost loginPost;
+    public SharedPreferences appData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +51,15 @@ public class Login extends AppCompatActivity {
 
         networkService = ApplicationController.getInstance().getNetworkService();
         userData = new UserData();
+        appData= PreferenceManager.getDefaultSharedPreferences(this);
 
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Login.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-//                login();
+//                Intent intent = new Intent(Login.this, MainActivity.class);
+//                startActivity(intent);
+//                finish();
+                login();
             }
 
         });
@@ -90,7 +94,9 @@ public class Login extends AppCompatActivity {
                     userData.id = response.body().id;
                     userData.password = response.body().password;
 //                        userData.pwd=response.body().loginData.upwd;
+                    save();//로그인 정보 저장
                     Intent intent = new Intent(Login.this, MainActivity.class);
+                    ApplicationController.getInstance().makeToast("로그인 성공"+userData.id+", "+userData.password);
                     startActivity(intent);
                     finish();
                 } else {
@@ -106,5 +112,16 @@ public class Login extends AppCompatActivity {
                 ApplicationController.getInstance().makeToast("서버 상태를 연결해주세요~");
             }
         });
+    }
+
+//    로그인 설정 값 유지
+    public void save(){
+     SharedPreferences.Editor editor=appData.edit();
+     editor.putString("ID",userData.id);
+     editor.putString("PW",userData.password);
+
+     Log.d("id",userData.id);
+     editor.apply();
+     editor.commit();
     }
 }

@@ -1,18 +1,30 @@
-package com.example.albaalza.P_AlbaTing;
+package com.example.albaalza.P_AlbaTing.ListPost;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.albaalza.P_AlbaTing.AddMember.AddMemberPost;
+import com.example.albaalza.P_AlbaTing.AddMember.AddMemberResponse;
+import com.example.albaalza.P_AlbaTing.AddPost.AlbaTing_Write;
+import com.example.albaalza.P_AlbaTing.ShowPost.AlbaTingData;
 import com.example.albaalza.R;
+import com.example.albaalza.Server.ApplicationController;
+import com.example.albaalza.Server.NetworkService;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AlbaTing_Detail extends AppCompatActivity implements View.OnClickListener {
     private RecyclerView recyclerView;
@@ -20,6 +32,10 @@ public class AlbaTing_Detail extends AppCompatActivity implements View.OnClickLi
     private RecyclerView.LayoutManager layoutManager;
     private FloatingActionButton floating1;
     private TextView AlbaTingName;
+    private ImageView add_member;
+    private String member_id,gname; //그룹에 멤버 추가 (id, gname)
+    private NetworkService networkService;
+    private AddMemberPost addMemberPost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +45,21 @@ public class AlbaTing_Detail extends AppCompatActivity implements View.OnClickLi
         floating1= (FloatingActionButton) findViewById(R.id.floating1);
         floating1.attachToRecyclerView(recyclerView);
         AlbaTingName=(TextView)findViewById(R.id.AlbaTingName);
+        add_member=(ImageView)findViewById(R.id.add_member);
+        gname= AlbaTingName.getText().toString();
+
+        networkService= ApplicationController.getInstance().getNetworkService();
+
+
+    /***********************멤버추가***********************/
+        add_member.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            member_id="abaz";
+            addmember("TESTGROUP3",member_id);
+        }
+    });
+
 
 //        Adapter_AlbaTingList에서 넘겨준 알바팅 이름을 가져와서 붙여준다.
         Intent intent=getIntent();
@@ -40,7 +71,7 @@ public class AlbaTing_Detail extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),AlbaTing_Write.class);
-//                i.putExtra("albating","대타");
+                i.putExtra("gname",gname);
                 startActivity(i);
             }
         });
@@ -74,12 +105,38 @@ public class AlbaTing_Detail extends AppCompatActivity implements View.OnClickLi
         recyclerView.setLayoutManager(layoutManager);
         adapter=new Adapter_Detail(albaTingDataList,this);
         recyclerView.setAdapter(adapter);
+
     }
 
     @Override
     public void onClick(View view) {
         int index= recyclerView.getChildAdapterPosition(view);
-        Toast.makeText(this, "게시물", Toast.LENGTH_SHORT).show();
+        Log.d("Item Click","CLICK");
+        Toast.makeText(this, index, Toast.LENGTH_SHORT).show();
 
+    }
+
+    public void addmember(final String gname, final String member_id){
+        addMemberPost=new AddMemberPost(gname,member_id);
+        Call<AddMemberResponse> addMemberResponseCall=networkService.addMember(addMemberPost);
+        addMemberResponseCall.enqueue(new Callback<AddMemberResponse>() {
+            @Override
+            public void onResponse(Call<AddMemberResponse> call, Response<AddMemberResponse> response) {
+                if(response.isSuccessful()){
+                    Log.d("addMember","SUCCESS");
+                    ApplicationController.getInstance().makeToast(member_id+"님이 "+gname+"에 추가 되었습니다.");
+
+                }else{
+                    ApplicationController.getInstance().makeToast(response.body().result+": "+ response.body().message);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddMemberResponse> call, Throwable t) {
+                    Log.d("addMember","FAIL");
+                    Log.d("gname,member_id",gname+","+member_id);
+                    ApplicationController.getInstance().makeToast("서버 상태를 확인해주세요.");
+            }
+        });
     }
 }

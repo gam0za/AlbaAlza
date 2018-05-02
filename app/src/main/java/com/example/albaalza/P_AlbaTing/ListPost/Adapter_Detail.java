@@ -1,11 +1,15 @@
-package com.example.albaalza.P_AlbaTing;
+package com.example.albaalza.P_AlbaTing.ListPost;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.albaalza.P_AlbaTing.AddComment.AlbaTing_Comment;
+import com.example.albaalza.P_AlbaTing.AddPost.ViewHolder_Detail;
+import com.example.albaalza.P_AlbaTing.ShowPost.AlbaTingData;
 import com.example.albaalza.R;
 
 import java.util.List;
@@ -47,8 +51,15 @@ public class Adapter_Detail extends RecyclerView.Adapter<ViewHolder_Detail>{
         holder.title.setText(albaTingData.getTitle());
         holder.comment_image.setImageResource(R.drawable.check_button);
         holder.comment.setText(albaTingData.getComment());
-
         holder.itemView.setTag(albaTingData);
+        
+        holder.ting_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,AlbaTing_Comment.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

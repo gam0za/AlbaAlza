@@ -1,4 +1,4 @@
-package com.example.albaalza.P_AlbaTing;
+package com.example.albaalza.P_AlbaTing.AddPost;
 
 /**
  * Created by jinyoungkim on 2018. 2. 28..
