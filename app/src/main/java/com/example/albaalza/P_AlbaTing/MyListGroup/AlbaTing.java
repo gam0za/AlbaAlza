@@ -2,6 +2,7 @@ package com.example.albaalza.P_AlbaTing.MyListGroup;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,29 +28,57 @@ import retrofit2.Response;
 
 
 public class AlbaTing extends Fragment implements View.OnClickListener{
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        adapter_albaTingList.notifyDataSetChanged();
+//    }
+
     private ImageView Search_AlbaTing;
-    private com.melnykov.fab.FloatingActionButton Add_AlbaTing;
+    private ImageView Add_AlbaTing;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        adapter_albaTingList= new Adapter_AlbaTingList(myGroupListResponseArrayList,getActivity());
+
+        Log.d("CREATE","CREATE");
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d("CREATED","CREATED");
+    }
+
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<MyGroupData> albaTingLists = new ArrayList<>();
+    private LinearLayoutManager layoutManager;
+
     private NetworkService networkService;
-    private MyGroupListPost myGroupListPost;
+    private Adapter_AlbaTingList adapter_albaTingList;
+    private ArrayList<MyGroupData> myGroupListResponseArrayList;
+    MyGroupListPost myGroupListPost;
+
     public String gname;
 
     public AlbaTing() {
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        onActivityCreated(savedInstanceState);
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_alba_ting, container, false);
-        networkService= ApplicationController.getInstance().getNetworkService();
-        gname="TESTGROUP2";
+
+        Log.d("CREATEVIEW","CREATEVIEW");
 
         /*************************알바팅 새로 만들기/ 알바팅 검색 버튼*************************/
-        Add_AlbaTing = (com.melnykov.fab.FloatingActionButton)view.findViewById(R.id.Add_Albating);
+        Add_AlbaTing = (ImageView) view.findViewById(R.id.Add_Albating);
         Search_AlbaTing = (ImageView)view.findViewById(R.id.Search_Albating);
 
 //        알바팅 새로만들기
@@ -57,22 +86,30 @@ public class AlbaTing extends Fragment implements View.OnClickListener{
 //        알바팅 검색하기
         Search_AlbaTing.setOnClickListener(this);
 
+        networkService=ApplicationController.getInstance().getNetworkService();
+
 
         /*************************알바팅 리스트 불러오기*************************/
+
         recyclerView = view.findViewById(R.id.recyclerview_albatinglist);
-        layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new Adapter_AlbaTingList(albaTingLists, clickEvent,getActivity());
-        recyclerView.setAdapter(adapter);
-        Add_AlbaTing.attachToRecyclerView(recyclerView);
-
-//         mylistgroup();
-
-//       리사이클러뷰 구분선 추가
+        layoutManager = new LinearLayoutManager(getActivity()); //layouManager 선언
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);//recyclerview layoutManager 설정
+        //       리사이클러뷰 구분선 추가
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(),
                 LinearLayoutManager.VERTICAL);
         dividerItemDecoration.setDrawable(getContext().getResources().getDrawable(R.drawable.recyclerview_line));
         recyclerView.addItemDecoration(dividerItemDecoration);
+        recyclerView.setAdapter(adapter_albaTingList);//recyclerview adapter 설정
+//        adapter_albaTingList= new Adapter_AlbaTingList(myGroupListResponseArrayList,getActivity());
+
+
+//        adapter_albaTingList.setItem(myGroupListResponseArrayList);
+        getList();
+
+
+
+
         return view;
     }
 
@@ -90,32 +127,6 @@ public class AlbaTing extends Fragment implements View.OnClickListener{
         }
     }
 
-    public void mylistgroup(){
-        Log.d("function","mylistgroup");
-        myGroupListPost=new MyGroupListPost("abaz");
-        Call<MyGroupListResponse> myGroupListResponseCall=networkService.myGroup(myGroupListPost);
-        myGroupListResponseCall.enqueue(new Callback<MyGroupListResponse>() {
-            @Override
-            public void onResponse(Call<MyGroupListResponse> call, Response<MyGroupListResponse> response) {
-                Log.d("result","onResponse");
-                if(response.isSuccessful()){
-//                    gname=response.body().myGroupData
-                    adapter = new Adapter_AlbaTingList(albaTingLists, clickEvent,getActivity());
-                    recyclerView.setAdapter(adapter);
-                    Add_AlbaTing.attachToRecyclerView(recyclerView);
-                    ApplicationController.getInstance().makeToast("성공"+gname);
-                    Log.d("result","SUCCESS");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MyGroupListResponse> call, Throwable t) {
-                    ApplicationController.getInstance().makeToast("실패"+gname);
-                    Log.d("result","FAIL");
-            }
-
-        });
-    }
 
     public View.OnClickListener clickEvent = new View.OnClickListener() {
         @Override
@@ -127,4 +138,30 @@ public class AlbaTing extends Fragment implements View.OnClickListener{
             startActivity(intent);
         }
     };
+
+    public void getList(){
+        Log.d("in","func");
+       myGroupListPost=new MyGroupListPost("doby");
+        Call<MyGroupListResponse> myGroupListResponseCall=networkService.myGroup(myGroupListPost);
+        myGroupListResponseCall.enqueue(new Callback<MyGroupListResponse>() {
+            @Override
+            public void onResponse(Call<MyGroupListResponse> call, Response<MyGroupListResponse> response) {
+                if(response.isSuccessful()){
+                    Log.d("getList","SUCCESS");
+                    myGroupListResponseArrayList=response.body().myGroupData;
+                    adapter_albaTingList= new Adapter_AlbaTingList(myGroupListResponseArrayList,getActivity());
+                    recyclerView.setAdapter(adapter_albaTingList);//recyclerview adapter 설정
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MyGroupListResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+
 }

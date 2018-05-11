@@ -39,10 +39,10 @@
     <!--새 알바팅 만들기 버튼-->
 
 
-    <com.melnykov.fab.FloatingActionButton
+    <ImageView
         android:id="@+id/Add_Albating"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"

@@ -7,6 +7,8 @@ import java.util.ArrayList;
  */
 
 public class MyGroupData {
+
+
     public String _id;
     public String admin;
     public String updated_at;
@@ -15,6 +17,9 @@ public class MyGroupData {
     public String type;
     public String gname;
 
+
+
+//    getter/setter
     public String get_id() {
         return _id;
     }

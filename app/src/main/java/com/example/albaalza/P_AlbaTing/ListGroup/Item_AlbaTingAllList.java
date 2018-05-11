@@ -4,7 +4,7 @@ package com.example.albaalza.P_AlbaTing.ListGroup;
  * Created by jinyoungkim on 2018. 5. 1..
  */
 
-public class Item_AlbaTingAllList {
+public class    Item_AlbaTingAllList {
     String AlbaTing_Name;
 
     public Item_AlbaTingAllList(String albaTing_Name) {

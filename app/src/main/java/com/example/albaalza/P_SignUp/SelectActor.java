@@ -23,8 +23,9 @@ public class SelectActor extends AppCompatActivity {
             public void onClick(View view) {
                 flag=1;
                 Intent intent = new Intent(getApplicationContext(),SignUp.class);
-                intent.putExtra("actor","worker");
+                intent.putExtra("actor","alba");
                 startActivity(intent);
+                finish();
             }
         });
         boss.setOnClickListener(new View.OnClickListener() {
@@ -34,6 +35,7 @@ public class SelectActor extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),SignUp.class);
                 intent.putExtra("actor","boss");
                 startActivity(intent);
+                finish();
             }
         });
     }

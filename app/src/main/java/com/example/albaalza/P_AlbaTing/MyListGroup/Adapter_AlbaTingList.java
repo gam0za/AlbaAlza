@@ -22,61 +22,40 @@ import retrofit2.Response;
  */
 
 public class Adapter_AlbaTingList extends Adapter<ViewHolder_AlbaTingList>{
+    private ArrayList<MyGroupData> item_albaTingLists;
+    private Context context;
 
-    private ArrayList<MyGroupData> myGroupDataArrayList;
-
-    private final View.OnClickListener clickListener;
-    private NetworkService networkService;
-    private MyGroupListPost myGroupListPost;
-
-//    constructor
-    public Adapter_AlbaTingList(ArrayList<MyGroupData> myGroupDataArrayList, View.OnClickListener clickListener,Context context) {
-        this.myGroupDataArrayList = myGroupDataArrayList;
-        this.clickListener=clickListener;
+    public Adapter_AlbaTingList(ArrayList<MyGroupData> myGroupDataArrayList, Context context) {
+        this.item_albaTingLists = myGroupDataArrayList;
+        this.context = context;
     }
 
     @Override
     public ViewHolder_AlbaTingList onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_albatinglist,parent,false);
-        view.setOnClickListener(clickListener);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_albatinglist,parent,false);
+        Log.d("CREATE","CREATE");
         return new ViewHolder_AlbaTingList(view);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder_AlbaTingList holder, final int position) {
+    public void onBindViewHolder(ViewHolder_AlbaTingList holder, final int position) {
 
-//        final Item_AlbaTingList albaTingList=item_albaTingList.get(position);
-//        holder.AlbaTing_Name.setText(albaTingList.getAlbaTing_Name());
-        Log.d("onBindViewHolder","들어옴");
-        networkService=ApplicationController.getInstance().getNetworkService();
+        Log.d("BIND","BIND");
 
-        myGroupListPost=new MyGroupListPost("abaz");
-        Call<MyGroupListResponse> myGroupListResponseCall=networkService.myGroup(myGroupListPost);
-        myGroupListResponseCall.enqueue(new Callback<MyGroupListResponse>() {
-            @Override
-            public void onResponse(Call<MyGroupListResponse> call, Response<MyGroupListResponse> response) {
-                Log.d("result","onResponse");
-                if(response.isSuccessful()){
-                    myGroupDataArrayList=response.body().myGroupData;
-                    holder.AlbaTing_Name.setText(response.body().myGroupData.get(position).gname);
-                    ApplicationController.getInstance().makeToast("성공");
-                    Log.d("result","SUCCESS");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MyGroupListResponse> call, Throwable t) {
-                ApplicationController.getInstance().makeToast("실패");
-                Log.d("result","FAIL");
-            }
-
-        });
+        MyGroupData albaTingList= item_albaTingLists.get(position);
+        holder.AlbaTing_Name.setText(albaTingList.getGname());
 
     }
 
     @Override
     public int getItemCount() {
-        return myGroupDataArrayList.size();
+        return item_albaTingLists.size();
+    }
+
+    public void setItem(ArrayList<MyGroupData> myGroupData){
+        this.item_albaTingLists=myGroupData;
+
+        notifyDataSetChanged();
     }
 
 

@@ -5,9 +5,6 @@ import android.os.Looper;
 
 import com.squareup.otto.Bus;
 
-/**
- * Created by SEJIN on 2017-10-04.
- */
 
 public final class BusProvider extends Bus{
 

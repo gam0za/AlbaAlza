@@ -2,9 +2,7 @@ package com.example.albaalza.P_Main;
 
 import android.content.Intent;
 
-/**
- * Created by SEJIN on 2017-10-04.
- */
+
 
 public class ActivityResultEvent {
     private int requestCode, resultCode;

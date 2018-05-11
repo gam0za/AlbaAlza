@@ -72,24 +72,23 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <EditText
+            <TextView
                 android:layout_marginTop="10dp"
                 android:background="@null"
-                android:id="@+id/signup_email"
+                android:id="@+id/signup_type"
                 android:textSize="13sp"
-                android:hint="이메일"
+                android:hint="사용자 계정"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content" />
             <ImageView
                 android:layout_alignParentRight="true"
-                android:id="@+id/signup_duplicate"
-                android:src="@drawable/signup_duplicate_check"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:id="@+id/signup_actor"
+                android:src="@drawable/signup_alba_button"
+                android:layout_width="80dp"
+                android:layout_height="50dp" />
         </RelativeLayout>
 
             <View
-                android:layout_marginTop="20dp"
                 android:background="@color/edit"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"></View>
@@ -110,6 +109,30 @@
                 android:id="@+id/signup_password"
                 android:textSize="13sp"
                 android:hint="비밀번호"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_marginTop="20dp"
+                android:background="@color/edit"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"></View>
+        </LinearLayout>
+
+        <!--비밀번호 확인-->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:background="@null"
+                android:id="@+id/signup_password_check"
+                android:textSize="13sp"
+                android:hint="비밀번호 확인"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <View
