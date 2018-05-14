@@ -100,7 +100,7 @@ public class AlbaTing extends Fragment implements View.OnClickListener{
                 LinearLayoutManager.VERTICAL);
         dividerItemDecoration.setDrawable(getContext().getResources().getDrawable(R.drawable.recyclerview_line));
         recyclerView.addItemDecoration(dividerItemDecoration);
-        recyclerView.setAdapter(adapter_albaTingList);//recyclerview adapter 설정
+
 //        adapter_albaTingList= new Adapter_AlbaTingList(myGroupListResponseArrayList,getActivity());
 
 

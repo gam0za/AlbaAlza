@@ -49,7 +49,12 @@ public class Adapter_AlbaTingList extends Adapter<ViewHolder_AlbaTingList>{
 
     @Override
     public int getItemCount() {
-        return item_albaTingLists.size();
+        try{
+            return item_albaTingLists.size();
+        }catch (Exception e){
+            return 0;
+        }
+
     }
 
     public void setItem(ArrayList<MyGroupData> myGroupData){
