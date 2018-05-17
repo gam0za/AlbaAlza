@@ -1,4 +1,4 @@
-package com.example.albaalza.P_AlbaTing.ShowPost;
+package com.example.albaalza.P_AlbaTing.ListPost;
 
 /**
  * Created by DS on 2017-11-07.

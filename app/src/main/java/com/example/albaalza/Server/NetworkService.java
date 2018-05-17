@@ -6,12 +6,11 @@ import com.example.albaalza.P_AlbaTing.AddComment.CommentPost;
 import com.example.albaalza.P_AlbaTing.AddComment.CommentResponse;
 import com.example.albaalza.P_AlbaTing.CreateGroup.CreateGroupPost;
 import com.example.albaalza.P_AlbaTing.CreateGroup.CreateGroupResponse;
-import com.example.albaalza.P_AlbaTing.ShowPost.DetailContentPost;
-import com.example.albaalza.P_AlbaTing.ShowPost.DetailContentResponse;
-import com.example.albaalza.P_AlbaTing.ListGroup.ListGroupPost;
-import com.example.albaalza.P_AlbaTing.ListGroup.ListGroupResponse;
-import com.example.albaalza.P_AlbaTing.ListGroup.ListPost;
-import com.example.albaalza.P_AlbaTing.ListGroup.ListResponse;
+import com.example.albaalza.P_AlbaTing.ListGroup.AllListResponse;
+import com.example.albaalza.P_AlbaTing.AddComment.DetailContentPost;
+import com.example.albaalza.P_AlbaTing.AddComment.DetailContentResponse;
+import com.example.albaalza.P_AlbaTing.ListPost.ListPost;
+import com.example.albaalza.P_AlbaTing.ListPost.ListResponse;
 import com.example.albaalza.P_AlbaTing.MyListGroup.MyGroupListPost;
 import com.example.albaalza.P_AlbaTing.MyListGroup.MyGroupListResponse;
 import com.example.albaalza.P_AlbaTing.AddPost.WriteTingResponse;
@@ -25,6 +24,7 @@ import com.example.albaalza.P_SignUp.SignResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -50,8 +50,8 @@ public interface NetworkService {
     Call<AddMemberResponse> addMember(@Body AddMemberPost addMemberPost);
 
     //    3-4 전체 그룹 리스트 불러오기
-    @POST("/process/listgroup")
-    Call<ListGroupResponse> listGroup(@Body ListGroupPost listGroupPost);
+    @GET("/process/listgroup")
+    Call<AllListResponse> listGroup();
 
     //    3-5 속해 있는 그룹 리스트 불러오기
     @POST("/process/mylistgroup")

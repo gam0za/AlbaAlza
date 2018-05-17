@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import com.example.albaalza.P_AlbaTing.AddComment.AlbaTing_Comment;
 import com.example.albaalza.P_AlbaTing.AddPost.ViewHolder_Detail;
-import com.example.albaalza.P_AlbaTing.ShowPost.AlbaTingData;
 import com.example.albaalza.R;
 
 import java.util.List;
@@ -47,7 +46,7 @@ public class Adapter_Detail extends RecyclerView.Adapter<ViewHolder_Detail>{
         holder.profile.setImageResource(albaTingData.getProfile());
         holder.name.setText(albaTingData.getName());
         holder.time.setText(albaTingData.getTime());
-        holder.image.setImageResource(albaTingData.getImage());
+        holder.image.setImageResource(R.drawable.coffee);
         holder.title.setText(albaTingData.getTitle());
         holder.comment_image.setImageResource(R.drawable.check_button);
         holder.comment.setText(albaTingData.getComment());

@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.tab_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment, information).commit();
-                break;
+                break ;
 
             case R.id.tab_myalba:
                 if (getAlbaNameNumber()) {

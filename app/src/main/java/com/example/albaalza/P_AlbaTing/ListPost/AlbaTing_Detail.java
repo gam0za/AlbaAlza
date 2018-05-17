@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.example.albaalza.P_AlbaTing.AddMember.AddMemberPost;
 import com.example.albaalza.P_AlbaTing.AddMember.AddMemberResponse;
 import com.example.albaalza.P_AlbaTing.AddPost.AlbaTing_Write;
-import com.example.albaalza.P_AlbaTing.ShowPost.AlbaTingData;
 import com.example.albaalza.R;
 import com.example.albaalza.Server.ApplicationController;
 import com.example.albaalza.Server.NetworkService;
@@ -36,6 +35,9 @@ public class AlbaTing_Detail extends AppCompatActivity implements View.OnClickLi
     private String member_id,gname; //그룹에 멤버 추가 (id, gname)
     private NetworkService networkService;
     private AddMemberPost addMemberPost;
+
+    ListPost listPost;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +118,7 @@ public class AlbaTing_Detail extends AppCompatActivity implements View.OnClickLi
 
     }
 
+//    멤버추가
     public void addmember(final String gname, final String member_id){
         addMemberPost=new AddMemberPost(gname,member_id);
         Call<AddMemberResponse> addMemberResponseCall=networkService.addMember(addMemberPost);
@@ -136,6 +139,23 @@ public class AlbaTing_Detail extends AppCompatActivity implements View.OnClickLi
                     Log.d("addMember","FAIL");
                     Log.d("gname,member_id",gname+","+member_id);
                     ApplicationController.getInstance().makeToast("서버 상태를 확인해주세요.");
+            }
+        });
+    }
+
+//    글 리스트 가져오기
+    public void getList(String gname){
+        listPost=new ListPost(gname);
+        Call<ListResponse> listResponseCall=networkService.grouplistpost(listPost);
+        listResponseCall.enqueue(new Callback<ListResponse>() {
+            @Override
+            public void onResponse(Call<ListResponse> call, Response<ListResponse> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ListResponse> call, Throwable t) {
+
             }
         });
     }

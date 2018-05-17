@@ -12,13 +12,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.albaalza.P_Chat.ChatActivity;
+import com.example.albaalza.P_Main.MainActivity;
 import com.example.albaalza.P_SignUp.SelectActor;
 import com.example.albaalza.Server.ApplicationController;
 import com.example.albaalza.P_FindPassword.FindPassword;
-import com.example.albaalza.P_Main.MainActivity;
 import com.example.albaalza.Server.NetworkService;
 import com.example.albaalza.R;
-import com.example.albaalza.P_SignUp.SignUp;
 
 import retrofit2.*;
 
@@ -95,7 +95,7 @@ public class Login extends AppCompatActivity {
                     userData.password = response.body().password;
 //                        userData.pwd=response.body().loginData.upwd;
                     save();//로그인 정보 저장
-                    Intent intent = new Intent(Login.this, MainActivity.class);
+                    Intent intent = new Intent(Login.this, ChatActivity.class);
                     ApplicationController.getInstance().makeToast("로그인 성공"+userData.id+", "+userData.password);
                     startActivity(intent);
                     finish();
