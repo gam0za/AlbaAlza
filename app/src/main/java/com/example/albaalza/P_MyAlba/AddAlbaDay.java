@@ -55,7 +55,6 @@ public class AddAlbaDay extends AppCompatActivity {
     private void createView(){
 
         //view 객체 생성
-        backBtn = (Button)findViewById(R.id.backBtn);
         sendBtn = (ImageView)findViewById(R.id.sendBtn);
         monBox = (CheckBox)findViewById(R.id.monBox);
         tueBox = (CheckBox)findViewById(R.id.tueBox);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:gravity="center_horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,44 +8,42 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <!-- 뒤로가기 버튼 -->
-    <Button
-        android:id="@+id/backBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
 
     <!-- 시급 -->
     <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="시급"
-            />
+
         <EditText
+            android:fontFamily="@font/font"
+            android:hint="수정할 시급"
             android:id="@+id/edit_my_pay"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
             />
     </LinearLayout>
 
     <!-- 시작시간, 종료시간 선택 -->
     <LinearLayout
+        android:layout_gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="20dp">
 
         <LinearLayout
+            android:layout_marginLeft="20dp"
             android:id="@+id/startTimeLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:orientation="vertical">
             <TextView
+                android:fontFamily="@font/font"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="시작 시간"
@@ -58,23 +57,27 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/start_hour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="00"
                         android:textSize="20dp"/>
                     <TextView
+                        android:fontFamily="@font/font"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" : "
                         android:textSize="20dp"/>
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/start_minute"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="00"
                         android:textSize="20dp"/>
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/start_amORpm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -92,6 +95,7 @@
             android:layout_weight="5"
             android:orientation="vertical">
             <TextView
+                android:fontFamily="@font/font"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="종료 시간"
@@ -105,23 +109,27 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/end_hour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="00"
                         android:textSize="20dp"/>
                     <TextView
+                        android:fontFamily="@font/font"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" : "
                         android:textSize="20dp"/>
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/end_minute"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="00"
                         android:textSize="20dp"/>
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/end_amORpm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -142,7 +150,9 @@
         android:visibility="gone">
     </TimePicker>
 
-    <Button
+    <ImageView
+        android:layout_marginTop="50dp"
+        android:src="@drawable/check_button"
         android:id="@+id/sendBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

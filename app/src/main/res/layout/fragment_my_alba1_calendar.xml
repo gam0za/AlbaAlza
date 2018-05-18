@@ -12,10 +12,12 @@
         android:layout_height="wrap_content">
 
         <!--prev button -->
-        <Button
+        <ImageView
+            android:padding="5dp"
+            android:src="@drawable/prev"
             android:id="@+id/prev2Btn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
@@ -23,28 +25,34 @@
             android:layout_marginBottom="15dp"/>
 
         <!--prev button -->
-        <Button
+        <ImageView
+            android:src="@drawable/prev"
+            android:padding="5dp"
             android:id="@+id/prevBtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/prev2Btn"
             android:layout_toEndOf="@+id/prev2Btn"/>
 
         <!--next button -->
-        <Button
+        <ImageView
+            android:padding="5dp"
+            android:src="@drawable/next"
             android:id="@+id/nextBtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/next2Btn"
             android:layout_toStartOf="@id/next2Btn"
             android:layout_centerVertical="true"/>
 
         <!--next button -->
-        <Button
+        <ImageView
+            android:src="@drawable/next"
             android:id="@+id/next2Btn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
@@ -53,6 +61,7 @@
 
         <!--date title -->
         <TextView
+            android:fontFamily="@font/font"
             android:id="@+id/dateTitle"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
@@ -74,6 +83,7 @@
         android:orientation="horizontal"
         >
         <TextView
+            android:fontFamily="@font/font"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -81,6 +91,7 @@
             android:textColor="#ffff0000"
             android:text="SUN"/>
         <TextView
+            android:fontFamily="@font/font"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -88,6 +99,7 @@
             android:textColor="#000"
             android:text="MON"/>
         <TextView
+            android:fontFamily="@font/font"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -95,6 +107,7 @@
             android:textColor="#000"
             android:text="TUE"/>
         <TextView
+            android:fontFamily="@font/font"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -102,6 +115,7 @@
             android:textColor="#000"
             android:text="WED"/>
         <TextView
+            android:fontFamily="@font/font"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -109,6 +123,7 @@
             android:textColor="#000"
             android:text="THU"/>
         <TextView
+            android:fontFamily="@font/font"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -116,6 +131,7 @@
             android:textColor="#000"
             android:text="FRI"/>
         <TextView
+            android:fontFamily="@font/font"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

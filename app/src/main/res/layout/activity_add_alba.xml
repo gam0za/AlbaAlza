@@ -30,6 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <EditText
+                        android:fontFamily="@font/font"
                         android:layout_marginTop="10dp"
                         android:background="@null"
                         android:id="@+id/alba_name"
@@ -66,6 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <EditText
+                        android:fontFamily="@font/font"
                         android:layout_marginTop="10dp"
                         android:background="@null"
                         android:id="@+id/my_pay"
@@ -102,6 +104,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <EditText
+                        android:fontFamily="@font/font"
                         android:layout_marginTop="10dp"
                         android:background="@null"
                         android:id="@+id/pay_day"
@@ -135,6 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:fontFamily="@font/font"
                     android:text="4대 보험"
                     android:textSize="13sp"
                     android:layout_width="wrap_content"

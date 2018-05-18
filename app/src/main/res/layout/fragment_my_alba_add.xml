@@ -12,9 +12,10 @@
         <ImageView
             android:id="@+id/add_alba"
             android:src="@drawable/login_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
         <TextView
+            android:fontFamily="@font/font"
             android:textColor="@color/tab"
             android:layout_marginTop="10dp"
             android:text="알바 추가"

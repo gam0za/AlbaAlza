@@ -37,6 +37,7 @@
                 android:orientation="horizontal">
 
                     <TextView
+                        android:fontFamily="@font/font"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="근무 시작 일자 "/>
@@ -71,6 +72,7 @@
 
                     <!-- END SPINNER -->
                     <TextView
+                        android:fontFamily="@font/font"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="근무 종료 일자 "/>
@@ -112,6 +114,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
                 <TextView
+                    android:fontFamily="@font/font"
                     android:id="@+id/Text_basicPay"
                     android:layout_weight="2.7"
                     android:layout_width="match_parent"
@@ -119,6 +122,7 @@
                     android:gravity="center_vertical|end"
                     android:layout_marginRight="10dp"/>
                 <TextView
+                    android:fontFamily="@font/font"
                     android:id="@+id/Text_basicTime"
                     android:layout_weight="2.5"
                     android:layout_width="match_parent"
@@ -126,6 +130,7 @@
                     android:gravity="center_vertical|end"
                     android:layout_marginRight="10dp"/>
                 <TextView
+                    android:fontFamily="@font/font"
                     android:id="@+id/Text_basicTotal"
                     android:layout_weight="2.5"
                     android:layout_width="match_parent"
@@ -143,6 +148,7 @@
             android:layout_gravity="center"
             android:orientation="vertical">
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/Text_extraWeek"
                         android:layout_weight="2.7"
                         android:layout_width="match_parent"
@@ -150,6 +156,7 @@
                         android:gravity="center_vertical|end"
                         android:layout_marginRight="10dp"/>
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/Text_extraNight"
                         android:layout_weight="2.5"
                         android:layout_width="match_parent"
@@ -158,6 +165,7 @@
                         android:layout_marginRight="10dp"/>
 
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/Text_extraTotal"
                         android:layout_weight="2.5"
                         android:layout_width="match_parent"
@@ -175,6 +183,7 @@
             android:layout_gravity="center"
             android:orientation="vertical">
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/Text_4insurance"
                         android:layout_weight="4.5"
                         android:layout_width="match_parent"
@@ -183,6 +192,7 @@
                         android:layout_marginRight="10dp"/>
 
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/Text_TotalInsurance"
                         android:layout_weight="4"
                         android:layout_width="match_parent"
@@ -199,11 +209,13 @@
             android:layout_marginTop="10dp"
             android:layout_gravity="center">
             <TextView
+                android:fontFamily="@font/font"
                 android:background="@drawable/myalba_all_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <TextView
+                android:fontFamily="@font/font"
                 android:id="@+id/Text_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

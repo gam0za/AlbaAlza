@@ -14,15 +14,17 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="시급"
-            />
+
         <EditText
+            android:fontFamily="@font/font"
+            android:background="@null"
+            android:textSize="13sp"
+            android:hint="시급"
             android:id="@+id/edit_my_pay"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -46,6 +48,7 @@
             android:layout_weight="5"
             android:orientation="vertical">
             <TextView
+                android:fontFamily="@font/font"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -61,23 +64,27 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/start_hour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="00"
                         android:textSize="25dp"/>
                     <TextView
+                        android:fontFamily="@font/font"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" : "
                         android:textSize="25dp"/>
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/start_minute"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="00"
                         android:textSize="25dp"/>
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/start_amORpm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -96,6 +103,7 @@
             android:layout_weight="5"
             android:orientation="vertical">
             <TextView
+                android:fontFamily="@font/font"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -111,23 +119,27 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/end_hour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="00"
                         android:textSize="25dp"/>
                     <TextView
+                        android:fontFamily="@font/font"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" : "
                         android:textSize="25dp"/>
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/end_minute"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="00"
                         android:textSize="25dp"/>
                     <TextView
+                        android:fontFamily="@font/font"
                         android:id="@+id/end_amORpm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -156,6 +168,7 @@
         android:orientation="vertical"
         android:layout_marginTop="15dp">
         <TextView
+            android:fontFamily="@font/font"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="반복 요일"/>
@@ -164,36 +177,43 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <CheckBox
+                android:fontFamily="@font/font"
                 android:id="@+id/monBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="월"/>
             <CheckBox
+                android:fontFamily="@font/font"
                 android:id="@+id/tueBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="화"/>
             <CheckBox
+                android:fontFamily="@font/font"
                 android:id="@+id/wedBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="수"/>
             <CheckBox
+                android:fontFamily="@font/font"
                 android:id="@+id/thuBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="목"/>
             <CheckBox
+                android:fontFamily="@font/font"
                 android:id="@+id/friBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="금"/>
             <CheckBox
+                android:fontFamily="@font/font"
                 android:id="@+id/satBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="토"/>
             <CheckBox
+                android:fontFamily="@font/font"
                 android:id="@+id/sunBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -211,6 +231,7 @@
         android:orientation="horizontal"
         android:layout_marginTop="20dp">
         <TextView
+            android:fontFamily="@font/font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="주별로 반복 하시겠습니까?"/>

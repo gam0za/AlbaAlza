@@ -20,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:fontFamily="@font/font"
             android:layout_marginLeft="50dp"
             android:layout_gravity="center_vertical"
             android:textSize="13sp"
@@ -42,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:fontFamily="@font/font"
             android:layout_marginLeft="50dp"
             android:layout_gravity="center_vertical"
             android:textSize="13sp"
@@ -64,6 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:fontFamily="@font/font"
             android:layout_marginLeft="50dp"
             android:layout_gravity="center_vertical"
             android:textSize="13sp"
@@ -86,6 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:fontFamily="@font/font"
             android:layout_marginLeft="50dp"
             android:layout_gravity="center_vertical"
             android:textSize="13sp"
@@ -108,6 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:fontFamily="@font/font"
             android:layout_marginLeft="50dp"
             android:layout_gravity="center_vertical"
             android:textSize="13sp"
@@ -129,13 +134,15 @@
             android:src="@drawable/labor_button6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
         <TextView
-            android:layout_marginLeft="50dp"
-            android:layout_gravity="center_vertical"
-            android:textSize="13sp"
-            android:text="야간수당"
+            android:fontFamily="@font/font"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="50dp"
+            android:text="야간수당"
+            android:textSize="13sp" />
     </LinearLayout>
 
     <!--퇴직금 -->

@@ -41,6 +41,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:fontFamily="@font/font"
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:id="@+id/edit_name"
@@ -63,6 +64,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:fontFamily="@font/font"
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:id="@+id/edit_password"
@@ -83,6 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <CheckBox
+                android:fontFamily="@font/font"
                 android:textColor="#969A9C"
                 android:layout_alignParentRight="true"
                 android:id="@+id/checkBox"
@@ -121,6 +124,8 @@
                 >
 
                 <TextView
+                    android:fontFamily="@font/font"
+                    android:padding="5dp"
                     android:textColor="#969A9C"
                     android:textSize="10sp"
                     android:id="@+id/find_password"
@@ -136,6 +141,8 @@
                     android:text=" | " />
 
                 <TextView
+                    android:padding="5dp"
+                    android:fontFamily="@font/font"
                     android:textColor="#969A9C"
                     android:textSize="10sp"
                     android:id="@+id/goto_signup"

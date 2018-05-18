@@ -3,6 +3,8 @@ package com.example.albaalza.Server;
 import android.app.Application;
 import android.widget.Toast;
 
+import com.tsengvn.typekit.Typekit;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -28,6 +30,9 @@ public class ApplicationController extends Application {
     ApplicationController.applicationController = this;
 
       buildService();       //통신소스 완료 후 주석풀자.
+
+    Typekit.getInstance()
+            .addNormal(Typekit.createFromAsset(this,"font/notosans.otf"));
   }
 
   public void buildService(){

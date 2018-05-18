@@ -98,7 +98,7 @@ public class MyAlba1Fragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         try{
-            dbHelper = ((MainActivity)getActivity()).getDB(); // 메인액티비티로 부터 db를 얻어옴
+                dbHelper = ((MainActivity)getActivity()).getDB(); // 메인액티비티로 부터 db를 얻어옴
             myAlbaDBCalculator = ((MainActivity)getActivity()).getMyAlbaDBCalculator();
         }
         catch (Exception ex){
@@ -288,15 +288,7 @@ public class MyAlba1Fragment extends Fragment {
             }
         });
 
-        // today_setBtn button
-//        today_setBtn.setText("today");
-//        today_setBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                showCurrentTime();
-//                updateCalendar();
-//            }
-//        });
+
 
         // black_layout_click
         black_layout.setOnClickListener(new View.OnClickListener() {

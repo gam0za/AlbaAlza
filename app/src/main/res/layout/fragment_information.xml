@@ -1,12 +1,113 @@
 <RelativeLayout
-    android:background="@color/maincolor"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.albaalza.P_Home.Home">
 
+    <LinearLayout
+        android:id="@+id/layout_1"
+        android:layout_marginLeft="50dp"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <TextView
+            android:fontFamily="@font/font"
+            android:text="반갑습니다!"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:id="@+id/user_name"
+                android:text="김진영"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:fontFamily="@font/font"
+                android:textSize="20sp"
+                android:text=" 님"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_2"
+        android:orientation="horizontal"
+        android:background="@drawable/artbox"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/layout_1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <com.github.lzyzsd.circleprogress.CircleProgress
+            android:layout_gravity="center_vertical"
+            android:id="@+id/circle_progress"
+            custom:circle_unfinished_color="#EEEEEE"
+            custom:circle_finished_color="@color/maincolor"
+            android:layout_marginLeft="30dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            custom:circle_max="30"
+            custom:circle_progress="20"/>
+        <LinearLayout
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/maincolor"
+                android:textStyle="bold"
+                android:id="@+id/albaname"
+                android:textSize="20sp"
+                android:text="알바알자"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:fontFamily="@font/font"
+                android:text="급여일까지,"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textColor="@color/maincolor"
+                    android:textStyle="bold"
+                    android:textSize="30dp"
+                    android:id="@+id/d_day"
+                    android:text="1일"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:fontFamily="@font/font"
+                    android:layout_marginLeft="5dp"
+                    android:text="남았습니다."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@drawable/artbox"
+        android:layout_below="@+id/layout_2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></LinearLayout>
 
 </RelativeLayout>

@@ -6,10 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     tools:context="com.example.albaalza.P_MyAlba.AddAlba">
-<ImageView
-    android:src="@drawable/myalba_topbar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+
 
 
 
@@ -28,6 +25,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:fontFamily="@font/font"
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:id="@+id/edit_albaname"
@@ -52,6 +50,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:fontFamily="@font/font"
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:id="@+id/edit_my_pay"
@@ -77,6 +76,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:fontFamily="@font/font"
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:id="@+id/edit_payday"
@@ -108,8 +108,9 @@
                 android:text="알바수정"
                 />
             <TextView
+                android:fontFamily="@font/font"
                 android:layout_centerInParent="true"
-                android:textColor="@color/main"
+                android:textColor="#ffffff"
                 android:text="알바수정"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -126,6 +127,7 @@
                 android:id="@+id/btn_delete"
                 />
                 <TextView
+                    android:fontFamily="@font/font"
                     android:layout_centerInParent="true"
                     android:text="알바삭제"
                     android:layout_width="wrap_content"

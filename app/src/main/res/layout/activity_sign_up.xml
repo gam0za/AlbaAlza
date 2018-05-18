@@ -22,6 +22,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:fontFamily="@font/font"
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:id="@+id/signup_name"
@@ -46,6 +47,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:fontFamily="@font/font"
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:id="@+id/signup_id"
@@ -73,6 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:fontFamily="@font/font"
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:id="@+id/signup_type"
@@ -104,6 +107,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:fontFamily="@font/font"
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:id="@+id/signup_password"
@@ -128,6 +132,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:fontFamily="@font/font"
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:id="@+id/signup_password_check"

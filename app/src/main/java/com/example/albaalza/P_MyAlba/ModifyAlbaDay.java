@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -16,7 +17,7 @@ import com.example.albaalza.R;
 public class ModifyAlbaDay extends AppCompatActivity {
 
     // view 객체
-    Button backBtn, sendBtn;
+    ImageView  sendBtn;
     TimePicker timePicker; // false=시작시간, true=종료시간
     boolean timePicker_flag;
     LinearLayout startTimeLayout, endTimeLayout;
@@ -46,8 +47,7 @@ public class ModifyAlbaDay extends AppCompatActivity {
     private void createView(){
 
         //view 객체 생성
-        backBtn = (Button)findViewById(R.id.backBtn);
-        sendBtn = (Button)findViewById(R.id.sendBtn);
+        sendBtn = (ImageView)findViewById(R.id.sendBtn);
 
         timePicker = (TimePicker)findViewById(R.id.timePicker);
         startTimeLayout = (LinearLayout)findViewById(R.id.startTimeLayout);
@@ -76,14 +76,6 @@ public class ModifyAlbaDay extends AppCompatActivity {
 
     private void functionView(){
 
-        //back button
-        backBtn.setText("<");
-        backBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
 
         //timepicker 보이기
         startTimeLayout.setOnClickListener(new View.OnClickListener(){
@@ -143,7 +135,6 @@ public class ModifyAlbaDay extends AppCompatActivity {
         });
 
         //send button
-        sendBtn.setText("send");
         sendBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {

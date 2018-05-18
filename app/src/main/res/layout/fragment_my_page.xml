@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp">
             <TextView
+                android:fontFamily="@font/font"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="30dp"
                 android:text="문의하기"
@@ -36,12 +37,14 @@
             android:layout_width="match_parent"
             android:layout_height="60dp">
             <TextView
+                android:fontFamily="@font/font"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="30dp"
                 android:text="버전 정보"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:fontFamily="@font/font"
                 android:text="v1.0.2"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="30dp"
@@ -60,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp">
             <TextView
+                android:fontFamily="@font/font"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="30dp"
                 android:text="라이센스"
@@ -90,6 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp">
             <TextView
+                android:fontFamily="@font/font"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="30dp"
                 android:text="알림설정"
@@ -114,6 +119,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp">
             <TextView
+                android:fontFamily="@font/font"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="30dp"
                 android:text="로그아웃"
@@ -131,6 +137,7 @@
             android:layout_height="60dp"
             android:id="@+id/delete">
             <TextView
+                android:fontFamily="@font/font"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="30dp"
                 android:text="탈퇴하기"
