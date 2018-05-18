@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import com.example.albaalza.R;
 
 
-public class Information extends Fragment {
-    public Information(){
+public class Home extends Fragment {
+    public Home(){
 
     }
 

@@ -10,7 +10,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.albaalza.P_AlbaTing.MyListGroup.AlbaTing;
-import com.example.albaalza.P_Home.Information;
+import com.example.albaalza.P_Chat.ChatActivity;
+import com.example.albaalza.P_Home.Home;
 import com.example.albaalza.P_Labor.Advice;
 import com.example.albaalza.P_MyAlba.MyAlba;
 import com.example.albaalza.P_MyAlba.MyAlbaAddFragment;
@@ -22,7 +23,7 @@ import com.example.albaalza.R;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     ImageView tab_home, tab_myalba, tab_albating, tab_advice, tab_mypage;
 
-    Information information;
+    Home home;
     MyAlba myAlba;
     MyAlbaAddFragment myAlbaAddFragment;
     Advice advice;
@@ -55,9 +56,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         advice = new Advice();
         albaTing = new AlbaTing();
         myPage = new MyPage();
-        information = new Information();
+        home = new Home();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment, information).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment, home).commit();
 
         tab_home = (ImageView) findViewById(R.id.tab_home);
         tab_myalba = (ImageView) findViewById(R.id.tab_myalba);
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tab_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment, information).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment, home).commit();
                 break ;
 
             case R.id.tab_myalba:
@@ -88,7 +89,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.tab_albating:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment, albaTing).commit();
+                Intent intent=new Intent(this, ChatActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.tab_advice:

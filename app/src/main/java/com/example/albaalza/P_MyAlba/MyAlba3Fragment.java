@@ -2,6 +2,7 @@ package com.example.albaalza.P_MyAlba;
 
 
 import android.database.Cursor;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +26,7 @@ import com.example.albaalza.R;
 public class MyAlba3Fragment extends Fragment{
 
     TextView edit_my_pay, edit_payday, edit_albaName;
-    Button btn_edit, btn_delete;
+    ImageView btn_edit, btn_delete;
     Switch insuranceSwitch;
 
     String alba_name;
@@ -78,8 +80,8 @@ public class MyAlba3Fragment extends Fragment{
         edit_my_pay = (EditText) view.findViewById(R.id.edit_my_pay);
         edit_payday = (EditText) view.findViewById(R.id.edit_payday);
 
-        btn_edit = (Button) view.findViewById(R.id.btn_edit);
-        btn_delete = (Button) view.findViewById(R.id.btn_delete);
+        btn_edit = (ImageView) view.findViewById(R.id.btn_edit);
+        btn_delete = (ImageView) view.findViewById(R.id.btn_delete);
 
 //        insuranceSwitch = (Switch) view.findViewById(R.id.insuranceSwitch);
 

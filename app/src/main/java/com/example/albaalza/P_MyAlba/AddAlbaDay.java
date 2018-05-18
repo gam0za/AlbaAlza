@@ -86,13 +86,7 @@ public class AddAlbaDay extends AppCompatActivity {
 
     private void functionView(){
 
-//        //back button
-//        backBtn.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view) {
-//                finish();
-//            }
-//        });
+
 
         //myPay editText
         edit_my_pay.setText(String.valueOf(my_pay));
