@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_marginLeft="10dp"
+        android:padding="10dp"
+        android:id="@+id/bookmark"
+        android:src="@drawable/bookmark_off"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+    <TextView
+        android:fontFamily="@font/font"
+        android:layout_marginLeft="10dp"
+        android:textSize="13sp"
+        android:text="알바팅 이름"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/group_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+</LinearLayout>

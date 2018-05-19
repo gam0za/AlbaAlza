@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.albaalza.P_Chat.ChattingRoomActivity">
+
+    <ListView
+        android:layout_below="@+id/text"
+        android:id="@+id/list_room"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout"/>
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="7dp"
+        android:orientation="horizontal"
+          android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <EditText
+            android:textSize="13sp"
+            android:hint="새로운 채팅방을 만들어보세요!"
+            android:fontFamily="@font/font"
+            android:id="@+id/edit_room"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:src="@drawable/check_button"
+            android:id="@+id/button_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
