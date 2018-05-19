@@ -29,8 +29,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AlbaAlzaTheme"
-        >
+        android:theme="@style/AlbaAlzaTheme">
         <activity android:name=".P_Main.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,14 +52,14 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCa1FoIm08sYvD7nlLCkuD7wwyCCxHjYyA"
-            />
+            android:value="AIzaSyCa1FoIm08sYvD7nlLCkuD7wwyCCxHjYyA" />
 
         <activity android:name=".P_AlbaTing.ListGroup.AlbaTing_List" />
         <activity android:name=".P_AlbaTing.AddComment.AlbaTing_Comment" />
         <activity android:name=".P_Chat.ChattingRoomActivity" />
         <activity android:name=".P_Chat.ChatActivity" />
-        <activity android:name=".P_Chat.MessageActivity"></activity>
+        <activity android:name=".P_Chat.MessageActivity" />
+        <activity android:name=".P_Labor.Advice1Activity"></activity>
     </application>
 
 </manifest>

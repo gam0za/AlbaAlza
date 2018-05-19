@@ -1,57 +1,20 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.melnykov.fab.FloatingActionButton
-            android:id="@+id/Btn_Chatbot"
-            android:layout_marginTop="180dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="15dp"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/labor_chatbot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </com.melnykov.fab.FloatingActionButton>
-        <com.melnykov.fab.FloatingActionButton
-            android:id="@+id/Btn_Call"
-            android:layout_below="@+id/Btn_Chatbot"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="15dp"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/labor_call"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </com.melnykov.fab.FloatingActionButton>
-
-    </RelativeLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="50dp">
+        android:orientation="vertical">
 
         <TextView
+            android:textStyle="bold"
             android:layout_marginLeft="20dp"
             android:fontFamily="@font/font"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="고객님,"
-            android:textSize="23dp"/>
-
-        <TextView
-            android:layout_marginLeft="20dp"
-            android:fontFamily="@font/font"
-            android:layout_marginBottom="10dp"
             android:id="@+id/text_myCenter1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,6 +46,7 @@
                 android:layout_height="50dp">
             </Spinner>
             <TextView
+                android:fontFamily="@font/font"
                 android:layout_weight="1"
                 android:layout_width="20dp"
                 android:layout_height="50dp" />
@@ -92,18 +56,19 @@
             android:id="@+id/adviceInfoFrame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:orientation="vertical">
 
             <TextView
+                android:fontFamily="@font/font"
                 android:layout_marginTop="15dp"
                 android:id="@+id/text_myCenter2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="25dp"/>
+                android:textSize="20dp"/>
 
             <TextView
+                android:fontFamily="@font/font"
                 android:layout_marginTop="10dp"
                 android:id="@+id/text_myCenterAddress"
                 android:layout_width="match_parent"
@@ -119,30 +84,35 @@
                 android:gravity="center">
 
                 <TextView
+                    android:fontFamily="@font/font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="전화번호: "
                     android:textSize="10dp"/>
 
                 <TextView
+                    android:fontFamily="@font/font"
                     android:id="@+id/text_myCenterTel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="10dp"/>
 
                 <TextView
+                    android:fontFamily="@font/font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" | "
                     android:textSize="10dp"/>
 
                 <TextView
+                    android:fontFamily="@font/font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="팩스번호: "
                     android:textSize="10dp"/>
 
                 <TextView
+                    android:fontFamily="@font/font"
                     android:id="@+id/text_myCenterFax"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -157,6 +127,7 @@
                 android:gravity="center">
 
                 <TextView
+                    android:fontFamily="@font/font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="진정서 다운로드▼    가이드라인 다시보기▼"
@@ -167,5 +138,29 @@
 
 
     </LinearLayout>
+    <RelativeLayout
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_alignParentLeft="true"
+            android:id="@+id/Btn_Chatbot"
+            android:layout_marginTop="150dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/labor_chatbot"
+            android:layout_width="60dp"
+            android:layout_height="60dp">
+        </ImageView>
+        <ImageView
+            android:id="@+id/Btn_Call"
+            android:layout_below="@+id/Btn_Chatbot"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/labor_call"
+            android:layout_width="60dp"
+            android:layout_height="60dp">
+        </ImageView>
 
-</FrameLayout>
+    </RelativeLayout>
+</RelativeLayout>

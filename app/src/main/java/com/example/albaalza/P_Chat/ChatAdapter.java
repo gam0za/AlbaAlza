@@ -2,6 +2,7 @@ package com.example.albaalza.P_Chat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolder> {
     private Context context;
     private String username;
     private int bookmark;
+    SharedPreferences preferences;
 
     public ChatAdapter(ArrayList<ChatItem> chatItems, Context context, String username,int bookmark) {
         this.chatItems = chatItems;
@@ -40,7 +42,17 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(final ChatViewHolder holder, int position) {
+    public void onBindViewHolder(final ChatViewHolder holder, final int position) {
+
+        preferences=context.getSharedPreferences("bookmark",Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor=preferences.edit();
+//        북마크 flag 저장
+        if(preferences.getInt(chatItems.get(position).getGroupname(),chatItems.get(position).getBookmark())==0){
+            holder.bookmark.setImageResource(R.drawable.bookmark_off);
+        }else{
+            holder.bookmark.setImageResource(R.drawable.bookmark_on);
+        }
+
         final ChatItem chatItem=chatItems.get(position);
         holder.groupname.setText(chatItem.getGroupname());
         holder.groupname.setOnClickListener(new View.OnClickListener() {
@@ -61,10 +73,15 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolder> {
                     holder.bookmark.setImageResource(R.drawable.bookmark_on);
                     ApplicationController.getInstance().makeToast("북마크로 등록되었습니다.");
                     chatItem.setBookmark(1);
+                    editor.putInt(chatItems.get(position).getGroupname(),chatItems.get(position).getBookmark());
+                    editor.commit();
+
                 }else if(chatItem.getBookmark()==1){
                     holder.bookmark.setImageResource(R.drawable.bookmark_off);
                     ApplicationController.getInstance().makeToast("북마크가 해제되었습니다.");
                     chatItem.setBookmark(0);
+                    editor.putInt(chatItems.get(position).getGroupname(),chatItems.get(position).getBookmark());
+                    editor.commit();
                 }
             }
         });

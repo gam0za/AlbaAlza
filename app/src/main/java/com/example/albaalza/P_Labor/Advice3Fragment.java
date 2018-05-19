@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,7 +34,7 @@ public class Advice3Fragment extends Fragment implements OnMapReadyCallback{
     TextView text_myCenter1, text_myCenter2;
     TextView text_myCenterAddress;
     TextView text_myCenterTel, text_myCenterFax;
-    FloatingActionButton Btn_Call;
+    ImageView Btn_Call,Btn_Chatbot;
     Spinner spinner_state, spinner_city;
     LinearLayout adviceInfoFrame;
     View view;
@@ -94,6 +95,9 @@ public class Advice3Fragment extends Fragment implements OnMapReadyCallback{
         spinner_city.setEnabled(false);
         adviceInfoFrame = view.findViewById(R.id.adviceInfoFrame);
         Btn_Call = view.findViewById(R.id.Btn_Call);
+        Btn_Chatbot=view.findViewById(R.id.Btn_Chatbot);
+
+        Btn_Call.bringToFront(); Btn_Chatbot.bringToFront();
 
         /******************* 전화 버튼 ********************/
         Btn_Call.setOnClickListener(new View.OnClickListener() {
