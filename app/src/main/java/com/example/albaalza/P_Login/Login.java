@@ -32,12 +32,23 @@ public class Login extends AppCompatActivity {
     private NetworkService networkService;
     private UserData userData;
     private LoginPost loginPost;
-    public SharedPreferences appData;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        sharedPreferences=getSharedPreferences("account",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+        Boolean auto=sharedPreferences.getBoolean("auto",false);
+
+        if(auto==true){
+            Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         edit_name = (EditText) findViewById(R.id.edit_name);
         edit_password = (EditText) findViewById(R.id.edit_password);
@@ -51,14 +62,13 @@ public class Login extends AppCompatActivity {
 
         networkService = ApplicationController.getInstance().getNetworkService();
         userData = new UserData();
-        appData= PreferenceManager.getDefaultSharedPreferences(this);
+
+
 
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(Login.this, MainActivity.class);
-//                startActivity(intent);
-//                finish();
+
                 login();
             }
 
@@ -93,8 +103,21 @@ public class Login extends AppCompatActivity {
                     Log.d("success", "isSuccessful 들어옴~~~~~~~");
                     userData.id = response.body().id;
                     userData.password = response.body().password;
+
+//                   id,pw 저장
+                    editor.putString("id",response.body().id);
+                    editor.putString("pw",response.body().password);
+
+//                    자동로그인
+                    if(checkbox.isChecked()){
+                        editor.putBoolean("auto",true);
+                    }else{
+                        editor.putBoolean("auto",false);
+                    }
+
+                    editor.commit();
+
 //                        userData.pwd=response.body().loginData.upwd;
-                    save();//로그인 정보 저장
                     Intent intent = new Intent(Login.this, MainActivity.class);
                     ApplicationController.getInstance().makeToast("로그인 성공"+userData.id+", "+userData.password);
                     startActivity(intent);
@@ -114,14 +137,5 @@ public class Login extends AppCompatActivity {
         });
     }
 
-//    로그인 설정 값 유지
-    public void save(){
-     SharedPreferences.Editor editor=appData.edit();
-     editor.putString("ID",userData.id);
-     editor.putString("PW",userData.password);
 
-     Log.d("id",userData.id);
-     editor.apply();
-     editor.commit();
-    }
 }

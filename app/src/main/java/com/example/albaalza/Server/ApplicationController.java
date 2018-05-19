@@ -3,7 +3,6 @@ package com.example.albaalza.Server;
 import android.app.Application;
 import android.widget.Toast;
 
-import com.tsengvn.typekit.Typekit;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

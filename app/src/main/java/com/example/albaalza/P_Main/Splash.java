@@ -1,6 +1,7 @@
 package com.example.albaalza.P_Main;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +23,6 @@ public class Splash extends AppCompatActivity {
 
             @Override
             public void run() {
-
                 Intent intent = new Intent(getApplicationContext(),Login.class);
                 startActivity(intent);
                 finish();

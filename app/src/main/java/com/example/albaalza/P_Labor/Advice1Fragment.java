@@ -10,13 +10,11 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.albaalza.R;
-import com.melnykov.fab.FloatingActionButton;
 
 public class Advice1Fragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private FloatingActionButton floating1;
 
     private LinearLayout labor1, labor2, labor3, labor4, labor5, labor6, labor7;
     public Advice1Fragment() {
