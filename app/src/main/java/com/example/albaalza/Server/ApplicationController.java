@@ -31,8 +31,6 @@ public class ApplicationController extends Application {
 
       buildService();       //통신소스 완료 후 주석풀자.
 
-    Typekit.getInstance()
-            .addNormal(Typekit.createFromAsset(this,"font/notosans.otf"));
   }
 
   public void buildService(){

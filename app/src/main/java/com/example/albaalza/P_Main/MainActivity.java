@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.albaalza.P_AlbaTing.MyListGroup.AlbaTing;
 import com.example.albaalza.P_Chat.ChatActivity;
 import com.example.albaalza.P_Home.Home;
 import com.example.albaalza.P_Labor.Advice;
@@ -27,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     MyAlba myAlba;
     MyAlbaAddFragment myAlbaAddFragment;
     Advice advice;
-    AlbaTing albaTing;
     MyPage myPage;
 
     private String albaNameInSpinner = null;
@@ -54,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         myAlba = new MyAlba();
         myAlbaAddFragment = new MyAlbaAddFragment();
         advice = new Advice();
-        albaTing = new AlbaTing();
         myPage = new MyPage();
         home = new Home();
 
