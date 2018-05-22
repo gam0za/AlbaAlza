@@ -11,12 +11,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:src="@drawable/myalba_topbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_margin="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

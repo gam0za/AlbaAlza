@@ -8,7 +8,6 @@
     tools:context="com.example.albaalza.P_Chat.ChatActivity">
     <TextView
         android:fontFamily="@font/font"
-        android:textSize="30sp"
         android:id="@+id/text"
         android:text="채팅방 목록"
         android:gravity="center"

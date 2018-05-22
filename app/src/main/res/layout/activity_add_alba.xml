@@ -148,19 +148,39 @@
                     android:layout_marginTop="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/myalba_insurance_yes"
+                        android:src="@drawable/greenbox"
                         android:id="@+id/insurance_yes"
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content" />
-
+                        <TextView
+                            android:textColor="#ffffff"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/font"
+                            android:text="가입"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
                     <ImageView
                         android:id="@+id/insurance_no"
-                        android:src="@drawable/myalba_insurance_no"
+                        android:src="@drawable/whitebox"
                         android:layout_marginLeft="10dp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/font"
+                            android:text="미가입"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
 
