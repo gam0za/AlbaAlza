@@ -1,20 +1,25 @@
-<RelativeLayout
+<LinearLayout
+    android:orientation="vertical"
     android:gravity="center"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/text_btn"
+        android:src="@drawable/web"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
 
     <TextView
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/font"
         android:padding="10dp"
-        android:textSize="13sp"
-        android:id="@+id/text_btn"
+        android:textSize="17sp"
         android:text="고용노동부 사이트 바로가기
 (http://www.moel.go.kr/)"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-</RelativeLayout>
+</LinearLayout>

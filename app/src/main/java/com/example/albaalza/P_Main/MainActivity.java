@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.albaalza.B_MyPlace.MyPlaceFragment;
 import com.example.albaalza.P_Chat.ChatActivity;
 import com.example.albaalza.P_Home.Home;
 import com.example.albaalza.P_Labor.Advice;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     MyAlbaAddFragment myAlbaAddFragment;
     Advice advice;
     MyPage myPage;
+    MyPlaceFragment myPlaceFragment;
 
     private String albaNameInSpinner = null;
 
@@ -51,9 +53,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         myAlba = new MyAlba();
         myAlbaAddFragment = new MyAlbaAddFragment();
+        myPlaceFragment=new MyPlaceFragment();
         advice = new Advice();
         myPage = new MyPage();
         home = new Home();
+
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment, home).commit();
 
@@ -79,7 +83,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.tab_myalba:
                 if (getAlbaNameNumber()) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myAlba).commit();
+//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myAlba).commit();
+//                    사장님 계정
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myPlaceFragment).commit();
+
                 } else {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myAlbaAddFragment).commit();
                 }

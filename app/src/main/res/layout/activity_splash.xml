@@ -7,10 +7,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.albaalza.P_Main.Splash">
 
-    <ImageView
-        android:src="@drawable/logo_white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.bluehomestudio.progressimage.ProgressPicture
+        app:animation="rotate_y"
+        android:src="@drawable/albabot"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         app:layout_constraintLeft_toLeftOf="parent"

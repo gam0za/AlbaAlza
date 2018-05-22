@@ -108,6 +108,38 @@
         android:background="@drawable/artbox"
         android:layout_below="@+id/layout_2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></LinearLayout>
+        android:layout_height="match_parent">
+
+        <com.hadiidbouk.charts.ChartProgressBar
+            android:id="@+id/ChartProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            custom:hdBarCanBeClick="true"
+            custom:hdBarHeight="170dp"
+            custom:hdBarWidth="7dp"
+            custom:hdBarRadius="10dp"
+            custom:hdMaxValue="10"
+            custom:hdEmptyColor="@color/empty"
+            custom:hdProgressColor="@color/progress"
+            custom:hdProgressClickColor="@color/progress_click"
+            custom:hdPinBackgroundColor="@color/pin_background"
+            custom:hdPinTextColor="@color/pin_text"
+            custom:hdPinPaddingBottom="5dp"
+            custom:hdBarTitleColor="@color/bar_title_color"
+            custom:hdBarTitleTxtSize="12sp"
+            custom:hdPinTxtSize="17sp"
+            custom:hdPinMarginTop="10dp"
+            custom:hdPinMarginBottom="55dp"
+            custom:hdPinMarginEnd="22dp"
+            custom:hdBarTitleMarginTop="9dp"
+            custom:hdPinDrawable="@drawable/bubble"
+            custom:hdProgressDisableColor="@color/progress_disable"
+            custom:hdBarTitleSelectedColor="@color/maincolor"
+            >
+
+        </com.hadiidbouk.charts.ChartProgressBar>
+    </LinearLayout>
 
 </RelativeLayout>

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:tool="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.albaalza">
+
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.DIAL_PHONE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-sdk tools:overrideLibrary="com.yongbeom.aircalendar"/>
 
     <permission
         android:name="com.example.albaalza.locationapi.maps.permission.MAPS_RECEIVE"
@@ -20,6 +19,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -40,7 +41,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".P_MyAlba.AddAlba" />
         <activity android:name=".P_FindPassword.FindPassword" />
         <activity android:name=".P_Login.Login" />
@@ -53,13 +53,13 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCa1FoIm08sYvD7nlLCkuD7wwyCCxHjYyA" />
-        <activity android:name="com.yongbeom.aircalendar.AirCalendarDatePickerActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+
         <activity android:name=".P_Chat.ChattingRoomActivity" />
         <activity android:name=".P_Chat.ChatActivity" />
         <activity android:name=".P_Chat.MessageActivity" />
-        <activity android:name=".P_Labor.Advice1Activity"></activity>
-
+        <activity android:name=".P_Labor.Advice1Activity" />
+        <activity android:name=".P_MyPage.License"></activity>
     </application>
 
 </manifest>

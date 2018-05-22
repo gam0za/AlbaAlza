@@ -16,4 +16,5 @@
     <color name="edit">#8C8C8C</color>
     <color name="tab">#D5D5D5</color>
     <color name="message">#FFF0F8FF</color>
+    <color name="progress">#98F2E4</color>
 </resources>

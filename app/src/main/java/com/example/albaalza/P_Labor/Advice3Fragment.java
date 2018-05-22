@@ -112,6 +112,15 @@ public class Advice3Fragment extends Fragment implements OnMapReadyCallback{
             }
         });
 
+        /******************* 챗봇 버튼 ********************/
+        Btn_Chatbot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent chatbot=new Intent(Intent.ACTION_VIEW,Uri.parse("http://pf.kakao.com/_MtxnbC"));
+                startActivity(chatbot);
+            }
+        });
+
         // state spinner setting
         setSpinner_state();
 
@@ -123,6 +132,8 @@ public class Advice3Fragment extends Fragment implements OnMapReadyCallback{
         // selectedListener
         selectedSpinner_city();
         selectedSpinner_state();
+
+
 
         return view;
     }

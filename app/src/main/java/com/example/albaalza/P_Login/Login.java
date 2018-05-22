@@ -3,16 +3,14 @@ package com.example.albaalza.P_Login;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.albaalza.P_Chat.ChatActivity;
 import com.example.albaalza.P_Main.MainActivity;
 import com.example.albaalza.P_SignUp.SelectActor;
 import com.example.albaalza.Server.ApplicationController;
@@ -26,7 +24,7 @@ public class Login extends AppCompatActivity {
 
     EditText edit_name, edit_password;
     CheckBox checkbox;
-    ImageView button_login;
+    Button button_login;
     TextView find_password, goto_signup;
     String loginId, loginPw;
     private NetworkService networkService;
@@ -42,6 +40,7 @@ public class Login extends AppCompatActivity {
 
         sharedPreferences=getSharedPreferences("account",MODE_PRIVATE);
         editor=sharedPreferences.edit();
+
         Boolean auto=sharedPreferences.getBoolean("auto",false);
 
         if(auto==true){
@@ -53,7 +52,7 @@ public class Login extends AppCompatActivity {
         edit_name = (EditText) findViewById(R.id.edit_name);
         edit_password = (EditText) findViewById(R.id.edit_password);
         checkbox = (CheckBox) findViewById(R.id.checkBox);//자동로그인
-        button_login = (ImageView) findViewById(R.id.button_login);
+        button_login = (Button) findViewById(R.id.button_login);
         find_password = (TextView) findViewById(R.id.find_password);
         goto_signup = (TextView) findViewById(R.id.goto_signup);
 

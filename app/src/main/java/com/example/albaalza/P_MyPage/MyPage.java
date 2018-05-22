@@ -1,6 +1,7 @@
 package com.example.albaalza.P_MyPage;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -34,6 +35,15 @@ public class MyPage extends Fragment {
         logout=(LinearLayout)view.findViewById(R.id.logout);
         delete=(LinearLayout)view.findViewById(R.id.delete);
         alarm_switch=(Switch)view.findViewById(R.id.alarm_swith);
+
+
+//        라이센스
+        license.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(),License.class));
+            }
+        });
 
 
 

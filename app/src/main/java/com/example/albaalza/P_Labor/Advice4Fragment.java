@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.albaalza.R;
@@ -13,7 +14,7 @@ import com.example.albaalza.R;
 
 public class Advice4Fragment extends Fragment {
 
-    TextView text_btn;
+    ImageView text_btn;
 
     public Advice4Fragment() {
         // Required empty public constructor
@@ -39,7 +40,7 @@ public class Advice4Fragment extends Fragment {
         // Inflate the layout for this fragment
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_advice4, container, false);
 
-        text_btn = (TextView) view.findViewById(R.id.text_btn);
+        text_btn = (ImageView) view.findViewById(R.id.text_btn);
         text_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

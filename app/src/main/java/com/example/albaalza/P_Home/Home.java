@@ -1,5 +1,7 @@
 package com.example.albaalza.P_Home;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,8 +17,11 @@ import com.example.albaalza.P_MyAlba.MyAlbaDBCalculator;
 import com.example.albaalza.P_MyAlba.MyAlbaDbOpenHelper;
 import com.example.albaalza.R;
 import com.github.lzyzsd.circleprogress.CircleProgress;
+import com.hadiidbouk.charts.BarData;
+import com.hadiidbouk.charts.ChartProgressBar;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -28,6 +33,8 @@ public class Home extends Fragment {
     private String alba_name;
     MyAlbaDbOpenHelper dbHelper;
     MyAlbaDBCalculator myAlbaDBCalculator;
+    SharedPreferences sharedPreferences;
+    ChartProgressBar mChart;
 
     public Home(){
 
@@ -36,6 +43,7 @@ public class Home extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
 
@@ -50,6 +58,9 @@ public class Home extends Fragment {
         d_day=(TextView)view.findViewById(R.id.d_day);
         user_name=(TextView)view.findViewById(R.id.user_name);
         albaname=(TextView)view.findViewById(R.id.albaname);
+
+        sharedPreferences=getContext().getSharedPreferences("account", Context.MODE_PRIVATE);
+        user_name.setText(sharedPreferences.getString("id","도비"));
 
 
         // db is opened
@@ -91,6 +102,34 @@ public class Home extends Fragment {
         d_day.setText(String.valueOf(progress));//급여일까지 남은 일 수
 
         circleProgress.setProgress(date);//circleProgress 근무 일수 비율
+
+
+//        아래 차트
+
+       ArrayList<BarData> dataList = new ArrayList<>();
+
+        BarData data = new BarData("Sep", 3.4f, "3.4€");
+        dataList.add(data);
+
+        data = new BarData("Oct", 8f, "8€");
+        dataList.add(data);
+
+        data = new BarData("Nov", 1.8f, "1.8€");
+        dataList.add(data);
+
+        data = new BarData("Dec", 7.3f, "7.3€");
+        dataList.add(data);
+
+        data = new BarData("Jan", 6.2f, "6.2€");
+        dataList.add(data);
+
+        data = new BarData("Feb", 3.3f, "3.3€");
+        dataList.add(data);
+
+        mChart = (ChartProgressBar)view.findViewById(R.id.ChartProgressBar);
+        mChart.bringToFront();
+        mChart.setDataList(dataList);
+        mChart.build();
 
         return view;
     }
