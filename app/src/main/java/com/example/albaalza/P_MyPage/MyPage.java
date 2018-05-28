@@ -2,6 +2,7 @@ package com.example.albaalza.P_MyPage;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,13 +12,19 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 
+import com.example.albaalza.P_Login.Login;
 import com.example.albaalza.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class MyPage extends Fragment {
 
     private LinearLayout asking,license,logout,delete;
     private Switch alarm_switch;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     public MyPage(){
 
@@ -36,6 +43,9 @@ public class MyPage extends Fragment {
         delete=(LinearLayout)view.findViewById(R.id.delete);
         alarm_switch=(Switch)view.findViewById(R.id.alarm_swith);
 
+        sharedPreferences=getContext().getSharedPreferences("account",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
 
 //        라이센스
         license.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +56,16 @@ public class MyPage extends Fragment {
         });
 
 
+//        로그아웃
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editor.clear();
+                editor.commit();
+                Intent i =new Intent(getActivity(), Login.class);
+                startActivity(i);
+            }
+        });
 
         return view;
     }

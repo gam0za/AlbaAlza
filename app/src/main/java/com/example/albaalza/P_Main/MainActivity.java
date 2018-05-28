@@ -2,6 +2,7 @@ package com.example.albaalza.P_Main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -29,8 +30,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Advice advice;
     MyPage myPage;
     MyPlaceFragment myPlaceFragment;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     private String albaNameInSpinner = null;
+    String type;
 
     // 데이터베이스
     private MyAlbaDbOpenHelper dbHelper;
@@ -41,6 +45,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         createView(); // 뷰 생성 함수
+
+        sharedPreferences=getSharedPreferences("account",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
+        type=sharedPreferences.getString("type","alba");
 
         // db is opened
         dbHelper = new MyAlbaDbOpenHelper(getApplicationContext());
@@ -82,14 +91,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break ;
 
             case R.id.tab_myalba:
-                if (getAlbaNameNumber()) {
-//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myAlba).commit();
-//                    사장님 계정
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myPlaceFragment).commit();
+                if(type.equals("alba")){
+                    if (getAlbaNameNumber()) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myAlba).commit();
 
-                } else {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myAlbaAddFragment).commit();
+
+                    } else {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myAlbaAddFragment).commit();
+                    }
+                }else if(type.equals("boss")){
+                    //                    사장님 계정
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment, myPlaceFragment).commit();
                 }
+
                 break;
 
             case R.id.tab_albating:

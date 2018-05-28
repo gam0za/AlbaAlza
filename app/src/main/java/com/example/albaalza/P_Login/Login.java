@@ -101,11 +101,11 @@ public class Login extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Log.d("success", "isSuccessful 들어옴~~~~~~~");
                     userData.id = response.body().id;
-                    userData.password = response.body().password;
+                    userData.type = response.body().type;
 
 //                   id,pw 저장
                     editor.putString("id",response.body().id);
-                    editor.putString("pw",response.body().password);
+                    editor.putString("type",response.body().type);
 
 //                    자동로그인
                     if(checkbox.isChecked()){
@@ -118,7 +118,7 @@ public class Login extends AppCompatActivity {
 
 //                        userData.pwd=response.body().loginData.upwd;
                     Intent intent = new Intent(Login.this, MainActivity.class);
-                    ApplicationController.getInstance().makeToast("로그인 성공"+userData.id+", "+userData.password);
+                    ApplicationController.getInstance().makeToast("로그인 성공"+userData.id+", "+userData.type);
                     startActivity(intent);
                     finish();
                 } else {

@@ -7,5 +7,6 @@ package com.example.albaalza.P_Login;
 public class LoginResponse {
 //    public LoginData loginData;
     public String id;
-    public String password;
+    public String type;
+
 }

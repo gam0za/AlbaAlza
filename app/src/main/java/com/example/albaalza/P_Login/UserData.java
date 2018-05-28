@@ -14,13 +14,13 @@ public class UserData {
     }
 
     public String getPassword() {
-        return password;
+        return type;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String type) {
+        this.type = type;
     }
 
     public String id;
-    public String password;
+    public String type;
 }

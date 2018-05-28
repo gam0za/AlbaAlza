@@ -5,6 +5,8 @@ import com.example.albaalza.P_Home.HomePost;
 import com.example.albaalza.P_Home.HomeResponse;
 import com.example.albaalza.P_Login.LoginPost;
 import com.example.albaalza.P_Login.LoginResponse;
+import com.example.albaalza.P_MyAlba.Server.SearchBossPost;
+import com.example.albaalza.P_MyAlba.Server.SearchBossResponse;
 import com.example.albaalza.P_SignUp.SignPost;
 import com.example.albaalza.P_SignUp.SignResponse;
 
@@ -27,10 +29,10 @@ public interface NetworkService {
     @POST("/process/adduser")
     Call<SignResponse> signup(@Body SignPost signPost);
 
+    // 사장님 검색
+    @POST("/process/searchboss")
+    Call<SearchBossResponse> searchboss(@Body SearchBossPost searchBossPost);
 
-//    5 홈화면
-    @POST("/process/home")
-    Call<HomeResponse> gethomepage (@Body HomePost homePost);
 
 }
 

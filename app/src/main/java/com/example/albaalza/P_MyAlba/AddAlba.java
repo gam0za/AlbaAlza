@@ -1,6 +1,7 @@
 package com.example.albaalza.P_MyAlba;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,28 +12,33 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.albaalza.P_Main.MainActivity;
+import com.example.albaalza.P_MyAlba.Server.SearchBossPost;
+import com.example.albaalza.P_MyAlba.Server.SearchBossResponse;
 import com.example.albaalza.R;
+import com.example.albaalza.Server.ApplicationController;
+import com.example.albaalza.Server.NetworkService;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class AddAlba extends AppCompatActivity {
 
     /* activity_add_alba 변수 선언 */
-    private EditText alba_name,my_pay,pay_day;
-    private ImageView alba_name_btn,my_pay_btn,pay_day_btn,confirm,insurance_yes,insurance_no;
-
+    private EditText alba_name,my_pay,pay_day,edit_search_boss;
+    private ImageView alba_name_btn,my_pay_btn,pay_day_btn,confirm,insurance_yes,insurance_no,search_boss;
+    private SweetAlertDialog alertDialog;
     private int insuranceFlag = 0;
+    private NetworkService networkService;
+    SearchBossPost searchBossPost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_alba);
 
-        createView(); // view 생성 함수
-        viewFuction(); // view 기능(리스너) 함수
-    }
-
-    /* view 생성 함수 */
-    private void createView(){
         alba_name=(EditText)findViewById(R.id.alba_name);
         my_pay=(EditText)findViewById(R.id.my_pay);
         pay_day=(EditText)findViewById(R.id.pay_day);
@@ -42,20 +48,28 @@ public class AddAlba extends AppCompatActivity {
         confirm=(ImageView)findViewById(R.id.confirm);
         insurance_yes=(ImageView)findViewById(R.id.insurance_yes);
         insurance_no=(ImageView)findViewById(R.id.insurance_no);
-    }
 
-    /* view 기능(리스너) 함수 */
-    private void viewFuction(){
+//        사장님 친추
+        edit_search_boss=(EditText)findViewById(R.id.edit_search_boss);
+        search_boss=(ImageView)findViewById(R.id.search_boss);
 
-        /*
-        // 뒤로가기 버튼
-        backBtn.setOnClickListener(new View.OnClickListener(){
+        networkService= ApplicationController.getInstance().getNetworkService();
+
+        //사장님 친추
+        /**** 추후 서버 연동 필요 *****/
+        search_boss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish(); // 추후 경고 다이얼로그 추가 예정
+
+                if(edit_search_boss.getText().toString().equals("")){
+                    ApplicationController.getInstance().makeToast("사장님 아이디를 입력해주세요");
+                }else{
+                    searchboss();
+                }
+
+
             }
         });
-        */
 
         // 근무지 이름
         alba_name_btn.setOnClickListener(new View.OnClickListener() {
@@ -127,4 +141,26 @@ public class AddAlba extends AppCompatActivity {
         });
 
     }
+    public void searchboss(){
+        searchBossPost=new SearchBossPost(edit_search_boss.getText().toString());
+        Call<SearchBossResponse> searchBossResponseCall=networkService.searchboss(searchBossPost);
+        searchBossResponseCall.enqueue(new Callback<SearchBossResponse>() {
+            @Override
+            public void onResponse(Call<SearchBossResponse> call, Response<SearchBossResponse> response) {
+                if(response.isSuccessful()){
+                    alertDialog=new SweetAlertDialog(AddAlba.this,SweetAlertDialog.CUSTOM_IMAGE_TYPE);
+                    alertDialog.setTitleText("사장님 친구추가")
+                            .setContentText(response.body().id+"사장님이 맞으신가요?")
+                            .setCustomImage(R.drawable.albabot)
+                            .show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SearchBossResponse> call, Throwable t) {
+                ApplicationController.getInstance().makeToast("서버상태를 확인해주세요");
+            }
+        });
+    }
+
 }
