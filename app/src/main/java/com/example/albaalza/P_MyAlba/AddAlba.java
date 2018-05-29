@@ -37,6 +37,7 @@ public class AddAlba extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_add_alba);
 
         alba_name=(EditText)findViewById(R.id.alba_name);
