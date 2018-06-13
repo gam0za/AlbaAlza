@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.albaalza.P_Main.LoadActivity;
 import com.example.albaalza.P_Main.MainActivity;
 import com.example.albaalza.P_SignUp.SelectActor;
 import com.example.albaalza.Server.ApplicationController;
@@ -117,7 +118,8 @@ public class Login extends AppCompatActivity {
                     editor.commit();
 
 //                        userData.pwd=response.body().loginData.upwd;
-                    Intent intent = new Intent(Login.this, MainActivity.class);
+                    Intent intent = new Intent(Login.this, LoadActivity.class);
+                    intent.putExtra("type","home");
                     ApplicationController.getInstance().makeToast("로그인 성공"+userData.id+", "+userData.type);
                     startActivity(intent);
                     finish();

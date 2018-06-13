@@ -118,6 +118,7 @@ public class MessageActivity extends AppCompatActivity {
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
+
             }
 
             @Override

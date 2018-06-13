@@ -18,7 +18,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -27,12 +27,12 @@
     <application
         android:name=".Server.ApplicationController"
         android:allowBackup="true"
-        tools:replace="android:icon"
         android:icon="@mipmap/myicon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AlbaAlzaTheme">
+        android:theme="@style/AlbaAlzaTheme"
+        tools:replace="android:icon">
         <activity android:name=".P_Main.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,6 +58,7 @@
         <activity android:name=".P_Chat.MessageActivity" />
         <activity android:name=".P_Labor.Advice1Activity" />
         <activity android:name=".P_MyPage.License" />
+        <activity android:name=".P_Main.LoadActivity"></activity>
     </application>
 
 </manifest>

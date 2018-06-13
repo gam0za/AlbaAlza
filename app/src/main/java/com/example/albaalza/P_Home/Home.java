@@ -17,8 +17,6 @@ import com.example.albaalza.P_MyAlba.MyAlbaDBCalculator;
 import com.example.albaalza.P_MyAlba.MyAlbaDbOpenHelper;
 import com.example.albaalza.R;
 import com.github.lzyzsd.circleprogress.CircleProgress;
-import com.hadiidbouk.charts.BarData;
-import com.hadiidbouk.charts.ChartProgressBar;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -34,7 +32,7 @@ public class Home extends Fragment {
     MyAlbaDbOpenHelper dbHelper;
     MyAlbaDBCalculator myAlbaDBCalculator;
     SharedPreferences sharedPreferences;
-    ChartProgressBar mChart;
+
 
     public Home(){
 
@@ -104,32 +102,7 @@ public class Home extends Fragment {
         circleProgress.setProgress(date);//circleProgress 근무 일수 비율
 
 
-//        아래 차트
 
-       ArrayList<BarData> dataList = new ArrayList<>();
-
-        BarData data = new BarData("Sep", 3.4f, "3.4€");
-        dataList.add(data);
-
-        data = new BarData("Oct", 8f, "8€");
-        dataList.add(data);
-
-        data = new BarData("Nov", 1.8f, "1.8€");
-        dataList.add(data);
-
-        data = new BarData("Dec", 7.3f, "7.3€");
-        dataList.add(data);
-
-        data = new BarData("Jan", 6.2f, "6.2€");
-        dataList.add(data);
-
-        data = new BarData("Feb", 3.3f, "3.3€");
-        dataList.add(data);
-
-        mChart = (ChartProgressBar)view.findViewById(R.id.ChartProgressBar);
-        mChart.bringToFront();
-        mChart.setDataList(dataList);
-        mChart.build();
 
         return view;
     }

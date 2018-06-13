@@ -191,7 +191,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <LinearLayout
+                <RelativeLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -206,13 +206,37 @@
                         android:layout_width="250dp"
                         android:layout_height="wrap_content" />
                     <ImageView
+                        android:layout_alignParentRight="true"
                         android:id="@+id/search_boss"
                         android:layout_marginLeft="40dp"
                         android:layout_marginTop="10dp"
                         android:src="@drawable/albating_search"
                         android:layout_width="30dp"
                         android:layout_height="30dp" />
-                </LinearLayout>
+                    <RelativeLayout
+                        android:visibility="gone"
+                        android:id="@+id/send"
+                        android:gravity="center"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_marginLeft="12dp"
+                            android:id="@+id/sendRequest"
+                            android:src="@drawable/add_contact"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+                        <TextView
+                            android:layout_marginTop="3dp"
+                            android:textColor="@color/maincolor"
+                            android:textSize="10sp"
+                            android:text="친구 추가요청\n      보내기"
+                            android:layout_below="@+id/sendRequest"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+
+                </RelativeLayout>
 
                 <View
                     android:layout_marginTop="10dp"

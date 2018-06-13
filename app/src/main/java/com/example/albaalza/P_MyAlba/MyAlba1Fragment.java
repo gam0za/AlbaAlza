@@ -23,7 +23,10 @@ import android.widget.Toast;
 
 import com.example.albaalza.P_Main.BusProvider;
 import com.example.albaalza.P_Main.MainActivity;
+import com.example.albaalza.P_MyAlba.Server.SendSchedulePost;
 import com.example.albaalza.R;
+import com.example.albaalza.Server.ApplicationController;
+import com.example.albaalza.Server.NetworkService;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
@@ -51,6 +54,10 @@ public class MyAlba1Fragment extends Fragment {
     private boolean isCreated = false;
     private ArrayList<String> spinner_albaName;
     private ArrayAdapter<String> adapter;
+
+//    서버연동에 필요한 부분
+    private NetworkService networkService;
+    private SendSchedulePost sendSchedulePost;
 
     /* 캘린더 변수 선언 */
     private Calendar calendar;
@@ -96,6 +103,7 @@ public class MyAlba1Fragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        networkService= ApplicationController.getInstance().getNetworkService();
 
         try{
                 dbHelper = ((MainActivity)getActivity()).getDB(); // 메인액티비티로 부터 db를 얻어옴

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.albaalza.P_Main.LoadActivity;
 import com.example.albaalza.R;
 import com.example.albaalza.Server.ApplicationController;
 
@@ -58,7 +59,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolder> {
         holder.groupname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, MessageActivity.class);
+                Intent intent = new Intent(context, LoadActivity.class);
+                intent.putExtra("type","MessageActivity");
                 intent.putExtra("chat_room_name", holder.groupname.getText().toString());
                 intent.putExtra("chat_user_name",username);
                 context.startActivity(intent);

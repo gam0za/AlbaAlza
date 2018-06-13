@@ -1,8 +1,10 @@
 package com.example.albaalza.B_MyPlace;
 
+import android.content.SharedPreferences;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,12 +19,20 @@ import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 import com.example.albaalza.R;
+import com.example.albaalza.Server.ApplicationController;
+import com.example.albaalza.Server.NetworkService;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class MyPlaceFragment extends Fragment implements WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener{
@@ -33,8 +43,15 @@ public class MyPlaceFragment extends Fragment implements WeekView.EventClickList
     private static final int TYPE_THREE_DAY_VIEW = 2;
     private static final int TYPE_WEEK_VIEW = 3;
     private int mWeekViewType = TYPE_THREE_DAY_VIEW;
+    private NetworkService networkService;
+    private SchedulePost schedulePost;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    private String username;
+    private String sendDate; // 알바생이 전송한 날짜
+    private DayData MON,TUE,WED,THU,FRI,SAT,SUN; //요일별 객체
 
-
+//    빈 constructor
     public MyPlaceFragment() {
     }
 
@@ -42,6 +59,13 @@ public class MyPlaceFragment extends Fragment implements WeekView.EventClickList
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        networkService= ApplicationController.getInstance().getNetworkService();
+        sharedPreferences=getContext().getSharedPreferences("account",MODE_PRIVATE);
+        username=sharedPreferences.getString("id","boss");
+        editor=sharedPreferences.edit();
+
+        schedulerespone();  //스케줄 받아오는 함수 호출
 
     }
 
@@ -53,24 +77,22 @@ public class MyPlaceFragment extends Fragment implements WeekView.EventClickList
 
         mWeekView=(WeekView)view.findViewById(R.id.weekView);
 
-        // Show a toast message about the touched event.
+        // 터치 이벤트에 대한 토스트 메시지 출력
         mWeekView.setOnEventClickListener(this);
 
         // The week view has infinite scrolling horizontally. We have to provide the events of a
         // month every time the month changes on the week view.
         mWeekView.setMonthChangeListener(this);
 
-        // Set long press listener for events.
+        // 롱클릭 이벤트
         mWeekView.setEventLongPressListener(this);
 
-        // Set long press listener for empty view
+        // 빈 부분에 대한 롱클릭
         mWeekView.setEmptyViewLongPressListener(this);
 
         // Set up a date time interpreter to interpret how the date and time will be formatted in
         // the week view. This is optional.
         setupDateTimeInterpreter(false);
-
-
 
         return view;
     }
@@ -231,14 +253,41 @@ public class MyPlaceFragment extends Fragment implements WeekView.EventClickList
         Toast.makeText(getActivity(), "Empty view long pressed: " + getEventTitle(time), Toast.LENGTH_SHORT).show();
 
     }
+
 //  아이템 클릭
     @Override
     public void onEventClick(WeekViewEvent event, RectF eventRect) {
         Toast.makeText(getActivity(), "Clicked " + event.getName(), Toast.LENGTH_SHORT).show();
     }
+
 //  아이템 롱클릭
     @Override
     public void onEventLongPress(WeekViewEvent event, RectF eventRect) {
         Toast.makeText(getActivity(), "Long pressed event: " + event.getName(), Toast.LENGTH_SHORT).show();
+    }
+
+//    스케줄 받아오는 함수 (server 연동)
+    public void schedulerespone(){
+
+        schedulePost=new SchedulePost(username);
+        Call<ScheduleResponse> scheduleResponseCall=networkService.scheduleresponse(schedulePost);
+
+        scheduleResponseCall.enqueue(new Callback<ScheduleResponse>() {
+            @Override
+            public void onResponse(Call<ScheduleResponse> call, Response<ScheduleResponse> response) {
+                if(response.isSuccessful()){
+                    Log.d("response","SUCCESS");
+                ApplicationController.getInstance().makeToast(response.body().name+" "+response.body().date+" "+response.body().MON.start_hour);
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ScheduleResponse> call, Throwable t) {
+                ApplicationController.getInstance().makeToast("서버 연결을 확인해주세요 "+username);
+            }
+        });
+
     }
 }
