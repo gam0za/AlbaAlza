@@ -24,6 +24,8 @@ import android.widget.Toast;
 
 import com.example.albaalza.P_Main.BusProvider;
 import com.example.albaalza.P_Main.MainActivity;
+import com.example.albaalza.P_MyAlba.Server.SendSchedulePost;
+import com.example.albaalza.P_MyAlba.Server.SendScheduleResponse;
 import com.example.albaalza.R;
 import com.example.albaalza.Server.ApplicationController;
 import com.example.albaalza.Server.NetworkService;
@@ -33,6 +35,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MyAlba1Fragment extends Fragment {
@@ -70,6 +75,7 @@ public class MyAlba1Fragment extends Fragment {
     MyAlbaDBCalculator myAlbaDBCalculator;
 
     NetworkService networkService;
+    SendSchedulePost sendSchedulePost;
 
     public MyAlba1Fragment() {
         // Required empty public constructor
@@ -461,22 +467,7 @@ public class MyAlba1Fragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String startHOUR[];
-                String startMIN[];
-                String endHOUR[];
-                String endMIN[];
-
-                myAlbaDBCalculator.getMySchedule(albaNameInSpinner);
-                startHOUR = myAlbaDBCalculator.getSTART_HOUR();
-                startMIN = myAlbaDBCalculator.getSTART_MIN();
-                endHOUR = myAlbaDBCalculator.getEND_HOUR();
-                endMIN = myAlbaDBCalculator.getEND_MIN();
-
-                // 서버 연동[1]mon [6] [0]
-
-                for(int i=0; i<7; i++){
-                    Log.v("스케줄 보내기",startHOUR[i] +"," + startMIN[i]+"," + endHOUR[i] +"," + endMIN[i] );
-                }
+                schedule();
             }
         });
     }
@@ -693,8 +684,106 @@ public class MyAlba1Fragment extends Fragment {
     }
     /*************************************************************************************/
 
-    public void schedule(String id, String oid, String MONstart_hour, String MONstart_min, String MONend_hour, String MONend_min, String TUEstart_hour, String TUEstart_min, String TUEend_hour, String TUEend_min, String WEDstart_hour, String WEDstart_min, String WEDend_hour, String WEDend_min, String THUstart_hour, String THUstart_min, String THUend_hour, String THUend_min, String FRIstart_hour, String FRIstart_min, String FRIend_hour, String FRIend_min, String SATstart_hour, String SATstart_min, String SATend_hour, String SATend_min, String SUNstart_hour, String SUNstart_min, String SUNend_hour, String SUNend_min){
-        
+    public void schedule(){
+
+        String startHOUR[];
+        String startMIN[];
+        String endHOUR[];
+        String endMIN[];
+
+        myAlbaDBCalculator.getMySchedule(albaNameInSpinner);
+        startHOUR = myAlbaDBCalculator.getSTART_HOUR();
+        startMIN = myAlbaDBCalculator.getSTART_MIN();
+        endHOUR = myAlbaDBCalculator.getEND_HOUR();
+        endMIN = myAlbaDBCalculator.getEND_MIN();
+
+        String id;
+        id="MINa";
+        String oid;
+        oid="MINb";
+
+        String MONstart_hour;
+        String MONstart_min;
+        String MONend_hour;
+        String MONend_min;
+        MONstart_hour=startHOUR[1];
+        MONstart_min=startMIN[1];
+        MONend_hour=endHOUR[1];
+        MONend_min=endMIN[1];
+
+        String TUEstart_hour;
+        String TUEstart_min;
+        String TUEend_hour;
+        String TUEend_min;
+        TUEstart_hour=startHOUR[2];
+        TUEstart_min=startMIN[2];
+        TUEend_hour=endHOUR[2];
+        TUEend_min=endMIN[2];
+
+        String WEDstart_hour;
+        String WEDstart_min;
+        String WEDend_hour;
+        String WEDend_min;
+        WEDstart_hour=startHOUR[3];
+        WEDstart_min=startMIN[3];
+        WEDend_hour=endHOUR[3];
+        WEDend_min=endMIN[3];
+
+        String THUstart_hour;
+        String THUstart_min;
+        String THUend_hour;
+        String THUend_min;
+        THUstart_hour=startHOUR[4];
+        THUstart_min=startMIN[4];
+        THUend_hour=endHOUR[4];
+        THUend_min=endMIN[4];
+
+        String FRIstart_hour;
+        String FRIstart_min;
+        String FRIend_hour;
+        String FRIend_min;
+        FRIstart_hour=startHOUR[5];
+        FRIstart_min=startMIN[5];
+        FRIend_hour=endHOUR[5];
+        FRIend_min=endMIN[5];
+
+        String SATstart_hour;
+        String SATstart_min;
+        String SATend_hour;
+        String SATend_min;
+        SATstart_hour=startHOUR[6];
+        SATstart_min=startMIN[6];
+        SATend_hour=endHOUR[6];
+        SATend_min=endMIN[6];
+
+        String SUNstart_hour;
+        String SUNstart_min;
+        String SUNend_hour;
+        String SUNend_min;
+        SUNstart_hour=startHOUR[0];
+        SUNstart_min=startMIN[0];
+        SUNend_hour=endHOUR[0];
+        SUNend_min=endMIN[0];
+
+
+        sendSchedulePost=new SendSchedulePost(id,oid,MONstart_hour,MONstart_min,MONend_hour,MONend_min, TUEstart_hour, TUEstart_min, TUEend_hour, TUEend_min, WEDstart_hour,WEDstart_min, WEDend_hour, WEDend_min, THUstart_hour, THUstart_min, THUend_hour, THUend_min, FRIstart_hour, FRIstart_min, FRIend_hour, FRIend_min, SATstart_hour, SATstart_min,SATend_hour,SATend_min, SUNstart_hour, SUNstart_min,SUNend_hour,SUNend_min);
+
+        Call<SendScheduleResponse> sendScheduleResponseCall=networkService.sendSchedule(sendSchedulePost);
+
+        sendScheduleResponseCall.enqueue(new Callback<SendScheduleResponse>() {
+            @Override
+            public void onResponse(Call<SendScheduleResponse> call, Response<SendScheduleResponse> response) {
+                if(response.isSuccessful()){
+                    ApplicationController.getInstance().makeToast("급여명세서 전송 성공:)");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SendScheduleResponse> call, Throwable t) {
+                ApplicationController.getInstance().makeToast("서버 상태를 확인해주세요.");
+            }
+        });
+
 
     }
 }
