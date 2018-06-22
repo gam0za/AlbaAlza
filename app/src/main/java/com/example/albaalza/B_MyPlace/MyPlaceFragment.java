@@ -1,5 +1,6 @@
 package com.example.albaalza.B_MyPlace;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.RectF;
 import android.os.Bundle;
@@ -12,12 +13,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.alamkanak.weekview.DateTimeInterpreter;
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
+import com.example.albaalza.B_MyPlace.Server.SchedulePost;
+import com.example.albaalza.B_MyPlace.Server.ScheduleResponse;
 import com.example.albaalza.R;
 import com.example.albaalza.Server.ApplicationController;
 import com.example.albaalza.Server.NetworkService;
@@ -48,6 +52,7 @@ public class MyPlaceFragment extends Fragment implements WeekView.EventClickList
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     private String username;
+    private ImageView friend_button;
     private String sendDate; // 알바생이 전송한 날짜
     private DayData MON,TUE,WED,THU,FRI,SAT,SUN; //요일별 객체
 
@@ -93,6 +98,17 @@ public class MyPlaceFragment extends Fragment implements WeekView.EventClickList
         // Set up a date time interpreter to interpret how the date and time will be formatted in
         // the week view. This is optional.
         setupDateTimeInterpreter(false);
+
+//        친구 신청 확인하기 버튼
+        friend_button=(ImageView)view.findViewById(R.id.friend_button);
+
+        friend_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(getActivity(),MyAlbaListActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

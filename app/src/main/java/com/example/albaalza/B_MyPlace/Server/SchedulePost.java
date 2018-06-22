@@ -1,4 +1,4 @@
-package com.example.albaalza.B_MyPlace;
+package com.example.albaalza.B_MyPlace.Server;
 
 /**
  * Created by jinyoungkim on 2018. 6. 1..

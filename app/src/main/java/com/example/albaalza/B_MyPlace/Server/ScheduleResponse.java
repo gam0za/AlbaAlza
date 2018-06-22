@@ -1,4 +1,6 @@
-package com.example.albaalza.B_MyPlace;
+package com.example.albaalza.B_MyPlace.Server;
+
+import com.example.albaalza.B_MyPlace.DayData;
 
 /**
  * Created by jinyoungkim on 2018. 6. 1..

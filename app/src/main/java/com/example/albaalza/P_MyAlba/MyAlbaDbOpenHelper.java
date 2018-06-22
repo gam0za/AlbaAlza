@@ -63,7 +63,7 @@ public class MyAlbaDbOpenHelper {
                         + KEY_YEAR + " integer not null, "
                         + KEY_MONTH + " integer not null, "
                         + KEY_DAY + " integer not null, "
-                        + KEY_STARTHOUR + " integer not null, "
+                        + KEY_STARTHOUR + " integer not     null, "
                         + KEY_STARTMINUTES + " integer not null, "
                         + KEY_ENDHOUR + " integer not null, "
                         + KEY_ENDMINUTES + " integer not null, "

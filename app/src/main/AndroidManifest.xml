@@ -58,7 +58,8 @@
         <activity android:name=".P_Chat.MessageActivity" />
         <activity android:name=".P_Labor.Advice1Activity" />
         <activity android:name=".P_MyPage.License" />
-        <activity android:name=".P_Main.LoadActivity"></activity>
+        <activity android:name=".P_Main.LoadActivity" />
+        <activity android:name=".B_MyPlace.MyAlbaListActivity"></activity>
     </application>
 
 </manifest>
