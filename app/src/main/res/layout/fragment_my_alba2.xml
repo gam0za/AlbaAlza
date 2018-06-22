@@ -204,8 +204,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
             android:layout_gravity="center">
             <TextView
                 android:fontFamily="@font/font"
@@ -218,8 +217,22 @@
                 android:id="@+id/Text_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="30dp"/>
+                android:textSize="20dp"/>
+
         </LinearLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/sendStatement"
+                android:src="@drawable/statement"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 

@@ -1,5 +1,8 @@
 package com.example.albaalza.P_MyAlba;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,24 +19,36 @@ import android.widget.Toast;
 
 import com.example.albaalza.P_Main.BusProvider;
 import com.example.albaalza.P_Main.MainActivity;
+import com.example.albaalza.P_MyAlba.Server.MyStatementPost;
+import com.example.albaalza.P_MyAlba.Server.MyStatementResponse;
 import com.example.albaalza.R;
+import com.example.albaalza.Server.ApplicationController;
+import com.example.albaalza.Server.NetworkService;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MyAlba2Fragment extends Fragment {
 
     int year, month;
     Calendar calendar;
 
+    String wid,oid;
+
+    NetworkService networkService;
+    SharedPreferences sharedPreferences,sharedPreferences2;
+    MyStatementPost myStatementPost;
+
     // 날짜 정보
     Spinner spinnerSTART_YEAR, spinnerSTART_MONTH, spinnerSTART_DAY;
     Spinner spinnerEND_YEAR, spinnerEND_MONTH, spinnerEND_DAY;
-    ImageView Btn_search;
+    ImageView Btn_search,sendStatement;
+    String start_y,start_m,start_d,end_y,end_m,end_d;
 
     private ArrayList<String> list_spinnerSTART_YEAR, list_spinnerSTART_MONTH, list_spinnerSTART_DAY;
     private ArrayList<String> list_spinnerEND_YEAR, list_spinnerEND_MONTH, list_spinnerEND_DAY;
@@ -47,18 +62,22 @@ public class MyAlba2Fragment extends Fragment {
     // 기본 급여
     TextView Text_basicPay,Text_basicTime, Text_basicTotal; // 시급, 근무 시간, 기본 급여 총
     int my_pay, totalTime; double basic_total=0; // 시급, 근무 시간, 기본 급여 총
+    String wage,hours,total1;
 
     // 추가 급여
     TextView Text_extraWeek, Text_extraNight, Text_extraTotal; // 추가급여(주휴수당, 야간수당, 총)
     double extraWeek=0,extraNight=0,extraTotal=0;
+    String weekly_a,night_a,total2;
 
     // 보험
     TextView Text_4insurance, Text_TotalInsurance; // 세금(4대 보험, 총)
     double total_Insurance=0;
+    String four_P,total3;
 
     // 최종 합
     TextView Text_total;
     double totalPay=0;
+    String total4;
 
     MyAlbaDbOpenHelper dbHelper;
     String albaNameInSpinner = null;
@@ -100,11 +119,20 @@ public class MyAlba2Fragment extends Fragment {
 
         year = myAlba1Fragment.getCalendar_year();
         month = myAlba1Fragment.getCalendar_month();
+
+        sharedPreferences=getContext().getSharedPreferences("boss",Context.MODE_PRIVATE);
+        oid=sharedPreferences.getString("boss","boss"); //사장님 아이디 저장
+
+        sharedPreferences2=getContext().getSharedPreferences("account",Context.MODE_PRIVATE);
+        wid=sharedPreferences2.getString("id","doby");
+
+        networkService= ApplicationController.getInstance().getNetworkService();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
 
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_my_alba2, container, false);
@@ -126,11 +154,38 @@ public class MyAlba2Fragment extends Fragment {
         Text_4insurance = (TextView) view.findViewById(R.id.Text_4insurance);
         Text_TotalInsurance = (TextView) view.findViewById(R.id.Text_TotalInsurance);
         Text_total = (TextView) view.findViewById(R.id.Text_total);
+        sendStatement=(ImageView)view.findViewById(R.id.sendStatement);
 
         calendar = Calendar.getInstance(Locale.getDefault());
 
         SetSpinner();
         listenerFACTORY();
+
+        start_y=spinnerSTART_YEAR.toString();
+        start_m=spinnerSTART_MONTH.toString();
+        start_d=spinnerSTART_DAY.toString();
+        end_y=spinnerEND_YEAR.toString();
+        end_m=spinnerEND_MONTH.toString();
+        end_d=spinnerEND_DAY.toString();
+
+        wage=Text_basicPay.getText().toString();
+        hours=Text_basicTime.getText().toString();
+        total1=Text_basicTotal.getText().toString();
+
+        weekly_a=Text_extraWeek.getText().toString();
+        night_a=Text_extraNight.getText().toString();
+        total2=Text_extraTotal.getText().toString();
+
+        four_P=Text_4insurance.getText().toString();
+        total3=Text_TotalInsurance.getText().toString();
+        total4=Text_total.getText().toString();
+
+        sendStatement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendstatement(wid,oid,start_y,start_m,start_d,end_y,end_m,end_d,wage,hours,total1,weekly_a,night_a,total2,four_P,total3,total4);
+            }
+        });
 
         return view;
     }
@@ -422,5 +477,29 @@ public class MyAlba2Fragment extends Fragment {
     public void calculate_total(){
         totalPay = basic_total + extraTotal - total_Insurance;
         Text_total.setText(String.valueOf(totalPay));
+    }
+
+//    급여명세서 사장님에게 보내기 (서버 연동)
+
+
+    public void sendstatement(String wid, final String oid, String start_y, String start_m, String start_d, String end_y, String end_m, String end_d, String wage, String hours, String total1, String weekly_a, String night_a, String total2, String four_P, String total3, String total4){
+        myStatementPost=new MyStatementPost(wid,oid,start_y,start_m,start_d,end_y,end_m,end_d,wage,hours,total1,weekly_a,night_a,total2,four_P,total3,total4);
+        Call<MyStatementResponse> myStatementResponseCall=networkService.sendstatement(myStatementPost);
+
+        myStatementResponseCall.enqueue(new Callback<MyStatementResponse>() {
+            @Override
+            public void onResponse(Call<MyStatementResponse> call, Response<MyStatementResponse> response) {
+                if (response.isSuccessful()) {
+                    ApplicationController.getInstance().makeToast(oid+"님께 급여명세서가 전송되었습니다:)");
+                }else{
+                    ApplicationController.getInstance().makeToast("실패:P");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MyStatementResponse> call, Throwable t) {
+                ApplicationController.getInstance().makeToast("서버 연결 상태를 확인해주세요.");
+            }
+        });
     }
 }

@@ -5,4 +5,6 @@ package com.example.albaalza.P_MyAlba.Server;
  */
 //4-1 명세서 보내기
 public class MyStatementResponse {
+    public String result;
+    public String message;
 }

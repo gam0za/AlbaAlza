@@ -40,7 +40,7 @@ public interface NetworkService {
     @POST("/process/adduser")
     Call<SignResponse> signup(@Body SignPost signPost);
 
-    // 2-6 사장님 검색
+    // 2-6 사장님 검색 (O)
     @POST("/process/searchboss")
     Call<SearchBossResponse> searchboss(@Body SearchBossPost searchBossPost);
 
@@ -48,11 +48,11 @@ public interface NetworkService {
     @POST("/process/schedule")
     Call<SendScheduleResponse> sendSchedule(@Body SendSchedulePost sendSchedulePost);
 
-//    2-8 스케줄 받아오기 (사장님 계정에서
+//    2-8 스케줄 받아오기 (사장님 계정에서)
     @POST("/process/sendschedule")
     Call<ScheduleResponse> scheduleresponse(@Body SchedulePost schedulePost);
 
-//    3-1 친구 신청 보내기
+//    3-1 친구 신청 보내기(O)
     @POST("process/sendrequest")
     Call<SendRequestResponse> sendrequest(@Body SendRequestPost sendRequestPost);
 

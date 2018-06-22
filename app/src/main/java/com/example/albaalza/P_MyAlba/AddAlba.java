@@ -1,5 +1,6 @@
 package com.example.albaalza.P_MyAlba;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -40,7 +41,7 @@ public class AddAlba extends AppCompatActivity {
     private NetworkService networkService;
     SearchBossPost searchBossPost;
     SendRequestPost sendRequestPost;
-    SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferences,sharedPreferences2;
     SharedPreferences.Editor editor;
     private String oid;
     private String wid;
@@ -62,6 +63,8 @@ public class AddAlba extends AppCompatActivity {
         insurance_no=(ImageView)findViewById(R.id.insurance_no);
         send=(RelativeLayout)findViewById(R.id.send);
 
+        sharedPreferences2=getSharedPreferences("boss", Activity.MODE_PRIVATE);
+        editor=sharedPreferences2.edit();
 
         sharedPreferences=getSharedPreferences("account", Context.MODE_PRIVATE);
         wid=sharedPreferences.getString("id","doby");
@@ -201,6 +204,10 @@ public class AddAlba extends AppCompatActivity {
             public void onResponse(Call<SendRequestResponse> call, Response<SendRequestResponse> response) {
                 if(response.isSuccessful()){
                     ApplicationController.getInstance().makeToast("사장님에게 친구요청을 보냈습니다:)");
+
+//                    사장님 저장
+                    editor.putString("boss",oid);
+                    editor.commit();
                 }
             }
 

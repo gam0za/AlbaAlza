@@ -7,13 +7,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.albaalza.B_MyPlace.Server.StatementPost;
+import com.example.albaalza.B_MyPlace.Server.StatementResponse;
 import com.example.albaalza.R;
 import com.example.albaalza.Server.ApplicationController;
 import com.example.albaalza.Server.NetworkService;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class StatementActivity extends AppCompatActivity {
 
@@ -81,11 +87,45 @@ public class StatementActivity extends AppCompatActivity {
         wid=intent.getStringExtra("albaname"); //알바생 아이디
 
         ApplicationController.getInstance().makeToast(oid+", "+wid);
+        myliststatement("MINb","MINa");
 
     }
 
     public void myliststatement(String oid, String wid){
+        statementPost=new StatementPost(oid, wid);
+        Call<StatementResponse> statementResponseCall=networkService.myliststatement(statementPost);
 
+        statementResponseCall.enqueue(new Callback<StatementResponse>() {
+            @Override
+            public void onResponse(Call<StatementResponse> call, Response<StatementResponse> response) {
+                if (response.isSuccessful()) {
+
+                    total4.setText(response.body().total4);
+                    total3.setText(response.body().total3);
+                    fourP.setText(response.body().fourP);
+                    total2.setText(response.body().total2);
+                    nightA.setText(response.body().nightA);
+                    weeklyA.setText(response.body().weeklyA);
+                    total1.setText(response.body().total1);
+                    hours.setText(response.body().hours);
+                    wage.setText(response.body().wage);
+                    end_day.setText(response.body().end_day);
+                    end_month.setText(response.body().end_month);
+                    end_year.setText(response.body().end_year);
+                    start_day.setText(response.body().start_day);
+                    start_month.setText(response.body().start_month);
+                    start_year.setText(response.body().start_year);
+                }
+                else{
+                    Log.d("fail","fail1");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StatementResponse> call, Throwable t) {
+                ApplicationController.getInstance().makeToast("서버 상태를 확인해주세요.");
+            }
+        });
     }
 
 }
