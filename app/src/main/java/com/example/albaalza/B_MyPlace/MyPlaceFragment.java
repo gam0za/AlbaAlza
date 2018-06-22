@@ -297,9 +297,9 @@ public class MyPlaceFragment extends Fragment implements WeekView.EventClickList
             public void onResponse(Call<ScheduleResponse> call, Response<ScheduleResponse> response) {
                 if(response.isSuccessful()){
                     Log.d("response","SUCCESS");
-                ApplicationController.getInstance().makeToast(response.body().name+" "+response.body().date+" "+response.body().MON.start_hour);
-
-
+//                ApplicationController.getInstance().makeToast(response.body
+// ().name+" "+response.body().date+" "+response.body().MON.start_hour);
+                    ApplicationController.getInstance().makeToast(response.body().albaData.get(0).dateData.date);
                 }
             }
 

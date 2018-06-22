@@ -25,6 +25,8 @@ import android.widget.Toast;
 import com.example.albaalza.P_Main.BusProvider;
 import com.example.albaalza.P_Main.MainActivity;
 import com.example.albaalza.R;
+import com.example.albaalza.Server.ApplicationController;
+import com.example.albaalza.Server.NetworkService;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
@@ -67,6 +69,8 @@ public class MyAlba1Fragment extends Fragment {
 
     MyAlbaDBCalculator myAlbaDBCalculator;
 
+    NetworkService networkService;
+
     public MyAlba1Fragment() {
         // Required empty public constructor
     }
@@ -95,6 +99,7 @@ public class MyAlba1Fragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        networkService= ApplicationController.getInstance().getNetworkService();
 
         try{
             dbHelper = ((MainActivity)getActivity()).getDB(); // 메인액티비티로 부터 db를 얻어옴
@@ -687,4 +692,9 @@ public class MyAlba1Fragment extends Fragment {
         }
     }
     /*************************************************************************************/
+
+    public void schedule(String id, String oid, String MONstart_hour, String MONstart_min, String MONend_hour, String MONend_min, String TUEstart_hour, String TUEstart_min, String TUEend_hour, String TUEend_min, String WEDstart_hour, String WEDstart_min, String WEDend_hour, String WEDend_min, String THUstart_hour, String THUstart_min, String THUend_hour, String THUend_min, String FRIstart_hour, String FRIstart_min, String FRIend_hour, String FRIend_min, String SATstart_hour, String SATstart_min, String SATend_hour, String SATend_min, String SUNstart_hour, String SUNstart_min, String SUNend_hour, String SUNend_min){
+        
+
+    }
 }

@@ -5,4 +5,6 @@ package com.example.albaalza.P_MyAlba.Server;
  */
 
 public class SendScheduleResponse {
+
+    public String message;
 }
