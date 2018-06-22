@@ -1,10 +1,14 @@
 package com.example.albaalza.P_MyAlba;
 
-import android.database.Cursor;
-import android.util.Log;
+        import android.content.Intent;
+        import android.database.Cursor;
+        import android.util.Log;
 
-import java.util.Calendar;
-import java.util.Locale;
+        import java.text.DateFormat;
+        import java.text.SimpleDateFormat;
+        import java.util.Calendar;
+        import java.util.Date;
+        import java.util.Locale;
 
 /**
  * Created by SEJIN on 2018-01-15.
@@ -14,6 +18,12 @@ public class MyAlbaDBCalculator {
 
     MyAlbaDbOpenHelper dbHelper;
     private Calendar calendar;
+
+    // 스케줄 데이터
+    String startHOUR[] = new String[7]; //1~6:월~토, 0:일
+    String startMIN[] = new String[7]; //1~6:월~토, 0:일
+    String endHOUR[] = new String[7]; //1~6:월~토, 0:일
+    String endMIN[] = new String[7]; //1~6:월~토, 0:일
 
     public MyAlbaDBCalculator(MyAlbaDbOpenHelper dbHelper) {
         this.dbHelper = dbHelper;
@@ -290,7 +300,7 @@ public class MyAlbaDBCalculator {
                 }
                 currentCursorDAY += 6;
 
-                 // 현재 일이 월의 끝 일일 경우
+                // 현재 일이 월의 끝 일일 경우
                 if (currentCursorDAY == lastDay) {
                     if (currentCursorMONTH == 12) { // 12월의 경우
                         currentCursorYEAR++;
@@ -436,5 +446,141 @@ public class MyAlbaDBCalculator {
         return 0;
     }
 
+    /* 한주의 스케줄 */
+    public void getMySchedule(String albaNameInSpinner) {
+
+        // 초기화
+        for(int i=0; i<7; i++){
+            startHOUR[i] = "0";
+            startMIN[i] = "0";
+            endHOUR[i] = "0";
+            endMIN[i] = "0";
+        }
+
+        // 일주일 범위 구하기
+        Calendar calendar = Calendar.getInstance();
+        int current_week = calendar.get(Calendar.WEEK_OF_YEAR);
+        int week_start_day = calendar.getFirstDayOfWeek();
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String startDate = "", endDate = "";
+        startDate = df.format(calendar.getTime());
+        calendar.add(Calendar.DATE, 6);
+        endDate = df.format(calendar.getTime());
+
+        // Date Split
+        String date[] = startDate.split("-");
+        int StartYEAR = Integer.parseInt(date[0]);
+        int StartMONTH = Integer.parseInt(date[1]);
+        int StartDAY = Integer.parseInt(date[2]);
+
+        String date2[] = endDate.split("-");
+        int EndYEAR = Integer.parseInt(date2[0]);
+        int EndMONTH = Integer.parseInt(date2[1]);
+        int EndDAY = Integer.parseInt(date2[2]);
+
+        Log.d("START ", String.valueOf(StartYEAR));
+        Log.d("START ", String.valueOf(StartMONTH));
+        Log.d("START ", String.valueOf(StartDAY));
+        Log.d("END ", String.valueOf(EndYEAR));
+        Log.d("END ", String.valueOf(EndMONTH));
+        Log.d("END ", String.valueOf(EndDAY));
+
+        // 내부디비 불러오기
+        try {
+            Cursor iCursor = dbHelper.selectColumns_MYALBA();
+            iCursor.moveToFirst();
+            while (iCursor.moveToNext()) {
+                String tempMYALBANAME = iCursor.getString(iCursor.getColumnIndex("myAlbaName"));
+
+                if (tempMYALBANAME.equals(albaNameInSpinner)) {
+                    int tempYEAR = iCursor.getInt(iCursor.getColumnIndex("year"));
+                    int tempMONTH = iCursor.getInt(iCursor.getColumnIndex("month"));
+                    int tempDAY = iCursor.getInt(iCursor.getColumnIndex("day"));
+
+                    if ((tempYEAR == StartYEAR && tempMONTH == StartMONTH && tempDAY >= StartDAY)
+                            && (tempYEAR == EndYEAR && tempMONTH == EndMONTH && tempDAY < EndDAY)) {
+                        calendar.set(Calendar.YEAR, tempYEAR);
+                        calendar.set(Calendar.MONTH, tempMONTH-1);
+                        calendar.set(Calendar.DATE, tempDAY);
+                        Log.d("캘린더", String.valueOf(tempYEAR+"," + tempMONTH+"," + tempDAY));
+                        Log.d("날짜숫자", String.valueOf(calendar.get(Calendar.DAY_OF_WEEK)));
+                        switch (calendar.get(Calendar.DAY_OF_WEEK)){
+                            case 1: //일요일
+                                startHOUR[0] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("startHour")));
+                                startMIN[0] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("startMinutes")));
+                                endHOUR[0] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("endHour")));
+                                endMIN[0] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("endMinutes")));
+                                break;
+                            case 2: //월요일
+                                startHOUR[1] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("startHour")));
+                                startMIN[1] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("startMinutes")));
+                                endHOUR[1] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("endHour")));
+                                endMIN[1] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("endMinutes")));
+                                break;
+                            case 3: //화요일
+                                startHOUR[2] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("startHour")));
+                                startMIN[2] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("startMinutes")));
+                                endHOUR[2] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("endHour")));
+                                endMIN[2] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("endMinutes")));
+                                break;
+                            case 4: //수요일
+                                startHOUR[3] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("startHour")));
+                                startMIN[3] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("startMinutes")));
+                                endHOUR[3] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("endHour")));
+                                endMIN[3] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("endMinutes")));
+                                break;
+                            case 5: //목요일
+                                startHOUR[4] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("startHour")));
+                                startMIN[4] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("startMinutes")));
+                                endHOUR[4] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("endHour")));
+                                endMIN[4] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("endMinutes")));
+                                break;
+                            case 6: //금요일
+                                startHOUR[5] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("startHour")));
+                                startMIN[5] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("startMinutes")));
+                                endHOUR[5] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("endHour")));
+                                endMIN[5] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("endMinutes")));
+                                break;
+                            case 7: //토요일
+                                startHOUR[6] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("startHour")));
+                                startMIN[6] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("startMinutes")));
+                                endHOUR[6] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("endHour")));
+                                endMIN[6] = String.valueOf(iCursor.getInt(iCursor.getColumnIndex("endMinutes")));
+                                break;
+                        }
+                    }
+                }
+            }
+            Log.d("startHOUR ", startHOUR[1]);
+            Log.d("startMIN ", startMIN[1]);
+            Log.d("endHOUR ", endHOUR[1]);
+            Log.d("endHOUR ", endMIN[1]);
+            iCursor.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /* 한주의 스케줄 - 시작 시 얻기 */
+    public String[] getSTART_HOUR(){
+        return startHOUR;
+    }
+
+    /* 한주의 스케줄 - 시작 분 얻기 */
+    public String[] getSTART_MIN(){
+        return startMIN;
+    }
+
+    /* 한주의 스케줄 - 종료 시 얻기 */
+    public String[] getEND_HOUR(){
+        return endHOUR;
+    }
+
+    /* 한주의 스케줄 - 종료 분 얻기 */
+    public String[] getEND_MIN(){
+        return endMIN;
+    }
 
 }

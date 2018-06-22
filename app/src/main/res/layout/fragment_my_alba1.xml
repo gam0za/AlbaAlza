@@ -7,6 +7,7 @@
     <!-- 알바 day 수정, 삭제 버튼을 위한 black layout -->
 
     <LinearLayout
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -24,9 +25,11 @@
                 android:layout_alignParentStart="true"
                 >
             </Spinner>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <TextView
-                android:fontFamily="@font/font"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/todayText"
@@ -50,7 +53,6 @@
 
         <!-- date toolbar -->
         <RelativeLayout
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -98,7 +100,6 @@
 
         <!--days header -->
         <LinearLayout
-            android:layout_marginTop="20dp"
             android:id="@+id/calendar_header"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -106,7 +107,6 @@
             android:orientation="horizontal"
             >
             <TextView
-                android:fontFamily="@font/font"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -114,7 +114,6 @@
                 android:textColor="#ffff0000"
                 android:text="일"/>
             <TextView
-                android:fontFamily="@font/font"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -122,7 +121,6 @@
                 android:textColor="#000"
                 android:text="월"/>
             <TextView
-                android:fontFamily="@font/font"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -130,7 +128,6 @@
                 android:textColor="#000"
                 android:text="화"/>
             <TextView
-                android:fontFamily="@font/font"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -138,7 +135,6 @@
                 android:textColor="#000"
                 android:text="수"/>
             <TextView
-                android:fontFamily="@font/font"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -146,7 +142,6 @@
                 android:textColor="#000"
                 android:text="목"/>
             <TextView
-                android:fontFamily="@font/font"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -154,7 +149,6 @@
                 android:textColor="#000"
                 android:text="금"/>
             <TextView
-                android:fontFamily="@font/font"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -192,6 +186,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
+                    android:fontFamily="@font/font"
                     android:text="6300원"
                     android:id="@+id/Text_myPay"
                     android:textSize="20sp"
@@ -217,6 +212,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
+                    android:fontFamily="@font/font"
                     android:textSize="20sp"
                     android:text="25,200원"
                     android:id="@+id/Text_totalPay"
@@ -235,20 +231,18 @@
 
     </LinearLayout>
 
+
     <ImageView
         android:id="@+id/black_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:background="#88000000"
-        android:visibility="invisible"></ImageView>
+        android:visibility="invisible">
+    </ImageView>
 
 
     <!-- 알바 day 추가 버튼 -->
     <TextView
-        android:fontFamily="@font/font"
         android:id="@+id/add_albaDay"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -260,16 +254,14 @@
 
     <!-- 알바 day 수정 -->
     <RelativeLayout
-        android:layout_centerInParent="true"
         android:id="@+id/buttonLayout"
         android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
-            android:fontFamily="@font/font"
             android:id="@+id/modifyBtn"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:text="수정"
             android:background="@drawable/myalba_day"
@@ -277,10 +269,9 @@
 
         <!-- 알바 day 삭제 버튼 -->
         <TextView
-            android:fontFamily="@font/font"
             android:id="@+id/deleteBtn"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/myalba_delete_day"
             android:gravity="center"
             android:text="삭제"
@@ -288,5 +279,21 @@
             />
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <Button
+            android:id="@+id/Btn_Send_My_Schedule"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="스케줄 보내기" />
+    </LinearLayout>
 
 </RelativeLayout>

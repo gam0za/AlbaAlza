@@ -21,22 +21,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.example.albaalza.P_Main.BusProvider;
 import com.example.albaalza.P_Main.MainActivity;
-import com.example.albaalza.P_MyAlba.Server.SendSchedulePost;
 import com.example.albaalza.R;
-import com.example.albaalza.Server.ApplicationController;
-import com.example.albaalza.Server.NetworkService;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-import static com.example.albaalza.R.id.end_hour;
-import static com.example.albaalza.R.id.end_minute;
-import static com.example.albaalza.R.id.start_hour;
-import static com.example.albaalza.R.id.start_minute;
+
 
 public class MyAlba1Fragment extends Fragment {
 
@@ -44,6 +39,7 @@ public class MyAlba1Fragment extends Fragment {
     private TextView Text_TotalPay, Text_myPay; // 일급, 당월 누적 금액, 나의 시급
     private ImageView black_layout,prevBtn, nextBtn;
     private RelativeLayout buttonLayout;
+    private Button Btn_Send_My_Schedule;
 
     /* fragment_my_alba1 변수 선언 */
     private ImageView  today_setBtn;
@@ -54,10 +50,6 @@ public class MyAlba1Fragment extends Fragment {
     private boolean isCreated = false;
     private ArrayList<String> spinner_albaName;
     private ArrayAdapter<String> adapter;
-
-//    서버연동에 필요한 부분
-    private NetworkService networkService;
-    private SendSchedulePost sendSchedulePost;
 
     /* 캘린더 변수 선언 */
     private Calendar calendar;
@@ -103,10 +95,9 @@ public class MyAlba1Fragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        networkService= ApplicationController.getInstance().getNetworkService();
 
         try{
-                dbHelper = ((MainActivity)getActivity()).getDB(); // 메인액티비티로 부터 db를 얻어옴
+            dbHelper = ((MainActivity)getActivity()).getDB(); // 메인액티비티로 부터 db를 얻어옴
             myAlbaDBCalculator = ((MainActivity)getActivity()).getMyAlbaDBCalculator();
         }
         catch (Exception ex){
@@ -208,6 +199,7 @@ public class MyAlba1Fragment extends Fragment {
         modifyBtn = (TextView) view.findViewById(R.id.modifyBtn);
         deleteBtn = (TextView) view.findViewById(R.id.deleteBtn);
         buttonLayout = (RelativeLayout) view.findViewById(R.id.buttonLayout);
+        Btn_Send_My_Schedule = (Button) view.findViewById(R.id.Btn_Send_My_Schedule);
 
         return view;
     }
@@ -250,6 +242,7 @@ public class MyAlba1Fragment extends Fragment {
         }
 
         setMyPay(); // 시급 설정
+        myAlbaDBCalculator.getMySchedule(albaNameInSpinner);
     }
 
     /* 시급 설정 */
@@ -296,7 +289,15 @@ public class MyAlba1Fragment extends Fragment {
             }
         });
 
-
+        // today_setBtn button
+//        today_setBtn.setText("today");
+//        today_setBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                showCurrentTime();
+//                updateCalendar();
+//            }
+//        });
 
         // black_layout_click
         black_layout.setOnClickListener(new View.OnClickListener() {
@@ -407,22 +408,22 @@ public class MyAlba1Fragment extends Fragment {
         });
 
         // 알바 day 수정 버튼
-        modifyBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                int tempMYPAY = myAlbaDBCalculator.getMyPaySet2(albaNameInSpinner, calendar_year, calendar_month, selected_date);
-                Intent intent = new Intent(getActivity(), ModifyAlbaDay.class);
-
-                intent.putExtra("start_hour", start_hour);
-                intent.putExtra("start_minute", start_minute);
-                intent.putExtra("end_hour", end_hour);
-                intent.putExtra("end_minute", end_minute);
-                intent.putExtra("my_pay", tempMYPAY);
-                getActivity().startActivityForResult(intent, 3001);
-                buttonLayout.setVisibility(View.INVISIBLE);
-                show_Black_layout(false);
-            }
-        });
+//        modifyBtn.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view) {
+//                int tempMYPAY = myAlbaDBCalculator.getMyPaySet2(albaNameInSpinner, calendar_year, calendar_month, selected_date);
+//                Intent intent = new Intent(getActivity(), ModifyAlbaDay.class);
+//
+//                intent.putExtra("start_hour", start_hour);
+//                intent.putExtra("start_minute", start_minute);
+//                intent.putExtra("end_hour", end_hour);
+//                intent.putExtra("end_minute", end_minute);
+//                intent.putExtra("my_pay", tempMYPAY);
+//                getActivity().startActivityForResult(intent, 3001);
+//                buttonLayout.setVisibility(View.INVISIBLE);
+//                show_Black_layout(false);
+//            }
+//        });
 
         // spinner
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -447,6 +448,30 @@ public class MyAlba1Fragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        // 스케줄 보내기
+        Btn_Send_My_Schedule.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                String startHOUR[];
+                String startMIN[];
+                String endHOUR[];
+                String endMIN[];
+
+                myAlbaDBCalculator.getMySchedule(albaNameInSpinner);
+                startHOUR = myAlbaDBCalculator.getSTART_HOUR();
+                startMIN = myAlbaDBCalculator.getSTART_MIN();
+                endHOUR = myAlbaDBCalculator.getEND_HOUR();
+                endMIN = myAlbaDBCalculator.getEND_MIN();
+
+                // 서버 연동[1]mon [6] [0]
+
+                for(int i=0; i<7; i++){
+                    Log.v("스케줄 보내기",startHOUR[i] +"," + startMIN[i]+"," + endHOUR[i] +"," + endMIN[i] );
+                }
             }
         });
     }
@@ -520,7 +545,7 @@ public class MyAlba1Fragment extends Fragment {
         calender_grid.setAdapter(gridAdapter);
 
         getDBdata();
-       // getDBdata2();
+        // getDBdata2();
     }
 
     /* 당월 누적 금액 표시 */
@@ -618,25 +643,25 @@ public class MyAlba1Fragment extends Fragment {
             Cursor iCursor = dbHelper.selectColumns_MYALBA();
             iCursor.moveToFirst();
             while (iCursor.moveToNext()) {
-                    String tempMYALBANAME = iCursor.getString(iCursor.getColumnIndex("myAlbaName"));
-                    int tempMYPAY = iCursor.getInt(iCursor.getColumnIndex("myPay"));
-                    int tempYEAR = iCursor.getInt(iCursor.getColumnIndex("year"));
-                    int tempMONTH = iCursor.getInt(iCursor.getColumnIndex("month"));
-                    int tempDAY = iCursor.getInt(iCursor.getColumnIndex("day"));
-                    int tempSTARTHOUR = iCursor.getInt(iCursor.getColumnIndex("startHour"));
-                    int tempSTARTMINUTES = iCursor.getInt(iCursor.getColumnIndex("startMinutes"));
-                    int tempENDHOUR = iCursor.getInt(iCursor.getColumnIndex("endHour"));
-                    int tempENDMINUTES = iCursor.getInt(iCursor.getColumnIndex("endMinutes"));
-                    int tempPAYFORDAY = iCursor.getInt(iCursor.getColumnIndex("payForDay"));
+                String tempMYALBANAME = iCursor.getString(iCursor.getColumnIndex("myAlbaName"));
+                int tempMYPAY = iCursor.getInt(iCursor.getColumnIndex("myPay"));
+                int tempYEAR = iCursor.getInt(iCursor.getColumnIndex("year"));
+                int tempMONTH = iCursor.getInt(iCursor.getColumnIndex("month"));
+                int tempDAY = iCursor.getInt(iCursor.getColumnIndex("day"));
+                int tempSTARTHOUR = iCursor.getInt(iCursor.getColumnIndex("startHour"));
+                int tempSTARTMINUTES = iCursor.getInt(iCursor.getColumnIndex("startMinutes"));
+                int tempENDHOUR = iCursor.getInt(iCursor.getColumnIndex("endHour"));
+                int tempENDMINUTES = iCursor.getInt(iCursor.getColumnIndex("endMinutes"));
+                int tempPAYFORDAY = iCursor.getInt(iCursor.getColumnIndex("payForDay"));
 
-                    String str = tempMYALBANAME
-                            + ", 시급: " + String.valueOf(tempMYPAY)
-                            + ", 날짜: " + String.valueOf(tempYEAR) + String.valueOf(tempMONTH) + String.valueOf(tempDAY)
-                            + ", 시작 시간: " + String.valueOf(tempSTARTHOUR) + " : " + String.valueOf(tempSTARTMINUTES) + " ~ "
-                            + ", 종료 시간: " + String.valueOf(tempENDHOUR) + " : " + String.valueOf(tempENDMINUTES) + " ~ "
-                            + ", 일급: " + String.valueOf(tempPAYFORDAY);
+                String str = tempMYALBANAME
+                        + ", 시급: " + String.valueOf(tempMYPAY)
+                        + ", 날짜: " + String.valueOf(tempYEAR) + String.valueOf(tempMONTH) + String.valueOf(tempDAY)
+                        + ", 시작 시간: " + String.valueOf(tempSTARTHOUR) + " : " + String.valueOf(tempSTARTMINUTES) + " ~ "
+                        + ", 종료 시간: " + String.valueOf(tempENDHOUR) + " : " + String.valueOf(tempENDMINUTES) + " ~ "
+                        + ", 일급: " + String.valueOf(tempPAYFORDAY);
 
-                    Log.v("DB",str);
+                Log.v("DB",str);
             }
             Log.v("DB","eeeennnnnnddddd");
             iCursor.close();
