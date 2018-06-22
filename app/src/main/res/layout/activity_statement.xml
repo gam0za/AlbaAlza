@@ -1,0 +1,232 @@
+<RelativeLayout
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    tools:context="com.example.albaalza.P_MyAlba.MyAlba2Fragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_margin="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical|center_horizontal">
+
+            <!-- 근무 시작~종료 일자 -->
+            <LinearLayout
+                android:id="@+id/layout_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- 근무 시작 일자 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:fontFamily="@font/font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="근무 시작 일자 "/>
+
+                  <TextView
+                      android:text="2018년 "
+                      android:id="@+id/start_year"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="/"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="3월"
+                        android:id="@+id/start_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="/"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="3일"
+                        android:id="@+id/start_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- 근무 종료 일자 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:fontFamily="@font/font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="근무 종료 일자 "/>
+
+                    <TextView
+                        android:text="2018년 "
+                        android:id="@+id/end_year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="/"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="3월"
+                        android:id="@+id/end_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="/"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="3일"
+                        android:id="@+id/end_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <!-- 기본급여 -->
+        <LinearLayout
+            android:background="@drawable/myalba_paytable_basic"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:fontFamily="@font/font"
+                android:id="@+id/wage"
+                android:layout_weight="2.7"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical|end"
+                android:layout_marginRight="10dp"/>
+
+            <TextView
+                android:id="@+id/hours"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="2.5"
+                android:fontFamily="@font/font"
+                android:gravity="center_vertical|end" />
+            <TextView
+                android:fontFamily="@font/font"
+                android:id="@+id/total1"
+                android:layout_weight="2.5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical|end"
+                android:layout_marginRight="10dp"/>
+        </LinearLayout>
+
+
+        <!-- 추가급여 -->
+        <LinearLayout
+            android:background="@drawable/myalba_paytable_addpay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:fontFamily="@font/font"
+                android:id="@+id/weeklyA"
+                android:layout_weight="2.7"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical|end"
+                android:layout_marginRight="10dp"/>
+            <TextView
+                android:fontFamily="@font/font"
+                android:id="@+id/nightA"
+                android:layout_weight="2.5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical|end"
+                android:layout_marginRight="10dp"/>
+
+            <TextView
+                android:fontFamily="@font/font"
+                android:id="@+id/total2"
+                android:layout_weight="2.5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical|end"
+                android:layout_marginRight="10dp"/>
+        </LinearLayout>
+
+
+        <!-- 세금 -->
+        <LinearLayout
+            android:background="@drawable/myalba_paytable_tax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:fontFamily="@font/font"
+                android:id="@+id/fourP"
+                android:layout_weight="4.5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical|end"
+                android:layout_marginRight="10dp"/>
+
+            <TextView
+                android:fontFamily="@font/font"
+                android:id="@+id/total3"
+                android:layout_weight="4"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical|end"
+                android:layout_marginRight="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center">
+            <TextView
+                android:fontFamily="@font/font"
+                android:background="@drawable/myalba_all_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:fontFamily="@font/font"
+                android:id="@+id/total4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

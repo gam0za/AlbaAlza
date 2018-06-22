@@ -274,6 +274,10 @@ public class MyPlaceFragment extends Fragment implements WeekView.EventClickList
     @Override
     public void onEventClick(WeekViewEvent event, RectF eventRect) {
         Toast.makeText(getActivity(), "Clicked " + event.getName(), Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(getActivity(),StatementActivity.class);
+        intent.putExtra("albaname",event.getName());
+        startActivity(intent);
+
     }
 
 //  아이템 롱클릭

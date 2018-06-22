@@ -59,7 +59,8 @@
         <activity android:name=".P_Labor.Advice1Activity" />
         <activity android:name=".P_MyPage.License" />
         <activity android:name=".P_Main.LoadActivity" />
-        <activity android:name=".B_MyPlace.MyAlbaListActivity"></activity>
+        <activity android:name=".B_MyPlace.MyAlbaListActivity" />
+        <activity android:name=".B_MyPlace.StatementActivity"></activity>
     </application>
 
 </manifest>
