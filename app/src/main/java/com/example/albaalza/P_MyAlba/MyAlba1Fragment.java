@@ -700,7 +700,7 @@ public class MyAlba1Fragment extends Fragment {
         String id;
         id="MINa";
         String oid;
-        oid="MINb";
+        oid="testboss";
 
         String MONstart_hour;
         String MONstart_min;

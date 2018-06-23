@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.albaalza.B_MyPlace.MyAlbaListActivity">
+    tools:context="com.example.albaalza.B_MyPlace.MyAlbaListActivity"
+    android:orientation="vertical">
 
     <!--타이틀 바-->
     <RelativeLayout
@@ -22,6 +23,13 @@
     </RelativeLayout>
 
     <!--친구 요청 목록-->
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="20dp"
+        android:id="@+id/recycler_albalist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
 
 
 
