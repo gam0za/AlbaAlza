@@ -52,6 +52,7 @@ public class MyAlbaListActivity extends AppCompatActivity {
     }
 
     public void mylistrequest(String id){
+        Log.d("ID",id);
         albaListPost=new AlbaListPost(id);
         Call<AlbaListResponse> albaListResponseCall=networkService.mylistrequest(albaListPost);
 

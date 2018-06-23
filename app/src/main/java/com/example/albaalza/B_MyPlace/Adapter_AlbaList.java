@@ -51,11 +51,11 @@ public class Adapter_AlbaList extends RecyclerView.Adapter<ViewHolder_AlbaList> 
         networkService= ApplicationController.getInstance().getNetworkService();
 
         final AlbaListData albaListResponse=albalistItem.get(position);
-        holder.albalist_name.setText(albaListResponse.getWorker());
+        holder.albalist_name.setText(albaListResponse.worker);
         holder.albalist_profile.setImageResource(R.drawable.albabot);
-        holder.albalist_date.setText(albaListResponse.getUpdated_at());
+        holder.albalist_date.setText(albaListResponse.updated_at);
 
-        if(albaListResponse.getStatus()==true){
+        if(albaListResponse.status==true){
             holder.accept.setImageResource(R.drawable.friend);
         }else{
             holder.accept.setImageResource(R.drawable.accept);
