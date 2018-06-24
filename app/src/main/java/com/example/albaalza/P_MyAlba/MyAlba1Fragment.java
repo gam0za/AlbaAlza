@@ -183,8 +183,9 @@ public class MyAlba1Fragment extends Fragment {
                 int payForDay = myAlbaDBCalculator.setPayForDay(my_pay, start_hour, start_minute, end_hour, end_minute);
 
                 // 데이터 베이스 업그레이드
-                dbHelper.updateColumn_MYALBA(my_pay, calendar_year, calendar_month, selected_day, // 조건
-                        start_hour, start_minute, end_hour, end_minute, payForDay);
+                dbHelper.updateColumn_MYALBA(my_pay, calendar_year, calendar_month, selected_date, start_hour, start_minute, end_hour, end_minute, payForDay);
+                String str = String.valueOf(calendar_year) + "년" + String.valueOf(calendar_month) + "월" + String.valueOf(selected_date) + "일자 알바 정보가 성공적으로 수정되었습니다.";
+                Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
 
                 // 화면 갱신
                 updateCalendar();
@@ -418,23 +419,34 @@ public class MyAlba1Fragment extends Fragment {
             }
         });
 
-        // 알바 day 수정 버튼
-//        modifyBtn.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view) {
-//                int tempMYPAY = myAlbaDBCalculator.getMyPaySet2(albaNameInSpinner, calendar_year, calendar_month, selected_date);
-//                Intent intent = new Intent(getActivity(), ModifyAlbaDay.class);
-//
-//                intent.putExtra("start_hour", start_hour);
-//                intent.putExtra("start_minute", start_minute);
-//                intent.putExtra("end_hour", end_hour);
-//                intent.putExtra("end_minute", end_minute);
-//                intent.putExtra("my_pay", tempMYPAY);
-//                getActivity().startActivityForResult(intent, 3001);
-//                buttonLayout.setVisibility(View.INVISIBLE);
-//                show_Black_layout(false);
-//            }
-//        });
+// 알바 day 수정 버튼
+        modifyBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ModifyAlbaDay.class);
+
+                // 시작시간-종료시간 데이터 불러오기
+                myAlbaDBCalculator.getMyScheduleForDay(albaNameInSpinner, calendar_year, calendar_month, selected_date);
+                int start_hour = myAlbaDBCalculator.getSTART_HOUR_ForDay();
+                int start_minute = myAlbaDBCalculator.getSTART_MIN_ForDay();
+                int end_hour = myAlbaDBCalculator.getEND_HOUR_ForDay();
+                int end_minute = myAlbaDBCalculator.getEND_MIN_ForDay();
+
+                //하루 시급 데이터 불러오기
+                int my_pay_for_a_day = myAlbaDBCalculator.getMyPaySet2(albaNameInSpinner, calendar_year, calendar_month, selected_date);
+
+                // 인텐트 보내기
+                intent.putExtra("start_hour", start_hour);
+                intent.putExtra("start_minute", start_minute);
+                intent.putExtra("end_hour", end_hour);
+                intent.putExtra("end_minute", end_minute);
+                intent.putExtra("my_pay", my_pay_for_a_day);
+
+                getActivity().startActivityForResult(intent, 3001);
+                buttonLayout.setVisibility(View.INVISIBLE);
+                show_Black_layout(false);
+            }
+        });
 
         // spinner
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

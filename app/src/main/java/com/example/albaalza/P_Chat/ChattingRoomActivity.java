@@ -1,5 +1,6 @@
 package com.example.albaalza.P_Chat;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,7 @@ public class ChattingRoomActivity extends AppCompatActivity {
     ListView listView;
     EditText text;
     ImageView button;
+    SharedPreferences sharedPreferences;
 
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> chat_room=new ArrayList<>();

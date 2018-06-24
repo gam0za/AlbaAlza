@@ -2,6 +2,7 @@ package com.example.albaalza.P_Chat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,7 +48,9 @@ public class ChatActivity extends AppCompatActivity implements  OnClickListener{
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference reference;
     private String name,room_name,key;
+    String writer;
     private ChildEventListener childEventListener;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +66,10 @@ public class ChatActivity extends AppCompatActivity implements  OnClickListener{
         recyclerView.setHasFixedSize(true);
         //chatItems.add(new ChatItem("groupname",R.drawable.bookmark_off));//dummy data
         Log.d("username: ","jinyoung");   //jinyoung is dummy data
-        chatAdapter=new ChatAdapter(chatItems,this,"jinyoung",bookmark);
+
+        sharedPreferences=getSharedPreferences("account",MODE_PRIVATE);
+        writer=sharedPreferences.getString("id","doby");
+        chatAdapter=new ChatAdapter(chatItems,this,writer,bookmark);
         recyclerView.setAdapter(chatAdapter);
         //       리사이클러뷰 구분선 추가
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getApplicationContext(),

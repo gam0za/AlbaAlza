@@ -40,7 +40,7 @@ public class ModifyAlbaDay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_alba_day);
 
-        createView(); // 뷰 객체 생성 함수
+        createView(); // 뷰 객체 생성 함 수
         functionView(); // 뷰 객체 기능 함수
     }
 

@@ -192,22 +192,18 @@ public class MyAlbaDbOpenHelper {
 
     // 수정 (all)
     public void updateColumn_MYALBA(int myPay, int year, int month, int day, // 조건
-                                    int startHour, int startMinutes, int endHour, int endMinutes, int payforday){ // 바꿀 거
+                                    int startHour, int startMinutes, int endHour, int endMinutes, int payforday) { // 바꿀 거
 
-       ContentValues values = new ContentValues();
-       values.put(KEY_MYPAY, myPay);
-       values.put(KEY_STARTHOUR, startHour);
-       values.put(KEY_STARTMINUTES, startMinutes);
-       values.put(KEY_ENDHOUR, endHour);
-       values.put(KEY_ENDMINUTES, endMinutes);
-       values.put(KEY_PAYFORDAY, payforday);
+        ContentValues values = new ContentValues();
+        values.put(KEY_MYPAY, myPay);
+        values.put(KEY_STARTHOUR, startHour);
+        values.put(KEY_STARTMINUTES, startMinutes);
+        values.put(KEY_ENDHOUR, endHour);
+        values.put(KEY_ENDMINUTES, endMinutes);
+        values.put(KEY_PAYFORDAY, payforday);
 
-       mDB.update(TABLENAME_MYALBA, values, "WHERE "
-               + KEY_YEAR + "='" + year + "' and "
-                + KEY_MONTH + "='" + month + "' and "
-               + KEY_DAY + "='" + day + "'",  null);
+        mDB.update(TABLENAME_MYALBA, values, KEY_YEAR + " = " + year +" AND " + KEY_MONTH + " = " + month +" AND " + KEY_DAY + " = " + day, null);
     }
-
     public void close(){
         mDB.close();
     }

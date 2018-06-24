@@ -1,5 +1,7 @@
 package com.example.albaalza.P_Chat;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -37,13 +39,18 @@ public class MessageActivity extends AppCompatActivity {
     private ArrayList<MessageItem> messageItems=new ArrayList<>();
     private DatabaseReference reference;
     private FirebaseDatabase firebaseDatabase;
+    private String writer;
     private int i;
     String chat_room_name,chat_user_name,chat_message,chat_user,key;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
+
+        sharedPreferences=getSharedPreferences("account", Context.MODE_PRIVATE);
+        writer=sharedPreferences.getString("id","doby");
 
         recyclerView=(RecyclerView)findViewById(R.id.message_recyclerview);
         GroupName=(TextView)findViewById(R.id.chat_name);
@@ -51,12 +58,14 @@ public class MessageActivity extends AppCompatActivity {
         button_message=(ImageView)findViewById(R.id.button_message);
         edit_message=(EditText)findViewById(R.id.edit_message);
 
+
         layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        messageItems.add(new MessageItem("jinyoung","hello"));//
+        messageItems.add(new MessageItem(writer,"hello"));//
         adapter=new MessageAdapter(messageItems,this);//
         recyclerView.setAdapter(adapter);//
+
 
 
 

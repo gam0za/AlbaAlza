@@ -10,6 +10,16 @@ package com.example.albaalza.P_MyAlba;
         import java.util.Date;
         import java.util.Locale;
 
+        import android.content.Intent;
+        import android.database.Cursor;
+        import android.util.Log;
+
+        import java.text.DateFormat;
+        import java.text.SimpleDateFormat;
+        import java.util.Calendar;
+        import java.util.Date;
+        import java.util.Locale;
+
 /**
  * Created by SEJIN on 2018-01-15.
  */
@@ -24,6 +34,9 @@ public class MyAlbaDBCalculator {
     String startMIN[] = new String[7]; //1~6:월~토, 0:일
     String endHOUR[] = new String[7]; //1~6:월~토, 0:일
     String endMIN[] = new String[7]; //1~6:월~토, 0:일
+
+    // 하루 스케줄 데이터
+    int start_hour_for_a_day, start_min_for_a_day, end_hour_for_a_day, end_min_for_a_day;
 
     public MyAlbaDBCalculator(MyAlbaDbOpenHelper dbHelper) {
         this.dbHelper = dbHelper;
@@ -446,7 +459,7 @@ public class MyAlbaDBCalculator {
         return 0;
     }
 
-    /* 한주의 스케줄 */
+    /*****************************************  한주의 스케줄 ******************************************/
     public void getMySchedule(String albaNameInSpinner) {
 
         // 초기화
@@ -582,5 +595,58 @@ public class MyAlbaDBCalculator {
     public String[] getEND_MIN(){
         return endMIN;
     }
+    /*****************************************  한주의 스케줄 ******************************************/
 
+
+    /*****************************************  하루의 스케줄 ******************************************/
+    public void getMyScheduleForDay(String albaNameInSpinner, int year, int month, int day) {
+
+        // 데이터 초기화
+        start_hour_for_a_day = start_min_for_a_day = end_hour_for_a_day = end_min_for_a_day = 0;
+
+        // 내부디비 불러오기
+        try {
+            Cursor iCursor = dbHelper.selectColumns_MYALBA();
+            iCursor.moveToFirst();
+            while (iCursor.moveToNext()) {
+                String tempMYALBANAME = iCursor.getString(iCursor.getColumnIndex("myAlbaName"));
+
+                if (tempMYALBANAME.equals(albaNameInSpinner)) {
+                    int tempYEAR = iCursor.getInt(iCursor.getColumnIndex("year"));
+                    int tempMONTH = iCursor.getInt(iCursor.getColumnIndex("month"));
+                    int tempDAY = iCursor.getInt(iCursor.getColumnIndex("day"));
+
+                    if (tempYEAR == year && tempMONTH == month && tempDAY == day) {
+                        start_hour_for_a_day = iCursor.getInt(iCursor.getColumnIndex("startHour"));
+                        start_min_for_a_day = iCursor.getInt(iCursor.getColumnIndex("startMinutes"));
+                        end_hour_for_a_day = iCursor.getInt(iCursor.getColumnIndex("endHour"));
+                        end_min_for_a_day = iCursor.getInt(iCursor.getColumnIndex("endMinutes"));
+                    }
+                }
+            }
+            iCursor.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /* 한주의 스케줄 - 시작 시 얻기 */
+    public int getSTART_HOUR_ForDay(){
+        return start_hour_for_a_day;
+    }
+
+    /* 한주의 스케줄 - 시작 분 얻기 */
+    public int getSTART_MIN_ForDay(){ return start_min_for_a_day;
+    }
+
+    /* 한주의 스케줄 - 종료 시 얻기 */
+    public int getEND_HOUR_ForDay(){
+        return end_hour_for_a_day;
+    }
+
+    /* 한주의 스케줄 - 종료 분 얻기 */
+    public int getEND_MIN_ForDay(){
+        return end_min_for_a_day;
+    }
+    /*****************************************  하루의 스케줄 ******************************************/
 }
