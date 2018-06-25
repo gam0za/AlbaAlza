@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,6 +49,7 @@ public class MyAlba1Fragment extends Fragment {
     private ImageView black_layout,prevBtn, nextBtn;
     private RelativeLayout buttonLayout;
     private ImageView Btn_Send_My_Schedule;
+    private SweetAlertDialog alertDialog;
 
     /* fragment_my_alba1 변수 선언 */
     private ImageView  today_setBtn;
@@ -134,6 +136,9 @@ public class MyAlba1Fragment extends Fragment {
         viewFunction(); // 뷰 객체 기능 구현 함수
 
         isCreated = true;
+
+
+
         return view;
     }
 
@@ -186,7 +191,7 @@ public class MyAlba1Fragment extends Fragment {
                 // 데이터 베이스 업그레이드
                 dbHelper.updateColumn_MYALBA(my_pay, calendar_year, calendar_month, selected_date, start_hour, start_minute, end_hour, end_minute, payForDay);
                 String str = String.valueOf(calendar_year) + "년" + String.valueOf(calendar_month) + "월" + String.valueOf(selected_date) + "일자 알바 정보가 성공적으로 수정되었습니다.";
-                Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
+//                Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
 
                 // 화면 갱신
                 updateCalendar();
@@ -699,6 +704,10 @@ public class MyAlba1Fragment extends Fragment {
 
     public void schedule(){
 
+        alertDialog=new SweetAlertDialog(getContext(),SweetAlertDialog.SUCCESS_TYPE);
+        alertDialog.setTitleText("스케줄 전송완료:)")
+                .show();
+
         String startHOUR[];
         String startMIN[];
         String endHOUR[];
@@ -786,13 +795,17 @@ public class MyAlba1Fragment extends Fragment {
             @Override
             public void onResponse(Call<SendScheduleResponse> call, Response<SendScheduleResponse> response) {
                 if(response.isSuccessful()){
-                    ApplicationController.getInstance().makeToast("급여명세서 전송 성공:)");
+
+
+
                 }
             }
 
             @Override
             public void onFailure(Call<SendScheduleResponse> call, Throwable t) {
-                ApplicationController.getInstance().makeToast("급여명세서 전송 성공:)");
+
+
+
             }
         });
 

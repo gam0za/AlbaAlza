@@ -120,7 +120,6 @@ public class Login extends AppCompatActivity {
 //                        userData.pwd=response.body().loginData.upwd;
                     Intent intent = new Intent(Login.this, LoadActivity.class);
                     intent.putExtra("type","home");
-                    ApplicationController.getInstance().makeToast("로그인 성공"+userData.id+", "+userData.type);
                     startActivity(intent);
                     finish();
                 } else {

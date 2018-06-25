@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -85,6 +86,7 @@ public class MyAlba2Fragment extends Fragment {
 
     MyAlba myAlba;
     MyAlba1Fragment myAlba1Fragment;
+    SweetAlertDialog alertDialog;
 
     public MyAlba2Fragment() {
         // Required empty public constructor
@@ -186,6 +188,8 @@ public class MyAlba2Fragment extends Fragment {
                 sendstatement(wid,oid,start_y,start_m,start_d,end_y,end_m,end_d,wage,hours,total1,weekly_a,night_a,total2,four_P,total3,total4);
             }
         });
+
+
 
         return view;
     }
@@ -490,15 +494,16 @@ public class MyAlba2Fragment extends Fragment {
             @Override
             public void onResponse(Call<MyStatementResponse> call, Response<MyStatementResponse> response) {
                 if (response.isSuccessful()) {
-                    ApplicationController.getInstance().makeToast(oid+"님께 급여명세서가 전송되었습니다:)");
+                    alertDialog=new SweetAlertDialog(getContext(),SweetAlertDialog.SUCCESS_TYPE);
+                    alertDialog.setTitleText("급여명세서 전송완료:)")
+                            .show();
                 }else{
-                    ApplicationController.getInstance().makeToast("실패:P");
+
                 }
             }
 
             @Override
             public void onFailure(Call<MyStatementResponse> call, Throwable t) {
-                ApplicationController.getInstance().makeToast("서버 연결 상태를 확인해주세요.");
             }
         });
     }
