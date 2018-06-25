@@ -56,7 +56,7 @@ public interface NetworkService {
     @POST("process/sendrequest")
     Call<SendRequestResponse> sendrequest(@Body SendRequestPost sendRequestPost);
 
-//    3-2 받은 친구 신청 확인
+//    3-2 받은 친구 신청 확인(0)
     @POST("process/mylistrequest")
     Call<AlbaListResponse> mylistrequest(@Body AlbaListPost albaListPost);
 
@@ -68,7 +68,7 @@ public interface NetworkService {
     @POST("process/sendstatement")
     Call<MyStatementResponse> sendstatement (@Body MyStatementPost myStatementPost);
 
-//    4-2 나에게 도착한 명세서 확인
+//    4-2 나에게 도착한 명세서 확인(0)
     @POST("process/myliststatement")
     Call<StatementResponse> myliststatement (@Body StatementPost statementPost);
 

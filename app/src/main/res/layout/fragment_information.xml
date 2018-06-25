@@ -105,13 +105,17 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:gravity="center"
         android:background="@drawable/artbox"
         android:layout_below="@+id/layout_2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-    </LinearLayout>
+    <ImageView
+        android:src="@drawable/girl"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content" />
+    </RelativeLayout>
 
 </RelativeLayout>

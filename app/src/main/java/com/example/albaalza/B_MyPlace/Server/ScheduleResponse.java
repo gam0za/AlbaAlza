@@ -10,5 +10,13 @@ import java.util.ArrayList;
 
 public class ScheduleResponse {
 
-    public ArrayList<AlbaData> albaData;
+    public String name;
+    public String date;
+    public DayData MON;
+    public DayData TUE;
+    public DayData WED;
+    public DayData THU;
+    public DayData FRI;
+    public DayData SAT;
+    public DayData SUN;
 }

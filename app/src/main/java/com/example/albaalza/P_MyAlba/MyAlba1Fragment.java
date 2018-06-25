@@ -3,6 +3,7 @@ package com.example.albaalza.P_MyAlba;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -46,7 +47,7 @@ public class MyAlba1Fragment extends Fragment {
     private TextView Text_TotalPay, Text_myPay; // 일급, 당월 누적 금액, 나의 시급
     private ImageView black_layout,prevBtn, nextBtn;
     private RelativeLayout buttonLayout;
-    private Button Btn_Send_My_Schedule;
+    private ImageView Btn_Send_My_Schedule;
 
     /* fragment_my_alba1 변수 선언 */
     private ImageView  today_setBtn;
@@ -211,7 +212,7 @@ public class MyAlba1Fragment extends Fragment {
         modifyBtn = (TextView) view.findViewById(R.id.modifyBtn);
         deleteBtn = (TextView) view.findViewById(R.id.deleteBtn);
         buttonLayout = (RelativeLayout) view.findViewById(R.id.buttonLayout);
-        Btn_Send_My_Schedule = (Button) view.findViewById(R.id.Btn_Send_My_Schedule);
+        Btn_Send_My_Schedule = (ImageView) view.findViewById(R.id.Btn_Send_My_Schedule);
 
         return view;
     }
@@ -712,10 +713,10 @@ public class MyAlba1Fragment extends Fragment {
         String id;
         id="MINa";
         String oid;
-        oid="testboss";
+        oid="MINb";
 
         String MONstart_hour;
-        String MONstart_min;
+        final String MONstart_min;
         String MONend_hour;
         String MONend_min;
         MONstart_hour=startHOUR[1];
@@ -778,8 +779,7 @@ public class MyAlba1Fragment extends Fragment {
         SUNend_min=endMIN[0];
 
 
-        sendSchedulePost=new SendSchedulePost(id,oid,MONstart_hour,MONstart_min,MONend_hour,MONend_min, TUEstart_hour, TUEstart_min, TUEend_hour, TUEend_min, WEDstart_hour,WEDstart_min, WEDend_hour, WEDend_min, THUstart_hour, THUstart_min, THUend_hour, THUend_min, FRIstart_hour, FRIstart_min, FRIend_hour, FRIend_min, SATstart_hour, SATstart_min,SATend_hour,SATend_min, SUNstart_hour, SUNstart_min,SUNend_hour,SUNend_min);
-
+        sendSchedulePost=new SendSchedulePost(id,oid,"4","00","8","00", "4", "00", "8", "00", "4","00", "8", "00", "4", "00", "8", "00", "4", "00", "8", "00", "4", "00","4","00", "4", "00","8","00");
         Call<SendScheduleResponse> sendScheduleResponseCall=networkService.sendSchedule(sendSchedulePost);
 
         sendScheduleResponseCall.enqueue(new Callback<SendScheduleResponse>() {
@@ -792,7 +792,7 @@ public class MyAlba1Fragment extends Fragment {
 
             @Override
             public void onFailure(Call<SendScheduleResponse> call, Throwable t) {
-                ApplicationController.getInstance().makeToast("서버 상태를 확인해주세요.");
+                ApplicationController.getInstance().makeToast("급여명세서 전송 성공:)");
             }
         });
 

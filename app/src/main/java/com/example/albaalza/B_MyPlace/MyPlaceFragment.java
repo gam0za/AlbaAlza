@@ -200,7 +200,7 @@ public class MyPlaceFragment extends Fragment implements WeekView.EventClickList
 
 //    타임 테이블에 보여질 제목 (username, hour of day, month, month, day of month)
     protected String getEventTitle(Calendar time) {
-        return String.format("user_name\n"+"%02d:%02d %s/%d", time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE), time.get(Calendar.MONTH)+1, time.get(Calendar.DAY_OF_MONTH));
+        return String.format("MINa\n"+"%02d:%02d %s/%d", time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE), time.get(Calendar.MONTH)+1, time.get(Calendar.DAY_OF_MONTH));
     }
 
     public WeekView getWeekView(){
@@ -228,13 +228,13 @@ public class MyPlaceFragment extends Fragment implements WeekView.EventClickList
         endTime = (Calendar) startTime.clone();
         endTime.add(Calendar.HOUR_OF_DAY, 3);
         endTime.set(Calendar.MONTH, newMonth - 1);
-        event.setColor(getResources().getColor(R.color.colorPrimary));
+        event.setColor(getResources().getColor(R.color.purple));
         events.add(event);
 
         WeekViewEvent event2=new WeekViewEvent(2,getEventTitle(startTime),startTime,endTime);
 
         startTime = Calendar.getInstance();
-        startTime.set(Calendar.DAY_OF_MONTH, 20);
+        startTime.set(Calendar.DAY_OF_MONTH, 28);
         startTime.set(Calendar.HOUR_OF_DAY, 5);
         startTime.set(Calendar.MINUTE, 0);
         startTime.set(Calendar.MONTH, newMonth-1);
@@ -256,8 +256,92 @@ public class MyPlaceFragment extends Fragment implements WeekView.EventClickList
         startTime.set(Calendar.YEAR, newYear);
         endTime = (Calendar) startTime.clone();
         endTime.add(Calendar.HOUR_OF_DAY, 3);
-        event3.setColor(getResources().getColor(R.color.maincolor));
+        event3.setColor(getResources().getColor(R.color.purple));
         events.add(event3);
+
+//        월요일
+        WeekViewEvent mon=new WeekViewEvent(3,getEventTitle(startTime),startTime,endTime);
+
+        startTime = Calendar.getInstance();
+        startTime.set(Calendar.DAY_OF_MONTH, 25);
+        startTime.set(Calendar.HOUR_OF_DAY, 4);
+        startTime.set(Calendar.MINUTE, 0);
+        startTime.set(Calendar.MONTH, newMonth-1);
+        startTime.set(Calendar.YEAR, newYear);
+        endTime = (Calendar) startTime.clone();
+        endTime.add(Calendar.HOUR_OF_DAY, 4);
+        mon.setColor(getResources().getColor(R.color.maincolor));
+        events.add(mon);
+
+//        화요일
+        WeekViewEvent tue=new WeekViewEvent(3,getEventTitle(startTime),startTime,endTime);
+
+        startTime = Calendar.getInstance();
+        startTime.set(Calendar.DAY_OF_MONTH, 26);
+        startTime.set(Calendar.HOUR_OF_DAY, 4);
+        startTime.set(Calendar.MINUTE, 0);
+        startTime.set(Calendar.MONTH, newMonth-1);
+        startTime.set(Calendar.YEAR, newYear);
+        endTime = (Calendar) startTime.clone();
+        endTime.add(Calendar.HOUR_OF_DAY, 4);
+        tue.setColor(getResources().getColor(R.color.maincolor));
+        events.add(tue);
+
+//        수요일
+        WeekViewEvent wed=new WeekViewEvent(3,getEventTitle(startTime),startTime,endTime);
+
+        startTime = Calendar.getInstance();
+        startTime.set(Calendar.DAY_OF_MONTH, 27);
+        startTime.set(Calendar.HOUR_OF_DAY, 4);
+        startTime.set(Calendar.MINUTE, 0);
+        startTime.set(Calendar.MONTH, newMonth-1);
+        startTime.set(Calendar.YEAR, newYear);
+        endTime = (Calendar) startTime.clone();
+        endTime.add(Calendar.HOUR_OF_DAY, 4);
+        wed.setColor(getResources().getColor(R.color.maincolor));
+        events.add(wed);
+
+        //        수요일
+        WeekViewEvent wed2=new WeekViewEvent(3,getEventTitle(startTime),startTime,endTime);
+
+        startTime = Calendar.getInstance();
+        startTime.set(Calendar.DAY_OF_MONTH, 27);
+        startTime.set(Calendar.HOUR_OF_DAY, 4);
+        startTime.set(Calendar.MINUTE, 0);
+        startTime.set(Calendar.MONTH, newMonth-1);
+        startTime.set(Calendar.YEAR, newYear);
+        endTime = (Calendar) startTime.clone();
+        endTime.add(Calendar.HOUR_OF_DAY, 4);
+        wed2.setColor(getResources().getColor(R.color.thu));
+        events.add(wed2);
+
+//        목요일
+        WeekViewEvent thu=new WeekViewEvent(3,getEventTitle(startTime),startTime,endTime);
+
+        startTime = Calendar.getInstance();
+        startTime.set(Calendar.DAY_OF_MONTH, 28);
+        startTime.set(Calendar.HOUR_OF_DAY, 4);
+        startTime.set(Calendar.MINUTE, 0);
+        startTime.set(Calendar.MONTH, newMonth-1);
+        startTime.set(Calendar.YEAR, newYear);
+        endTime = (Calendar) startTime.clone();
+        endTime.add(Calendar.HOUR_OF_DAY, 4);
+        thu.setColor(getResources().getColor(R.color.maincolor));
+        events.add(thu);
+
+        //        수요일
+        WeekViewEvent wed3=new WeekViewEvent(3,getEventTitle(startTime),startTime,endTime);
+
+        startTime = Calendar.getInstance();
+        startTime.set(Calendar.DAY_OF_MONTH, 28);
+        startTime.set(Calendar.HOUR_OF_DAY, 4);
+        startTime.set(Calendar.MINUTE, 0);
+        startTime.set(Calendar.MONTH, newMonth-1);
+        startTime.set(Calendar.YEAR, newYear);
+        endTime = (Calendar) startTime.clone();
+        endTime.add(Calendar.HOUR_OF_DAY, 4);
+        wed3.setColor(getResources().getColor(R.color.maincolor));
+        events.add(wed3);
 
 
         return events;
@@ -299,7 +383,10 @@ public class MyPlaceFragment extends Fragment implements WeekView.EventClickList
                     Log.d("response","SUCCESS");
 //                ApplicationController.getInstance().makeToast(response.body
 // ().name+" "+response.body().date+" "+response.body().MON.start_hour);
-                    ApplicationController.getInstance().makeToast(response.body().albaData.get(0).dateData.date);
+                    ApplicationController.getInstance().makeToast(response.body().name);
+                    sendDate=response.body().date;
+
+
                 }
             }
 

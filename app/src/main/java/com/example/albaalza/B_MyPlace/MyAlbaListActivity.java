@@ -2,13 +2,20 @@ package com.example.albaalza.B_MyPlace;
 
 // 3-2 받은 친구신청 확인 => AlbaListPost, AlbaListResponse
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.albaalza.B_MyPlace.Server.AcceptPost;
+import com.example.albaalza.B_MyPlace.Server.AcceptResponse;
 import com.example.albaalza.B_MyPlace.Server.AlbaListData;
 import com.example.albaalza.B_MyPlace.Server.AlbaListPost;
 import com.example.albaalza.B_MyPlace.Server.AlbaListResponse;
@@ -24,33 +31,41 @@ import retrofit2.Response;
 
 public class MyAlbaListActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private Adapter_AlbaList adapter;
-    private RecyclerView.LayoutManager layoutManager;
+
     private NetworkService networkService;
     private AlbaListPost albaListPost;
+    private AcceptPost acceptPost;
+    private TextView albalist_name,albalist_date;
+    private ImageView accept;
+    private Boolean status;
+    private String rid,id;
 
-    private ArrayList<AlbaListData> albalistItems = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_alba_list);
         networkService= ApplicationController.getInstance().getNetworkService();
+        SharedPreferences sharedPreferences;
+        albalist_name=(TextView)findViewById(R.id.albalist_name);
+        albalist_date=(TextView)findViewById(R.id.albalist_date);
+        accept=(ImageView)findViewById(R.id.accept);
+        sharedPreferences=getSharedPreferences("account", Context.MODE_PRIVATE);
+        id=sharedPreferences.getString("id","MINb");
 
-        recyclerView=(RecyclerView)findViewById(R.id.recycler_albalist);
-        layoutManager=new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-        mylistrequest("MINb");
+        mylistrequest(id);
 
-        DividerItemDecoration dividerItemDecoration=new DividerItemDecoration(getApplicationContext(),
-                LinearLayoutManager.VERTICAL);
-        dividerItemDecoration.setDrawable(getApplicationContext().getResources().getDrawable(R.drawable.recyclerview_line));
-        recyclerView.addItemDecoration(dividerItemDecoration);
+        accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                acceptrequest(rid);
+            }
+        });
+
+
 
     }
-
+//    친구 신청 확인
     public void mylistrequest(String id){
         Log.d("ID",id);
         albaListPost=new AlbaListPost(id);
@@ -60,9 +75,16 @@ public class MyAlbaListActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AlbaListResponse> call, Response<AlbaListResponse> response) {
                 if(response.isSuccessful()){
-                    albalistItems=response.body().albaListData;
-                    adapter=new Adapter_AlbaList(albalistItems,getApplicationContext());
-                    recyclerView.setAdapter(adapter);
+                    ApplicationController.getInstance().makeToast(response.body().worker);
+                    albalist_name.setText(response.body().worker);
+                    albalist_date.setText(response.body().updated_at);
+                    status=response.body().status;
+                    rid=response.body().objectid;
+
+                    if(status==true){
+                        accept.setImageResource(R.drawable.accepted);
+                    }
+
                 }
             }
 
@@ -70,6 +92,27 @@ public class MyAlbaListActivity extends AppCompatActivity {
             public void onFailure(Call<AlbaListResponse> call, Throwable t) {
                 Log.d("FAIL","FAIL");
                 ApplicationController.getInstance().makeToast("서버 연결상태를 확인해주세요:P");
+            }
+        });
+    }
+//    친구 신청 확인 보내기
+    public void acceptrequest(String rid){
+        Log.d("친구신청 확인","function in");
+        acceptPost=new AcceptPost(rid);
+        Call<AcceptResponse> acceptResponseCall=networkService.acceptrequest(acceptPost);
+
+        acceptResponseCall.enqueue(new Callback<AcceptResponse>() {
+            @Override
+            public void onResponse(Call<AcceptResponse> call, Response<AcceptResponse> response) {
+                if(response.isSuccessful()){
+                    ApplicationController.getInstance().makeToast("친구 요청을 수락했습니다.");
+                    accept.setImageResource(R.drawable.accepted);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AcceptResponse> call, Throwable t) {
+
             }
         });
     }
