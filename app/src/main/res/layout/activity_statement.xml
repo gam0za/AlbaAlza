@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    tools:context="com.example.albaalza.P_MyAlba.MyAlba2Fragment">
+    tools:context=".UI.P_MyAlba.MyAlba2Fragment">
 
     <!-- TODO: Update blank fragment layout -->
 

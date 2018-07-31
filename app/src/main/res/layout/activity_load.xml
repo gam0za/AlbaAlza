@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.albaalza.P_Main.LoadActivity">
+    tools:context=".UI.P_Main.LoadActivity">
 
     <com.nipunbirla.boxloader.BoxLoaderView
         android:id="@+id/progress"

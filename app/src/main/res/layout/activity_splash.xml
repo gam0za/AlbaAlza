@@ -5,7 +5,7 @@
     android:background="#47EED4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.albaalza.P_Main.Splash">
+    tools:context=".UI.P_Main.Splash">
 
     <com.bluehomestudio.progressimage.ProgressPicture
         app:animation="rotate_y"

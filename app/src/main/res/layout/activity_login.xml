@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context="com.example.albaalza.P_Login.Login">
+    tools:context=".UI.P_Login.Login">
 
 
 

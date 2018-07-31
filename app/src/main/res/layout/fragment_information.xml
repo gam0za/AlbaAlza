@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.albaalza.P_Home.Home">
+    tools:context=".UI.P_Home.Home">
 
     <LinearLayout
         android:id="@+id/layout_1"

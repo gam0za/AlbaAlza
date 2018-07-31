@@ -25,7 +25,7 @@
         android:required="true" />
 
     <application
-        android:name=".Server.ApplicationController"
+        android:name=".Network.ApplicationController"
         android:allowBackup="true"
         android:icon="@mipmap/myicon"
         android:label="@string/app_name"
@@ -33,34 +33,34 @@
         android:supportsRtl="true"
         android:theme="@style/AlbaAlzaTheme"
         tools:replace="android:icon">
-        <activity android:name=".P_Main.Splash">
+        <activity android:name=".UI.P_Main.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".P_MyAlba.AddAlba" />
-        <activity android:name=".P_FindPassword.FindPassword" />
-        <activity android:name=".P_Login.Login" />
-        <activity android:name=".P_Main.MainActivity" />
-        <activity android:name=".P_MyAlba.AddAlbaDay" />
-        <activity android:name=".P_MyAlba.ModifyAlbaDay" />
-        <activity android:name=".P_SignUp.SignUp" />
-        <activity android:name=".P_SignUp.SelectActor" />
+        <activity android:name=".UI.P_MyAlba.AddAlba" />
+        <activity android:name=".UI.P_FindPassword.FindPassword" />
+        <activity android:name=".UI.P_Login.Login" />
+        <activity android:name=".UI.P_Main.MainActivity" />
+        <activity android:name=".UI.P_MyAlba.AddAlbaDay" />
+        <activity android:name=".UI.P_MyAlba.ModifyAlbaDay" />
+        <activity android:name=".UI.P_SignUp.SignUp" />
+        <activity android:name=".UI.P_SignUp.SelectActor" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCa1FoIm08sYvD7nlLCkuD7wwyCCxHjYyA" />
 
-        <activity android:name=".P_Chat.ChattingRoomActivity" />
-        <activity android:name=".P_Chat.ChatActivity" />
-        <activity android:name=".P_Chat.MessageActivity" />
-        <activity android:name=".P_Labor.Advice1Activity" />
-        <activity android:name=".P_MyPage.License" />
-        <activity android:name=".P_Main.LoadActivity" />
-        <activity android:name=".B_MyPlace.MyAlbaListActivity" />
-        <activity android:name=".B_MyPlace.StatementActivity"></activity>
+        <activity android:name=".UI.P_Chat.ChattingRoomActivity" />
+        <activity android:name=".UI.P_Chat.ChatActivity" />
+        <activity android:name=".UI.P_Chat.MessageActivity" />
+        <activity android:name=".UI.P_Labor.Advice1Activity" />
+        <activity android:name=".UI.P_MyPage.License" />
+        <activity android:name=".UI.P_Main.LoadActivity" />
+        <activity android:name=".UI.B_MyPlace.MyAlbaListActivity" />
+        <activity android:name=".UI.B_MyPlace.StatementActivity"></activity>
     </application>
 
 </manifest>

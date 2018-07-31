@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context="com.example.albaalza.P_MyAlba.AddAlbaDay">
+    tools:context=".UI.P_MyAlba.AddAlbaDay">
 
 <LinearLayout
     android:orientation="vertical"

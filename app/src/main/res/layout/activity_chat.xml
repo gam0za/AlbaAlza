@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.albaalza.P_Chat.ChatActivity">
+    tools:context=".UI.P_Chat.ChatActivity">
     <TextView
         android:fontFamily="@font/font"
         android:id="@+id/text"
